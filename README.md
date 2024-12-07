@@ -1,5 +1,5 @@
 # 42_projects
-These are my projects from Campus 19 (42 network Belgium). I attended the piscine in September 2024 and started the cursus in October.
+Here are my projects from Campus 19 (42 network Belgium). I attended the piscine in September 2024 and started the cursus in October.
 You can e-mail me at jpiscice@student.s19.be.
 
 **Currently included**

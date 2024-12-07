@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   libft_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/10/27 22:15:47 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/07 13:42:41 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ the tests, e.g. the pointers in standard memcpy. Change them ad lib. to understa
 what's happening. If nothing works, then the cause could be your functions.
 
 It's up to you to customize the tests to try your libft.
+
+NB : this was made for MacOs. On Linux, functions non available in libc will crash.
+Just comment them and it will be fine.
 
 ==================================FUNCTIONS==================================
 ===================================TESTED====================================
@@ -238,8 +241,9 @@ void	strings(void)
 {
 	char	a[] = "Cette phrase a une longueur de 34.";
 	char	a2[] = "\"Cette phrase a une longueur de 34.\"";
-	char	s[] = "\t  Cette phrase n'aurait-elle pas des trucs en trop ?  \n";
-	char	s2[] = "\"\\t  Cette phrase n'aurait-elle pas des trucs en trop ?  \\n\"";
+	char	s[] = "\t ) .Cette phrase n'aurait-elle pas des trucs en trop ?)  \n";
+	char	*s = NULL;
+	char	s2[] = "\"\\t ) .Cette phrase n'aurait-elle pas des trucs en trop ?)  \\n\"";
 	char	*trim;
 	char	set[] = " \n\t.)";
 	char	set2[] = "\" \\n\\t.)\"";
@@ -314,7 +318,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	free_all(w);
+	ft_free_all(w);
 
 	ft_putendl_fd("\n", 1);
 
@@ -326,7 +330,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	free_all(w);
+	ft_free_all(w);
 
 	ft_putendl_fd("\n", 1);
 
@@ -338,7 +342,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	free_all(w);
+	ft_free_all(w);
 }
 
 void	search(void)
@@ -349,8 +353,9 @@ void	search(void)
 	ft_putstr_fd("char\ts[] = ", 1); ft_putendl_fd(s, 1);
 	ft_putstr_fd("char\tf[] = ", 1); ft_putendl_fd(f, 1);
 	ft_putendl_fd("", 1);
-
-	ft_putstr_fd("ft_strchr(s, 'i') = ", 1); ft_putendl_fd(ft_strchr(s, 'i'), 1);
+	
+	char *ptr = ft_strchr("teste", 'e');
+	ft_putstr_fd("ft_strchr(s, 'i') = ", 1); if (!ptr) ft_putendl_fd("NULL", 1); else ft_putendl_fd(ptr, 1);
 	ft_putstr_fd("strchr(s, 'i') = ", 1); ft_putendl_fd(strchr(s, 'i'), 1);
 	ft_putendl_fd("", 1);
 
@@ -396,6 +401,9 @@ void	copystr(void)
 {
 	char		dst[15];
 	char		dst2[15];
+	char		*dst3 = NULL;
+	char		dst4[15];
+	char		dst5[15];
 	char		src[] = "et l'unique cordeau des trompettes marines";
 	char		*dup;
 	size_t		copied;
@@ -407,30 +415,41 @@ void	copystr(void)
 
 	copied = ft_strlcpy(dst, src, 15);
 	ft_putstr_fd("ft_strlcpy(dst, src, 15) => dst = ", 1); ft_putstr_fd(dst, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
-
 	copied = strlcpy(dst2, src, 15);
 	ft_putstr_fd("strlcpy(dst, src, 15) => dst = ", 1); ft_putstr_fd(dst2, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
+
+	copied = ft_strlcpy(dst3, src, 15);
+	ft_putstr_fd("ft_strlcpy(NULL, src, 15) => dst = ", 1); ft_putstr_fd(dst3, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
+	copied = strlcpy(NULL, src, 15);
+	ft_putstr_fd("strlcpy(NULL, src, 15) => dst = ", 1); ft_putstr_fd(dst2, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
+
+	copied = ft_strlcpy(dst4, NULL, 15);
+	ft_putstr_fd("ft_strlcpy(dst, NULL, 15) => dst = ", 1); ft_putstr_fd(dst4, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
+	copied = strlcpy(dst4, NULL, 15);
+	ft_putstr_fd("strlcpy(dst, NULL, 15) => dst = ", 1); ft_putstr_fd(dst4, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
+
+	copied = ft_strlcpy(dst5, src, 0);
+	ft_putstr_fd("ft_strlcpy(dst, src, 0) => dst = ", 1); ft_putstr_fd(dst5, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
+	copied = strlcpy(dst5, src, 0);
+	ft_putstr_fd("strlcpy(dst, src, 0) => dst = ", 1); ft_putstr_fd(dst5, 1); ft_putstr_fd(" // return = ", 1); ft_putnbr_fd(copied, 1); ft_putchar_fd('\n', 1);
 
 	ft_putendl_fd("", 1);
 
 	dup = ft_strdup(src);
 	ft_putstr_fd("dup = ft_strdup(src) => dup = ", 1); ft_putendl_fd(dup, 1);
 	free(dup);
-	dup = strdup(src);
-	ft_putstr_fd("dup = strdup(src) => dup = ", 1); ft_putendl_fd(dup, 1);
-	free(dup);
 
-	ft_memcpy(dst + 2, dst + 7, 8);
-	memcpy(dst2 + 2, dst2 + 7, 8);
-	ft_putstr_fd("ft_memcpy(dst + 2, dst + 7, 8) => dst = ", 1); ft_putendl_fd(dst, 1);
-	ft_putstr_fd("memcpy(dst + 2, dst + 7, 8) => dst = ", 1); ft_putendl_fd(dst2, 1);
+//	ft_memcpy(dst + 5, dst + 12, 10);
+//	memcpy(dst2 + 5, dst2 + 12, 10);
+//	ft_putstr_fd("ft_memcpy(dst + 5, dst + 12, 10) => dst = ", 1); ft_putendl_fd(dst, 1);
+//	ft_putstr_fd("memcpy(dst + 2, dst + 12, 10) => dst = ", 1); ft_putendl_fd(dst2, 1);
 	
 	ft_putendl_fd("", 1);
 
-	ft_memmove(dst + 7, dst + 2, 8);
-	memmove(dst2 + 7, dst2 + 2, 8);
-	ft_putstr_fd("ft_memmove(dst + 7, dst + 2, 8) => dst = ", 1); ft_putendl_fd(dst, 1);
-	ft_putstr_fd("memmove(dst2 + 7, dst2 + 2, 8) => dst = ", 1); ft_putendl_fd(dst2, 1);
+	ft_memmove(dst + 2, dst + 7, 3);
+	memmove(dst2 + 2, dst2 + 7, 3);
+	ft_putstr_fd("ft_memmove(dst + 2, dst + 7, 3) => dst = ", 1); ft_putendl_fd(dst, 1);
+	ft_putstr_fd("memmove(dst2 + 2, dst2 + 7, 3) => dst = ", 1); ft_putendl_fd(dst2, 1);
 
 	ft_putendl_fd("", 1);
 
@@ -548,10 +567,14 @@ void	intstr(void)
 	char	n[] = " \n \t4568";
 	char	o[] = " \n \t0";
 	char	p[] = " \n \t10000";
-	char	q[] = "2147483647";
+	char	q[] = "\010 947483647sred";
 	char	r[] = "-2147483648";
 	char	s[] = "3254656734243323";
 	char	t[] = "6546457646345314356476587683465245244365";
+	char	m2[] = " \\n \\t-4568";
+	char	n2[] = " \\n \\t4568";
+	char	o2[] = " \\n \t0";
+	char	p2[] = " \\n \\t10000";
 
 	ft_putendl_fd("char	*z;", 1);
 	ft_putstr_fd("int\ta = ", 1); ft_putnbr_fd(a, 1); ft_putendl_fd("", 1);
@@ -560,10 +583,10 @@ void	intstr(void)
 	ft_putstr_fd("int\td = ", 1); ft_putnbr_fd(d, 1); ft_putendl_fd("", 1);
 	ft_putstr_fd("int\te = ", 1); ft_putnbr_fd(e, 1); ft_putendl_fd("", 1);
 	ft_putstr_fd("int\tf = ", 1); ft_putnbr_fd(f, 1); ft_putendl_fd("", 1);
-	ft_putstr_fd("char\tm[] = \"", 1); ft_putstr_fd(m, 1); ft_putendl_fd("\"", 1);
-	ft_putstr_fd("char\tn[] = \"", 1); ft_putstr_fd(n, 1); ft_putendl_fd("\"", 1);
-	ft_putstr_fd("char\to[] = \"", 1); ft_putstr_fd(o, 1); ft_putendl_fd("\"", 1);
-	ft_putstr_fd("char\tp[] = \"", 1); ft_putstr_fd(p, 1); ft_putendl_fd("\"", 1);
+	ft_putstr_fd("char\tm[] = \"", 1); ft_putstr_fd(m2, 1); ft_putendl_fd("\"", 1);
+	ft_putstr_fd("char\tn[] = \"", 1); ft_putstr_fd(n2, 1); ft_putendl_fd("\"", 1);
+	ft_putstr_fd("char\to[] = \"", 1); ft_putstr_fd(o2, 1); ft_putendl_fd("\"", 1);
+	ft_putstr_fd("char\tp[] = \"", 1); ft_putstr_fd(p2, 1); ft_putendl_fd("\"", 1);
 	ft_putstr_fd("char\tq[] = \"", 1); ft_putstr_fd(q, 1); ft_putendl_fd("\"", 1);
 	ft_putstr_fd("char\tr[] = \"", 1); ft_putstr_fd(r, 1); ft_putendl_fd("\"", 1);
 	ft_putstr_fd("char\ts[] = \"", 1); ft_putstr_fd(s, 1); ft_putendl_fd("\"", 1);

@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/06 12:47:56 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/08 00:34:26 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,11 @@ SHELL = /bin/sh
 
 NAME = libft.a
 
-SRC = 	$(addprefix ft_, $(addsuffix .c, isspace memcpy strlcpy \
+SRCDIR =	src/
+
+INCDIR =	include/
+
+SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		arr_reverse itoa memmove strlen \
 		atoi countwhile countwhile_set countwhile_condition memset strmapi \
 		bzero putchar_fd strncmp \
@@ -31,35 +35,40 @@ SRC = 	$(addprefix ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		ltostr isupper islower ullen count_seq \
 		lstsize_bonus lstlast_bonus lstnew_bonus lstadd_front_bonus \
 		lstadd_back_bonus lstdelone_bonus lstclear_bonus \
-		lstiter_bonus lstmap_bonus))
+		lstiter_bonus lstmap_bonus \
+		printf printf_format printf_utils \
+		get_next_line))
 
-OBJ := $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
 
-all: $(NAME)
+CPPFLAGS += -I$(INCDIR)
+
+all: compile_msg $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $@ $(OBJ)
+	@ar rcs $@ $(OBJ)
 	
-bonus: .bonus
+%.o: %.c
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
-.bonus: all
-	touch .bonus
+compile_msg:
+	@echo "####### COMPILING LIBRARY #######"
 
 clean:
-	rm -f $(OBJ) $(B_OBJ) .bonus
+	@echo "####### REMOVING OBJECT FILES #######"
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "####### REMOVING LIBRARY #######"
+	@rm -f $(NAME)
 
 re: fclean all
-
-net: bonus clean
 
 .SUFFIXES:
 .SUFFIXES: .c .o .a
 
-.PHONY: all clean fclean re bonus net
+.PHONY: all clean fclean re compile_msg

@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2024/11/23 15:54:26 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/07 23:50:58 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT)
 	@echo "####### MAKING $(NAME) #######"
-	cp $(LIBFT) $(NAME)
-	ar -rcs $(NAME) $(OBJ)
+	@cp $(LIBFT) $(NAME)
+	@ar -rcs $(NAME) $(OBJ)
 
-#%.o: %.c
-#	$(CC) $(CFLAGS) -c $(INC) $< -o $@
+%.o: %.c
+	$(CC) $(CFLAGS) -c $(INC) $< -o $@
 
 lib: $(LIBFT)
 
@@ -45,11 +45,11 @@ $(LIBFT):
 clean:
 	@echo "####### Deleting object files #######"
 	@cd $(LFTDIR) ; make clean
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
 	@echo "####### Deleting libraries #######"
-	rm -f $(NAME) $(LIBFT)
+	@rm -f $(NAME) $(LIBFT)
 
 re: fclean all
 

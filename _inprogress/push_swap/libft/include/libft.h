@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/06 13:02:11 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/07 23:30:03 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ size_t		ft_ullen(unsigned long n, unsigned int base);
 int			ft_atoi(const char *str);
 char		*ft_itoa(int n);
 char		*ft_ltostr(unsigned long n, int base);
+
+// FILE
+char		*get_next_line(int fd);
 
 // PRINT
 void		ft_putchar_fd(char c, int fd);

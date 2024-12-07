@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/06 12:47:56 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/07 23:52:06 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,33 +33,29 @@ SRC = 	$(addprefix ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		lstadd_back_bonus lstdelone_bonus lstclear_bonus \
 		lstiter_bonus lstmap_bonus))
 
-OBJ := $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $@ $(OBJ)
-	
-bonus: .bonus
+	@ar rcs $@ $(OBJ)
 
-.bonus: all
-	touch .bonus
+%.o: %.c
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(B_OBJ) .bonus
+	@rm -f $(OBJ) $(B_OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
-
-net: bonus clean
 
 .SUFFIXES:
 .SUFFIXES: .c .o .a
 
-.PHONY: all clean fclean re bonus net
+.PHONY: all clean fclean re

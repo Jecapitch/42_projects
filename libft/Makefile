@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/07 23:26:50 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/07 23:59:26 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,20 +47,28 @@ CFLAGS += -Wall -Wextra -Werror
 
 CPPFLAGS += -I$(INCDIR)
 
-all: $(NAME)
+all: compile_msg $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $@ $(OBJ)
+	@ar rcs $@ $(OBJ)
 	
+%.o: %.c
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+
+compile_msg:
+	@echo "####### COMPILING LIBRARY #######"
+
 clean:
-	rm -f $(OBJ)
+	@echo "####### REMOVING OBJECT FILES #######"
+	@rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	@echo "####### REMOVING LIBRARY #######"
+	@rm -f $(NAME)
 
 re: fclean all
 
 .SUFFIXES:
 .SUFFIXES: .c .o .a
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re compile_msg

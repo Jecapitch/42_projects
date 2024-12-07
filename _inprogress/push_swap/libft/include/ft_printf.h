@@ -6,13 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/07 22:52:25 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/07 23:16:56 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# include "../libft/libft.h"
+# include "libft.h"
 # include <stdarg.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	1024

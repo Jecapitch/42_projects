@@ -6,15 +6,19 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/07 23:52:06 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/10 00:09:38 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SHELL = /bin/sh
+SHELL = 	/bin/sh
 
-NAME = libft.a
+NAME = 		libft.a
 
-SRC = 	$(addprefix ft_, $(addsuffix .c, isspace memcpy strlcpy \
+SRCDIR =	src/
+
+INCDIR =	include/
+
+SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		arr_reverse itoa memmove strlen \
 		atoi countwhile countwhile_set countwhile_condition memset strmapi \
 		bzero putchar_fd strncmp \
@@ -29,9 +33,10 @@ SRC = 	$(addprefix ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		isprint memchr strjoin \
 		isset memcmp strlcat putunbr_fd uintlen \
 		ltostr isupper islower ullen count_seq \
-		lstsize_bonus lstlast_bonus lstnew_bonus lstadd_front_bonus \
-		lstadd_back_bonus lstdelone_bonus lstclear_bonus \
-		lstiter_bonus lstmap_bonus))
+		lstsize lstlast lstnew lstadd_front \
+		lstadd_back lstdelone lstclear \
+		lstiter lstmap \
+		get_next_line))
 
 OBJ = $(SRC:.c=.o)
 
@@ -39,16 +44,18 @@ CC = cc
 
 CFLAGS += -Wall -Wextra -Werror
 
+CPPFLAGS += -I$(INCDIR)
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@ar rcs $@ $(OBJ)
-
+	
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ) $(B_OBJ)
+	@rm -f $(OBJ)
 
 fclean: clean
 	@rm -f $(NAME)

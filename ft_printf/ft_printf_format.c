@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:45:09 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/07 00:52:59 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/10 23:18:42 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_format(const char *fstr, t_printf *format)
 			format->align = LEFT;
 		else if (*fstr == '#')
 			format->lead[0] = '0';
-		else if (*fstr == '+' || (*fstr == ' ' && !*fstr))
+		else if (*fstr == '+' || (*fstr == ' ' && !*format->sign))
 			format->sign[0] = *fstr;
 		else if (*fstr == '0')
 			format->padding = '0';

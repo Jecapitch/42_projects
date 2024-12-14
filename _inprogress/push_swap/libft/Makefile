@@ -6,13 +6,13 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/08 00:34:26 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/10 00:02:02 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SHELL = /bin/sh
+SHELL = 	/bin/sh
 
-NAME = libft.a
+NAME = 		libft.a
 
 SRCDIR =	src/
 
@@ -33,9 +33,9 @@ SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		isprint memchr strjoin \
 		isset memcmp strlcat putunbr_fd uintlen \
 		ltostr isupper islower ullen count_seq \
-		lstsize_bonus lstlast_bonus lstnew_bonus lstadd_front_bonus \
-		lstadd_back_bonus lstdelone_bonus lstclear_bonus \
-		lstiter_bonus lstmap_bonus \
+		lstsize lstlast lstnew lstadd_front \
+		lstadd_back lstdelone lstclear \
+		lstiter lstmap \
 		printf printf_format printf_utils \
 		get_next_line))
 

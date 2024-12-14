@@ -6,13 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/10 21:57:53 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	ft_isset(int c, const char *set)
+int	ft_isset(int c, const char *set)
 {
 	if (!set)
 		return (0);

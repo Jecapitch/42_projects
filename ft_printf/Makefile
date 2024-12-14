@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/13 13:52:03 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/14 21:24:11 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRC = $(addprefix ft_, $(addsuffix .c, printf printf_format printf_utils))
 
 OBJ = $(SRC:.c=.o)
 
-CC = cc
+CC = gcc
 
 CFLAGS += -Wall -Wextra -Werror
 

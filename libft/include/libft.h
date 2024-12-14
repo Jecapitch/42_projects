@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/10 00:00:04 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:42:14 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 # include <inttypes.h>
 # include <limits.h>
 # include "lists.h"
-
-typedef enum e_bool
-{
-	FALSE,
-	TRUE
-}			t_bool;
 
 typedef enum e_case
 {
@@ -39,8 +33,8 @@ int			ft_isascii(int c);
 int			ft_isprint(int c);
 int			ft_isupper(int c);
 int			ft_islower(int c);
-t_bool		ft_isspace(int c); // suppl
-t_bool		ft_isset(int c, const char *set); // suppl
+int			ft_isspace(int c); // suppl
+int			ft_isset(int c, const char *set); // suppl
 
 // CHAR CASE
 int			ft_toupper(int c);

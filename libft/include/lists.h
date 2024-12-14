@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/09 23:59:27 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:43:12 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,29 @@
 # define LISTS_H
 # include "libft.h"
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+typedef struct s_list			t_list;
+typedef struct s_list_double	t_list_2;
+typedef struct s_list_start		t_list_start;
 
-typedef struct s_list_double
+struct s_list
 {
-	void					*content;
-	struct s_list_double	*next;
-	struct s_list_double	*prev;
-}							t_list_2;
+	void	*content;
+	t_list	*next;
+};
 
-typedef struct s_list_start
+struct s_list_double
+{
+	void		*content;
+	t_list_2	*prev;
+	t_list_2	*next;
+};
+
+struct s_list_start
 {
 	void	*first;
 	void	*last;
 	size_t	size;
-}			t_list_start;
+};
 
 // LIST UTILS
 int			ft_lstsize(t_list *lst);

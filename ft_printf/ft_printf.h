@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/12 13:37:33 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:26:37 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,23 @@
 # define FCONV			"sdipucxXbBo%"
 # define FFLAGS			"-+.0# "
 
+typedef struct s_buf			t_buf;
+typedef struct s_print_format	t_printf;
+
 typedef enum e_align
 {
 	RIGHT,
 	LEFT
 }			t_align;
 
-typedef struct s_buf
+struct s_buf
 {
 	char	buffer[BUFFER_SIZE];
 	size_t	len;
 	int		print_count;
-}			t_buf;
+};
 
-typedef struct s_print_format
+struct s_print_format
 {
 	int		min_len;
 	int		precision;
@@ -49,7 +52,7 @@ typedef struct s_print_format
 	char	padding;
 	char	sign[2];
 	char	lead[3];
-}			t_printf;
+};
 
 int		ft_isflag(int c);
 int		ft_isconv(int c);

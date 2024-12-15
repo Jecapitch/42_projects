@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:34:26 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/14 23:10:47 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 
 typedef struct s_buf			t_buf;
 typedef struct s_print_format	t_printf;
+
+typedef enum e_align
+{
+	RIGHT,
+	LEFT
+}			t_align;
 
 struct s_buf
 {
@@ -47,12 +53,6 @@ struct s_print_format
 	char	sign[2];
 	char	lead[3];
 };
-
-typedef enum e_align
-{
-	RIGHT,
-	LEFT
-}			t_align;
 
 int		ft_isflag(int c);
 int		ft_isconv(int c);

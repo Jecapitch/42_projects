@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 22:46:10 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/14 22:57:37 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,21 @@ struct s_list
 };
 
 // LIST UTILS
-int			ft_lstsize(t_node *lst);
-t_node		*ft_lstlast(t_node *lst);
+void		ft_init_lst(void *list);
+int			ft_lstsize(t_node *node);
+t_node		*ft_lstlast(t_node *node);
 
 // SIMPLE CHAINED NODES – ADD & DELETE
 t_node		*ft_lstnew(void *content);
 void		ft_lstadd_front(t_list *lst, t_node *newnode);
 void		ft_lstadd_back(t_list *lst, t_node *newnode);
-void		ft_lstdelone(t_node *lst, void (*del)(void *));
+void		ft_lstdelone(t_node *node, void (*del)(void *));
 
 // DOUBLE CHAINED NODES – ADD & DELETE
 t_node_2	*ft_lstnew_2(void *content);
-void		ft_push_2(t_node_start *lst, t_node_2 *newnode);
+void		ft_push_2(t_list *lst, t_node_2 *newnode);
 void		ft_append_2(t_list *lst, t_node_2 *newnode);
-void		ft_pop_2(t_node_2 *lst, void (*del)(void *));
+void		ft_pop_2(t_node_2 *node, void (*del)(void *));
 
 //SIMPLE CHAINED ITERATE
 void		ft_lstclear(t_list *lst, void (*del)(void *));

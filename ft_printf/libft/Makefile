@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/12 13:50:39 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/15 23:20:31 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ $(NAME): $(OBJ)
 	@echo "$(NAME) OK"
 	
 %.o: %.c
-	@printf "%c" '*'
+	@printf ">"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:

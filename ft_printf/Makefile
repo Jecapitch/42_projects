@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/15 18:11:01 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/15 23:21:00 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,11 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(OBJ)
 	@printf "\n"
 	@cp $(LIBFT) $(NAME)
-	ar -rcs $(NAME) $(OBJ)
+	@ar -rcs $(NAME) $(OBJ)
 	@echo "$(NAME) OK"
 
 %.o: %.c
-	@printf "%c" '*'
+	@printf ">"
 	@$(CC) $(CFLAGS) -c $(INC) $< -o $@
 
 lib: $(LIBFT)

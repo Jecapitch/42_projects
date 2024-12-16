@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list2_compute.c                                 :+:      :+:    :+:   */
+/*   ft_list1_del.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/16 17:10:14 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/15 23:01:34 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_double.h"
+#include "list_single.h"
 
-t_node_2	*ft_listlast_2(t_list_2 *list)
+void	ft_listdelone(t_node *node, void (*del)(void *))
 {
-	t_node_2	*last;
-
-	if (!list)
-		return (NULL);
-	last = list->first;
-	while (last->next)
-		last = last->next;
-	return (last);
+	if (!node || !del)
+		return ;
+	del(node->content);
+	free(node);
 }
 
-size_t	ft_listsize_2(t_list_2 *list)
+void	ft_listclear(t_list *list, void (*del)(void *))
 {
-	size_t		size;
-	t_node_2	*node;
+	t_node	*to_rm;
 
-	size = 0;
-	node = list->first;
-	while (node)
+	while (list->size)
 	{
-		size++;
-		node = node->next;
+		to_rm = list->first;
+		list->first = list->first->next;
+		ft_listdelone(to_rm, del);
+		list->size--;
 	}
-	return (size);
+	free(list);
 }

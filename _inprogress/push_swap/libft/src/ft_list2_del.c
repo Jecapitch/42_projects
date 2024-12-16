@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pop_2.c                                         :+:      :+:    :+:   */
+/*   ft_list2_del.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 22:41:22 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/15 23:50:57 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "list_double.h"
 
-void	*ft_pop_2(t_list_start *lst)
+void	ft_listdelone_2(t_node_2 *node, void (*del)(void *))
 {
-	void	*popped;
-
-	if (!lst->first)
+	if (!node || !del)
 		return ;
-	popped = lst->first;
-	lst->first = lst->first->next;
-	lst->first->prev = NULL;
-	popped->prev = NULL;
-	popped->next = NULL;
-	return (popped);
+	del(node->content);
+	free(node);
+}
+
+void	ft_listclear_2(t_list_2 *list, void (*del)(void *))
+{
+	t_node_2	*to_rm;
+
+	while (list->size)
+	{
+		to_rm = list->first;
+		list->first = list->first->next;
+		list->first->prev = NULL;
+		ft_listdelone_2(to_rm, del);
+		list->size--;
+	}
+	free(list);
 }

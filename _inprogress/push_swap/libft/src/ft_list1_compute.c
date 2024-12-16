@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list2_compute.c                                 :+:      :+:    :+:   */
+/*   list1_compute.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/16 17:10:14 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/15 22:49:20 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_double.h"
+#include "list_single.h"
 
-t_node_2	*ft_listlast_2(t_list_2 *list)
+t_node	*ft_listlast(t_list *list)
 {
-	t_node_2	*last;
+	t_node	*last;
 
 	if (!list)
 		return (NULL);
@@ -24,10 +24,10 @@ t_node_2	*ft_listlast_2(t_list_2 *list)
 	return (last);
 }
 
-size_t	ft_listsize_2(t_list_2 *list)
+size_t	ft_listsize(t_list *list)
 {
-	size_t		size;
-	t_node_2	*node;
+	size_t	size;
+	t_node	*node;
 
 	size = 0;
 	node = list->first;

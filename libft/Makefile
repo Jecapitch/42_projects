@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/15 23:48:49 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/16 17:14:10 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		ltostr isupper islower ullen count_seq \
 		list1_main list1_del list1_compute \
 		list2_main list2_del list2_compute \
+		list_circ_main list_circ_del list_circ_compute \
 		printf printf_format printf_utils \
 		get_next_line))
 

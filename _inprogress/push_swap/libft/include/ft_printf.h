@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 23:10:47 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/15 23:04:09 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # define FCONV			"sdipucxXbBovV%"
 # define FFLAGS			"-+.0# "
 
-typedef struct s_buf			t_buf;
-typedef struct s_print_format	t_printf;
-
 typedef enum e_align
 {
 	RIGHT,
 	LEFT
 }			t_align;
+
+typedef struct s_buf			t_buf;
+typedef struct s_print_format	t_printf;
 
 struct s_buf
 {

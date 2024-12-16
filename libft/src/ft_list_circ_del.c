@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_append_2.c                                      :+:      :+:    :+:   */
+/*   ft_list_circ_del.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 22:41:54 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:10:50 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "list_circ.h"
 
-void	ft_append(t_list_start *lst, t_list_2 *newnode)
+void	ft_listdelone_circ(t_node_circ *node, void (*del)(void *))
 {
-	t_list_2	*last;
-
-	last = NULL;
-	if (!lst || !newnode)
+	if (!node || !del)
 		return ;
-	if (lst->first)
-		lst->last->next = newnode;
-	else
-		lst->first = newnode;
-	lst->last = newnode;
-	lst->size++;
+	del(node->content);
+	free(node);
+}
+
+void	ft_listclear_circ(t_list_circ *list, void (*del)(void *))
+{
+	t_node_circ	*to_rm;
+
+	while (list->size)
+	{
+		to_rm = list->first;
+		list->first = list->first->next;
+		list->first->prev = list->last;
+		list->last->next = list->first;
+		ft_listdelone_circ(to_rm, del);
+		list->size--;
+	}
+	free(list);
 }

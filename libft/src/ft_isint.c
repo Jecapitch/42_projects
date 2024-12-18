@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countwhile_condition.c                          :+:      :+:    :+:   */
+/*   ft_isint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 14:17:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/06 13:01:41 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/18 13:11:05 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/18 23:24:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_countwhile_condition(const char *s, int (*f)(int))
+int	ft_isint(char *s)
 {
+	char	*str;
+	int		n;
+	int		res;
 	size_t	len;
+	int		neg;
 
-	if (!s || !f)
+	n = ft_atoi(s);
+	str = ft_itoa(n);
+	while (ft_isspace(*s))
+		s++;
+	neg = (*s == '-');
+	s += (*s == '+' || *s == '-');
+	if (!*s)
 		return (0);
-	len = 0;
-	while (s[len] && f(s[len]))
-		len++;
-	return (len);
+	while (*s == '0')
+		s++;
+	len = ft_strlen(s);
+	res = (ft_strncmp(s, str + neg, len) == 0);
+	free(str);
+	return (res);
 }

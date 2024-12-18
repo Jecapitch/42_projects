@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/16 17:10:50 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/18 23:28:30 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,8 @@ void	ft_listclear_circ(t_list_circ *list, void (*del)(void *))
 		ft_listdelone_circ(to_rm, del);
 		list->size--;
 	}
+	list->first = NULL;
+	list->last = NULL;
 	free(list);
+	list = NULL;
 }

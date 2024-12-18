@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/16 17:12:14 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/16 23:27:25 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ t_node_circ	*ft_pop_circ(t_list_circ *list);
 // UTILS
 size_t		ft_listsize_circ(t_list_circ *list);
 t_node_circ	*ft_listlast_circ(t_list_circ *list);
+void		ft_rotlist_circ(t_list_circ *list);
+void		ft_rrotlist_circ(t_list_circ *list);
 
 //DELETION
 void		ft_listdelone_circ(t_node_circ *node, void (*del)(void *));

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list1_compute.c                                    :+:      :+:    :+:   */
+/*   ft_list1_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/15 22:49:20 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:08:35 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,22 @@ size_t	ft_listsize(t_list *list)
 		node = node->next;
 	}
 	return (size);
+}
+
+void	ft_rotlist(t_list *list)
+{
+	t_node	*tmp;
+
+	tmp = ft_pop(list);
+	ft_append(list, tmp);
+}
+
+void	ft_rrotlist(t_list *list)
+{
+	t_node	*tmp;
+
+	tmp = list->last;
+	ft_push(list, tmp);
+	list->last = ft_listlast(list);
+	list->last->next = NULL;
 }

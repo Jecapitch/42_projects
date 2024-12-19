@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list1_main.c                                    :+:      :+:    :+:   */
+/*   ft_list1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/15 23:43:10 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:06:07 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_single.h"
 
-void	ft_init_list(t_list *list)
+t_list	*ft_init_list(void)
 {
-	list = malloc(sizeof(list));
+	t_list *list;
+
+	list = malloc(sizeof(t_list));
 	if (!list)
-	{
-		list = NULL;
-		return ;
-	}
+		return (NULL);
 	list->first = NULL;
-	list->last = NULL;
 	list->size = 0;
+	return (list);
 }
 
 t_node	*ft_newnode(void *content)
@@ -62,12 +61,11 @@ t_node	*ft_pop(t_list *list)
 {
 	t_node	*popped_node;
 
-	if (!list)
+	if (!list || !list->first)
 		return (NULL);
 	popped_node = list->first;
-	if (list->first)
-		list->first = list->first->next;
-	list->size--;
+	list->first = list->first->next;
 	popped_node->next = NULL;
+	list->size--;
 	return (popped_node);
 }

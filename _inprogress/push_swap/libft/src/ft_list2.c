@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list2_main.c                                    :+:      :+:    :+:   */
+/*   ft_list2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/15 23:43:48 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:06:17 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_double.h"
 
-void	ft_init_list_2(t_list_2 *list)
+t_list_2	*ft_init_list2(void)
 {
-	list = malloc(sizeof(list));
+	t_list_2 *list;
+
+	list = malloc(sizeof(t_list_2));
 	if (!list)
-	{
-		list = NULL;
-		return ;
-	}
+		return (NULL);
 	list->first = NULL;
-	list->last = NULL;
 	list->size = 0;
+	return (list);
 }
 
 t_node_2	*ft_newnode_2(void *content)
@@ -65,16 +64,13 @@ t_node_2	*ft_pop_2(t_list_2 *list)
 {
 	t_node_2	*popped_node;
 
-	if (!list)
+	if (!list || !list->first)
 		return (NULL);
 	popped_node = list->first;
-	if (list->first)
-	{
-		list->first = list->first->next;
-		list->first->prev = NULL;
-	}
-	list->size--;
+	list->first = list->first->next;
+	list->first->prev = NULL;
 	popped_node->prev = NULL;
 	popped_node->next = NULL;
+	list->size--;
 	return (popped_node);
 }

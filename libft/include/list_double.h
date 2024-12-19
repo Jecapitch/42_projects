@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/16 23:27:36 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:04:52 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ struct s_list_2
 };
 
 // MAIN FUNCTIONS
-void		ft_init_list_2(t_list_2 *list);
+t_list_2	*ft_init_list_2(void);
 t_node_2	*ft_newnode_2(void *content);
 void		ft_push_2(t_list_2 *lst, t_node_2 *newnode);
 void		ft_append_2(t_list_2 *lst, t_node_2 *newnode);

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:49:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:05:58 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:25:50 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list_circ	*ft_init_list_circ(void)
 {
-	t_list_circ *list;
+	t_list_circ	*list;
 
 	list = malloc(sizeof(t_list_circ));
 	if (!list)

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:06:17 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:25:36 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_list_2	*ft_init_list2(void)
 {
-	t_list_2 *list;
+	t_list_2	*list;
 
 	list = malloc(sizeof(t_list_2));
 	if (!list)

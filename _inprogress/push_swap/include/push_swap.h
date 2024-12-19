@@ -6,14 +6,14 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/16 18:19:59 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:17:34 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft.h"
-
+# define ERROR	"Error\n"
 typedef struct s_putop	t_putop;
 
 struct s_putop

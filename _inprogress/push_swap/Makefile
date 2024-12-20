@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/20 00:38:11 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/20 15:45:57 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ SRCDIR = src
 
 INCDIR = include
 
-SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap))
+SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap init error))
 
 OBJ = $(SRC:.c=.o)
 
@@ -38,7 +38,7 @@ $(NAME): $(LIBFT) $(OBJ)
 	@echo "$(NAME) OK"
 
 %.o: %.c
-	@printf "%c" '*'
+	@printf "%c" '>'
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 lib: $(LIBFT)

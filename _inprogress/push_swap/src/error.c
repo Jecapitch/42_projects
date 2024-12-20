@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/20 15:33:46 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/20 15:44:25 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/20 15:47:07 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft.h"
-# define ERROR	"Error\n"
+#include "libft.h"
+#include "push_swap.h"
 
-void		init_game(t_list_circ *a, t_list_circ *b, t_list *op, char **argv);
-t_node_circ	*value_node(char *data);
-void		init_stack(t_list_circ *a, t_list_circ *b, t_list *op, char **argv);
-int			isduplicate(t_node_circ *node);
-void		raise_error(t_list_circ *a, t_list_circ *b, t_list *op);
+int	isduplicate(t_node_circ *node)
+{
+	return (*(int *)node->content == *(int *)node->prev->content \
+			|| *(int *)node->content == *(int *)node->next->content);
+}
 
-#endif
+void	raise_error(t_list_circ *a, t_list_circ *b, t_list *op)
+{
+	ft_listclear_circ(a, ft_free_nul);
+	ft_listclear_circ(b, ft_free_nul);
+	ft_listclear(op, ft_free_nul);
+	ft_printf(ERROR);
+	exit(1);
+}

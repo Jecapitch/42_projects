@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strtol.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/20 15:33:46 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/10 00:39:49 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/20 14:51:18 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include "libft.h"
-# define ERROR	"Error\n"
+#include "libft.h"
 
-void		init_game(t_list_circ *a, t_list_circ *b, t_list *op, char **argv);
-t_node_circ	*value_node(char *data);
-void		init_stack(t_list_circ *a, t_list_circ *b, t_list *op, char **argv);
-int			isduplicate(t_node_circ *node);
-void		raise_error(t_list_circ *a, t_list_circ *b, t_list *op);
+long	ft_strtol(const char *str)
+{
+	long	n;
+	int		sign;
 
-#endif
+	n = 0;
+	sign = 1;
+	while (*str && ft_isspace(*str))
+		str++;
+	if (*str && (*str == '+' || *str == '-'))
+	{
+		if (*str == '-')
+			sign = -1;
+		str++;
+	}
+	while (*str && *str >= '0' && *str <= '9')
+	{
+		n = n * 10 + *str - '0';
+		str++;
+	}
+	return (n * sign);
+}

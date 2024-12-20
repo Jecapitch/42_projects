@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/19 23:40:39 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/20 14:52:03 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ INCDIR =	include/
 
 SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		arr_reverse itoa memmove strlen \
-		atoi countwhile countwhile_set countwhile_condition memset strmapi \
+		atoi strtol countwhile countwhile_set countwhile_condition memset strmapi \
 		bzero putchar_fd strncmp \
 		calloc putendl_fd strnstr \
 		count_words putmnbr_fd strrchr \

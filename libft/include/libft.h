@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:22:16 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/20 14:51:50 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ size_t		ft_intlen(int n);
 size_t		ft_uintlen(unsigned int u);
 size_t		ft_ullen(unsigned long n, unsigned int base);
 int			ft_atoi(const char *str);
+long		ft_strtol(const char *str);
 char		*ft_itoa(int n);
 char		*ft_ltostr(unsigned long n, int base);
 

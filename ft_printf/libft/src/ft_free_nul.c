@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_free_nul.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/19 17:22:27 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/19 17:23:46 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isset(int c, const char *set)
+void	ft_free_nul(void *ptr)
 {
-	if (!set)
-		return (0);
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
+	if (ptr)
+		free(ptr);
+	ptr = NULL;
 }

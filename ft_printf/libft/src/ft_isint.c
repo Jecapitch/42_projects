@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_isint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/18 13:11:05 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/20 00:40:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isset(int c, const char *set)
+int	ft_isint(char *s)
 {
-	if (!set)
+	char	*str;
+	int		n;
+	int		res;
+	size_t	len;
+	int		neg;
+
+	n = ft_atoi(s);
+	str = ft_itoa(n);
+	if (!str)
 		return (0);
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
+	while (ft_isspace(*s))
+		s++;
+	neg = (*s == '-');
+	s += (*s == '+' || *s == '-');
+	if (!*s)
+		return (0);
+	while (*s == '0')
+		s++;
+	len = ft_strlen(s);
+	res = (ft_strncmp(s, str + neg, len) == 0);
+	free(str);
+	return (res);
 }

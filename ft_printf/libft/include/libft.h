@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:27:57 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:22:16 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,9 @@
 # include <stddef.h>
 # include <inttypes.h>
 # include <limits.h>
-# include "lists.h"
-
-typedef enum e_bool
-{
-	FALSE,
-	TRUE
-}			t_bool;
+# include "list_single.h"
+# include "list_double.h"
+# include "list_circ.h"
 
 typedef enum e_case
 {
@@ -39,8 +35,9 @@ int			ft_isascii(int c);
 int			ft_isprint(int c);
 int			ft_isupper(int c);
 int			ft_islower(int c);
-t_bool		ft_isspace(int c); // suppl
-t_bool		ft_isset(int c, const char *set); // suppl
+int			ft_isspace(int c);
+int			ft_isset(int c, const char *set);
+int			ft_isint(char *s);
 
 // CHAR CASE
 int			ft_toupper(int c);
@@ -48,12 +45,12 @@ int			ft_tolower(int c);
 
 // STRINGS UTILS
 size_t		ft_strlen(const char *s);
-size_t		ft_countwhile(const char *s, const char endc); // suppl
-size_t		ft_countwhile_set(const char *s, const char *endset); // suppl
+size_t		ft_countwhile(const char *s, const char endc);
+size_t		ft_countwhile_set(const char *s, const char *endset);
 size_t		ft_countwhile_condition(const char *s, int (*f)(int));
 char		*ft_strtrim(const char *s1, const char *set);
-void		ft_arr_reverse(void *arr, size_t size, size_t elem_size); // suppl
-size_t		ft_count_words(const char *s, char c); // suppl
+void		ft_arr_reverse(void *arr, size_t size, size_t elem_size);
+size_t		ft_count_words(const char *s, char c);
 int			ft_count_seq(const char *s, int c);
 ///splitjoin
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
@@ -85,10 +82,11 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 void		ft_bzero(void *s, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_calloc(size_t count, size_t size);
-void		ft_free_all(char **arr); // suppl
+void		ft_free_all(char **arr);
+void		ft_free_nul(void *ptr);
 
 // INT-STR
-size_t		ft_intlen(int n); // suppl
+size_t		ft_intlen(int n);
 size_t		ft_uintlen(unsigned int u);
 size_t		ft_ullen(unsigned long n, unsigned int base);
 int			ft_atoi(const char *str);
@@ -104,7 +102,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putunbr_fd(unsigned int n, int fd);
-void		ft_putmnbr_fd(int n, int fd); // suppl
+void		ft_putmnbr_fd(int n, int fd);
 int			ft_printf(const char *str, ...);
 
 #endif

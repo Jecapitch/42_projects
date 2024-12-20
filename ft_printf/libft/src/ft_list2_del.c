@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_list2_del.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/15 23:50:57 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "list_double.h"
 
-int	ft_isset(int c, const char *set)
+void	ft_listdelone_2(t_node_2 *node, void (*del)(void *))
 {
-	if (!set)
-		return (0);
-	while (*set)
+	if (!node || !del)
+		return ;
+	del(node->content);
+	free(node);
+}
+
+void	ft_listclear_2(t_list_2 *list, void (*del)(void *))
+{
+	t_node_2	*to_rm;
+
+	while (list->size)
 	{
-		if (c == *set)
-			return (1);
-		set++;
+		to_rm = list->first;
+		list->first = list->first->next;
+		list->first->prev = NULL;
+		ft_listdelone_2(to_rm, del);
+		list->size--;
 	}
-	return (0);
+	free(list);
 }

@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/15 23:20:31 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/19 23:40:39 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,19 @@ SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		bzero putchar_fd strncmp \
 		calloc putendl_fd strnstr \
 		count_words putmnbr_fd strrchr \
-		free_all putnbr_fd strtrim \
+		free_all free_nul putnbr_fd strtrim \
 		intlen putstr_fd substr \
 		isalnum split tolower \
 		isalpha strchr toupper \
 		isascii strdup \
-		isdigit striteri \
+		isdigit isint striteri \
 		isprint memchr strjoin \
 		isset memcmp strlcat putunbr_fd uintlen \
 		ltostr isupper islower ullen count_seq \
-		lstsize lstlast lstnew lstadd_front \
-		lstadd_back lstdelone lstclear \
-		lstiter lstmap \
+		list1 list1_del list1_utils \
+		list2 list2_del list2_utils \
+		list_circ list_circ_del list_circ_utils \
+		printf printf_format printf_utils \
 		get_next_line))
 
 OBJ = $(SRC:.c=.o)
@@ -46,26 +47,33 @@ CFLAGS += -Wall -Wextra -Werror
 
 CPPFLAGS += -I$(INCDIR)
 
-all: $(NAME)
+all: compile_msg $(NAME)
 
 $(NAME): $(OBJ)
-	@printf "\n"
+	@echo ""
 	@ar rcs $@ $(OBJ)
 	@echo "$(NAME) OK"
 	
 %.o: %.c
-	@printf ">"
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@printf ">"
 
-clean:
+compile_msg:
+	@printf "Compiling $(NAME) "
+
+clean: 
+	@echo "Deleting $(NAME) object files..."
 	@rm -f $(OBJ)
+	@echo "Object files deleted"
 
 fclean: clean
+	@echo "Deleting $(NAME)..."
 	@rm -f $(NAME)
+	@echo "$(NAME) deleted"
 
 re: fclean all
 
 .SUFFIXES:
 .SUFFIXES: .c .o .a
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re compile_msg

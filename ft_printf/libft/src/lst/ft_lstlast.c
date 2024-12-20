@@ -1,26 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/17 15:42:10 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/02 23:36:05 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isset(int c, const char *set)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!set)
-		return (0);
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
+	if (!lst)
+		return (NULL);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

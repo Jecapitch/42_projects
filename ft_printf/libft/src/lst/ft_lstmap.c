@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/17 16:38:23 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/19 12:13:22 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isset(int c, const char *set)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	if (!set)
-		return (0);
-	while (*set)
+	t_list	*newlst;
+	t_list	*newnode;
+
+	if (!lst || !f || !del)
+		return (NULL);
+	newlst = NULL;
+	while (lst)
 	{
-		if (c == *set)
-			return (1);
-		set++;
+		newnode = ft_lstnew(lst->content);
+		if (!newnode)
+		{
+			ft_lstclear(&newlst, del);
+			return (NULL);
+		}
+		newnode->content = f(newnode->content);
+		ft_lstadd_back(&newlst, newnode);
+		lst = lst->next;
 	}
-	return (0);
+	return (newlst);
 }

@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/30 00:58:25 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/07 02:22:08 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isset(int c, const char *set)
+int	ft_isflag(int c)
 {
-	if (!set)
-		return (0);
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
+	return (ft_isset(c, FFLAGS));
+}
+
+int	ft_isconv(int c)
+{
+	return (ft_isset(c, FCONV));
+}
+
+char	*chartostr(int c)
+{
+	char	*s;
+
+	s = ft_calloc(2, sizeof(char));
+	if (!s)
+		return (NULL);
+	*s = c;
+	return (s);
 }

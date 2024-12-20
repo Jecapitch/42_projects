@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/17 15:42:10 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/02 23:35:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isset(int c, const char *set)
+int	ft_lstsize(t_list *lst)
 {
-	if (!set)
-		return (0);
-	while (*set)
+	int		size;
+
+	size = 0;
+	while (lst)
 	{
-		if (c == *set)
-			return (1);
-		set++;
+		size++;
+		lst = lst->next;
 	}
-	return (0);
+	return (size);
 }

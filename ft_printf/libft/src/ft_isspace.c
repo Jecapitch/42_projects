@@ -6,13 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/10 21:56:28 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/14 21:41:24 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_bool	ft_isspace(int c)
+int	ft_isspace(int c)
 {
 	return ((c >= 9 && c <= 13) || c == ' ');
 }

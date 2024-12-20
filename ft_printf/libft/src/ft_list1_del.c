@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isset.c                                         :+:      :+:    :+:   */
+/*   ft_list1_del.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/15 23:01:34 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "list_single.h"
 
-int	ft_isset(int c, const char *set)
+void	ft_listdelone(t_node *node, void (*del)(void *))
 {
-	if (!set)
-		return (0);
-	while (*set)
+	if (!node || !del)
+		return ;
+	del(node->content);
+	free(node);
+}
+
+void	ft_listclear(t_list *list, void (*del)(void *))
+{
+	t_node	*to_rm;
+
+	while (list->size)
 	{
-		if (c == *set)
-			return (1);
-		set++;
+		to_rm = list->first;
+		list->first = list->first->next;
+		ft_listdelone(to_rm, del);
+		list->size--;
 	}
-	return (0);
+	free(list);
 }

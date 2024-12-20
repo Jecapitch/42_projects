@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:09:05 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 23:30:37 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ struct s_list
 // MAIN FUNCTIONS
 t_list	*ft_init_list(void);
 t_node	*ft_newnode(void *content);
-void	ft_push(t_list *lst, t_node *newnode);
-void	ft_append(t_list *lst, t_node *newnode);
+void	ft_push(t_list *list, t_node *newnode);
+void	ft_append(t_list *list, t_node *newnode);
 t_node	*ft_pop(t_list *list);
 
 // UTILS
@@ -45,6 +45,6 @@ void	ft_rrotlist(t_list *list);
 
 //DELETION
 void	ft_listdelone(t_node *node, void (*del)(void *));
-void	ft_lstclear(t_list *lst, void (*del)(void *));
+void	ft_listclear(t_list *list, void (*del)(void *));
 
 #endif

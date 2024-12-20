@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:17:34 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 17:39:14 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,7 @@
 # define PUSH_SWAP_H
 # include "libft.h"
 # define ERROR	"Error\n"
-typedef struct s_putop	t_putop;
 
-struct s_putop
-{
-	char	*operation;
-	t_putop	*next;
-};
+void	init_game(t_list_circ *a, t_list_circ *b, char *op);
 
 #endif

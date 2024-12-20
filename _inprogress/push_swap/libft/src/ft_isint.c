@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 13:11:05 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/18 23:24:19 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/20 00:40:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_isint(char *s)
 
 	n = ft_atoi(s);
 	str = ft_itoa(n);
+	if (!str)
+		return (0);
 	while (ft_isspace(*s))
 		s++;
 	neg = (*s == '-');

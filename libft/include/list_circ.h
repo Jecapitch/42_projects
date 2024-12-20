@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:05:40 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/19 23:30:59 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ struct s_list_circ
 // MAIN FUNCTIONS
 t_list_circ	*ft_init_list_circ(void);
 t_node_circ	*ft_newnode_circ(void *content);
-void		ft_push_circ(t_list_circ *lst, t_node_circ *newnode);
-void		ft_append_circ(t_list_circ *lst, t_node_circ *newnode);
+void		ft_push_circ(t_list_circ *list, t_node_circ *newnode);
+void		ft_append_circ(t_list_circ *list, t_node_circ *newnode);
 t_node_circ	*ft_pop_circ(t_list_circ *list);
 
 // UTILS
@@ -46,6 +46,6 @@ void		ft_rrotlist_circ(t_list_circ *list);
 
 //DELETION
 void		ft_listdelone_circ(t_node_circ *node, void (*del)(void *));
-void		ft_lstclear_circ(t_list_circ *lst, void (*del)(void *));
+void		ft_listclear_circ(t_list_circ *list, void (*del)(void *));
 
 #endif

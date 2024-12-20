@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/19 17:24:20 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/19 23:40:39 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,12 +62,14 @@ compile_msg:
 	@printf "Compiling $(NAME) "
 
 clean: 
-	@echo "Deleting object files..."
+	@echo "Deleting $(NAME) object files..."
 	@rm -f $(OBJ)
+	@echo "Object files deleted"
 
 fclean: clean
 	@echo "Deleting $(NAME)..."
 	@rm -f $(NAME)
+	@echo "$(NAME) deleted"
 
 re: fclean all
 

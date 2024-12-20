@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/13 14:33:08 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/20 00:38:11 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,27 +20,26 @@ SRCDIR = src
 
 INCDIR = include
 
-SRC = $(addprefix $(SRCDIR)/ft_, $(addsuffix .c, push_swap))
+SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap))
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror -fsanitize=address
 
-CPPFLAGS += -Ilibft -I$(INCDIR)
+CPPFLAGS += -I$(LFTDIR)/include -I$(INCDIR)
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
 	@printf "\n"
-	@cp $(LIBFT) $(NAME)
-	@ar -rcs $(NAME) $(OBJ)
+	@cc $(CFLAGS) $(CPPFLAGS) $(SRC) $(LIBFT) -o $(NAME)
 	@echo "$(NAME) OK"
 
 %.o: %.c
 	@printf "%c" '*'
-	@$(CC) $(CFLAGS) -c $(INC) $< -o $@
+	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 lib: $(LIBFT)
 
@@ -48,13 +47,18 @@ $(LIBFT):
 	@cd $(LFTDIR) ; make
 
 clean:
-	@echo "Deleting object files..."
 	@cd $(LFTDIR) ; make clean
+	@echo "Deleting $(NAME) object files..."
 	@rm -f $(OBJ)
+	@echo "Object files deleted"
 
 fclean: clean
-	@echo "Deleting libraries..."
-	@rm -f $(NAME) $(LIBFT)
+	@echo "Deleting $(LIBFT)..."
+	@rm -f $(LIBFT)
+	@echo "$(LIBFT) deleted"
+	@echo "Deleting $(NAME)..."
+	@rm -f $(NAME)
+	@echo "$(NAME) deleted"
 
 re: fclean all
 

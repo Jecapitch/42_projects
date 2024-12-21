@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/18 23:28:30 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/21 20:20:35 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,23 @@ void	ft_listdelone_circ(t_node_circ *node, void (*del)(void *))
 	free(node);
 }
 
-void	ft_listclear_circ(t_list_circ *list, void (*del)(void *))
+void	ft_listclear_circ(t_list_circ **list, void (*del)(void *))
 {
 	t_node_circ	*to_rm;
 
-	while (list->size)
+	if (!list || !(*list))
+		return ;
+	while ((*list)->size)
 	{
-		to_rm = list->first;
-		list->first = list->first->next;
-		list->first->prev = list->last;
-		list->last->next = list->first;
+		to_rm = (*list)->first;
+		(*list)->first = (*list)->first->next;
+		(*list)->first->prev = (*list)->last;
+		(*list)->last->next = (*list)->first;
 		ft_listdelone_circ(to_rm, del);
-		list->size--;
+		(*list)->size--;
 	}
-	list->first = NULL;
-	list->last = NULL;
-	free(list);
-	list = NULL;
+	(*list)->first = NULL;
+	(*list)->last = NULL;
+	free(*list);
+	*list = NULL;
 }

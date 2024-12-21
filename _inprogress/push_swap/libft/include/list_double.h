@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 23:30:49 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/21 21:16:25 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void		ft_append_2(t_list_2 *list, t_node_2 *newnode);
 t_node_2	*ft_pop_2(t_list_2 *list);
 
 // UTILS
+void 		ft_list2_int_display(t_list_2 *list, char *sep);
 size_t		ft_listsize_2(t_list_2 *list);
 t_node_2	*ft_listlast_2(t_list_2 *list);
 void		ft_rotlist_2(t_list_2 *list);
@@ -46,6 +47,6 @@ void		ft_rrotlist_2(t_list_2 *list);
 
 //DELETION
 void		ft_listdelone_2(t_node_2 *node, void (*del)(void *));
-void		ft_listclear_2(t_list_2 *list, void (*del)(void *));
+void		ft_listclear_2(t_list_2 **list, void (*del)(void *));
 
 #endif

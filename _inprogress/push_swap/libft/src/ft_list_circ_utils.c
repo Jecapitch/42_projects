@@ -6,11 +6,24 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:03:56 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/21 21:27:10 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "list_circ.h"
+
+void ft_list_circ_int_display(t_list_circ *list, char *sep)
+{
+	t_node_circ		*tmp;
+	
+	tmp = list->first;
+	while (tmp != list->last)
+	{	
+		ft_printf("%d%s", *(int *)tmp->content, sep);
+		tmp = tmp->next;
+	}
+	ft_printf("%d\n", *(int *)list->last->content);
+}
 
 t_node_circ	*ft_listlast_circ(t_list_circ *list)
 {

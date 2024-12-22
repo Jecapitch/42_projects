@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 20:22:01 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/21 22:19:35 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,34 @@ void	ft_listclear_2(t_list_2 **list, void (*del)(void *))
 	}
 	free(*list);
 	*list = NULL;
+}
+
+t_node_2	*ft_dequeue_2(t_list_2 *list)
+{
+	t_node_2	*dequeued_node;
+
+	if (!list || !list->first)
+		return (NULL);
+	dequeued_node = list->first;
+	list->first = list->first->next;
+	list->first->prev = NULL;
+	dequeued_node->prev = NULL;
+	dequeued_node->next = NULL;
+	list->size--;
+	return (dequeued_node);
+}
+
+t_node_2	*ft_pop_2(t_list_2 *list)
+{
+	t_node_2	*popped_node;
+
+	if (!list || !list->first)
+		return (NULL);
+	popped_node = list->last;
+	list->last = list->last->prev;
+	list->last->next = NULL;
+	popped_node->prev = NULL;
+	popped_node->next = NULL;
+	list->size--;
+	return (popped_node);
 }

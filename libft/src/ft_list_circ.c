@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:49:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:25:50 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/21 22:40:08 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ void	ft_push_circ(t_list_circ *list, t_node_circ *newnode)
 {
 	if (!list || !newnode)
 		return ;
+	if (list->first)
+		list->first->prev = newnode;
+	else
+		list->last = newnode;
 	newnode->next = list->first;
-	list->first->prev = newnode;
 	list->first = newnode;
 	list->last->next = list->first;
 	list->first->prev = list->last;
@@ -63,20 +66,4 @@ void	ft_append_circ(t_list_circ *list, t_node_circ *newnode)
 	list->last->next = list->first;
 	list->first->prev = list->last;
 	list->size++;
-}
-
-t_node_circ	*ft_pop_circ(t_list_circ *list)
-{
-	t_node_circ	*popped_node;
-
-	if (!list || !list->first)
-		return (NULL);
-	popped_node = list->first;
-	list->first = list->first->next;
-	list->first->prev = list->last;
-	list->last->next = list->first;
-	popped_node->prev = NULL;
-	popped_node->next = NULL;
-	list->size--;
-	return (popped_node);
 }

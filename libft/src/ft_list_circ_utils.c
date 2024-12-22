@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:03:56 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/22 23:38:11 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,16 @@ size_t	ft_listsize_circ(t_list_circ *list)
 
 void	ft_rotlist_circ(t_list_circ *list)
 {
+	if (!list || list->size < 2)
+		return ;
 	list->last = list->first;
 	list->first = list->first->next;
 }
 
 void	ft_rrotlist_circ(t_list_circ *list)
 {
+	if (!list || list->size < 2)
+		return ;
 	list->first = list->last;
 	list->last = list->last->prev;
 }

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/20 14:51:50 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/21 20:51:54 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 # include <stddef.h>
 # include <inttypes.h>
 # include <limits.h>
-# include "list_single.h"
-# include "list_double.h"
-# include "list_circ.h"
+# include "lists.h"
 
 typedef enum e_case
 {

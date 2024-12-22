@@ -6,12 +6,15 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 15:44:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 20:07:42 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:31:04 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
+
+int		isduplicate(t_node_circ *node);
+void	raise_error(t_list_circ *a, t_list_circ *b, t_list *op);
 
 int	isduplicate(t_node_circ *node)
 {

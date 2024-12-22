@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:25:36 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/21 22:19:18 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,4 @@ void	ft_append_2(t_list_2 *list, t_node_2 *newnode)
 	newnode->prev = list->last;
 	list->last = newnode;
 	list->size++;
-}
-
-t_node_2	*ft_pop_2(t_list_2 *list)
-{
-	t_node_2	*popped_node;
-
-	if (!list || !list->first)
-		return (NULL);
-	popped_node = list->first;
-	list->first = list->first->next;
-	list->first->prev = NULL;
-	popped_node->prev = NULL;
-	popped_node->next = NULL;
-	list->size--;
-	return (popped_node);
 }

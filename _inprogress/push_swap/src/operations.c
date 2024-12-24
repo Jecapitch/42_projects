@@ -6,18 +6,14 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/22 23:43:28 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:32:21 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void		push(t_list_circ *a, t_list_circ *b, t_list *op, char todo);
-static void	swap_nodes(t_list_circ *list);
-void		swap(t_list_circ *a, t_list_circ *b, t_list *op, char todo);
-void		rotate(t_list_circ *a, t_list_circ *b, t_list *op, char todo);
-void		rrotate(t_list_circ *a, t_list_circ *b, t_list *op, char todo);
+static void	swap_nodes(t_list_circ *stack);
 
 void	push(t_list_circ *a, t_list_circ *b, t_list *op, char todo)
 {
@@ -43,37 +39,33 @@ void	push(t_list_circ *a, t_list_circ *b, t_list *op, char todo)
 	}
 }
 
-static void	swap_nodes(t_list_circ *list)
+static void	swap_nodes(t_list_circ *stack)
 {
 	t_node_circ	*node1;
 	t_node_circ	*node2;
 
-	node1 = ft_dequeue_circ(list);
-	node2 = ft_dequeue_circ(list);
-	ft_push_circ(list, node1);
-	ft_push_circ(list, node2);
+	node1 = ft_dequeue_circ(stack);
+	node2 = ft_dequeue_circ(stack);
+	ft_push_circ(stack, node1);
+	ft_push_circ(stack, node2);
 }
 
-void	swap(t_list_circ *a, t_list_circ *b, t_list *op, char todo)
+void	swap(t_list_circ *a, t_list_circ *b, t_list *op)
 {
 	char	ope[3];
+	int		anode;
+	int		bnode;
 
-	if ((todo != 'a' && todo != 'b') && todo != 's')
-		raise_error(a, b, op);
+	anode = (a->first && *(int *)a->first->content > *(int *)a->first->next->content);
+	bnode = (b->first && *(int *)b->first->content < *(int *)b->first->next->content);
+	if (!anode && !bnode)
+		return ;
 	ope[0] = 's';
-	ope[1] = todo;
+	ope[1] = ('s' * (anode && bnode) + 'a' * (anode && !bnode) + 'b' * (!anode && bnode));
 	ope[2] = '\0';
-	if (ope[1] == 's' && a->size < 2 && b->size < 2)
-		return ;
-	else if (todo == 's' && a->size < 2)
-		ope[1] = 'b';
-	else if (todo == 's' && b->size < 2)
-		ope[1] = 'a';
-	if ((todo == 'a' && a->size < 2) || (todo == 'b' && b->size < 2))
-		return ;
-	if (a->size > 1 && (ope[1] == 'a' || ope[1] != 's' ))
+	if (ope[1] == 'a' || ope[1] != 's' )
 		swap_nodes(a);
-	if (b->size > 1 && (ope[1] == 'b' || ope[1] != 's'))
+	if (ope[1] == 'b' || ope[1] != 's' )
 		swap_nodes(b);
 	add_op(op, ope);
 }
@@ -121,8 +113,8 @@ void	rrotate(t_list_circ *a, t_list_circ *b, t_list *op, char todo)
 	if ((todo == 'a' && a->size < 2) || (todo == 'b' && b->size < 2))
 		return ;
 	if (todo == 'a' || todo != 's')
-		ft_rotlist_circ(a);
+		ft_rrotlist_circ(a);
 	if (todo == 'b' || todo != 's')
-		ft_rotlist_circ(b);
+		ft_rrotlist_circ(b);
 	add_op(op, ope);
 }

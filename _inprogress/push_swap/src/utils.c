@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 15:44:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/23 01:39:00 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/23 15:24:13 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int	isduplicate(t_node_circ *node)
+void	add_op(t_list *op, char *operation)
 {
-	return ((node != node->prev \
-				&& *(int *)node->content == *(int *)node->prev->content) \
-		|| (node != node->next \
-				&&*(int *)node->content == *(int *)node->next->content));
+	t_node	*node;
+	char	*content;
+
+	content = ft_calloc(4, sizeof(char));
+	ft_strlcpy(content, operation, 4);
+	node = ft_newnode(content);
+	ft_append(op, node);
 }
 
-void	raise_error(t_list_circ *a, t_list_circ *b, t_list *op)
+void	clear_game(t_list_circ **a, t_list_circ **b, t_list **op)
 {
-	clear_game(&a, &b, &op);
-	ft_printf(ERROR);
-	exit(1);
+	ft_listclear_circ(a, ft_free_nul);
+	ft_listclear_circ(b, ft_free_nul);
+	ft_listclear(op, ft_free_nul);
 }

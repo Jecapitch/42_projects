@@ -6,15 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/22 16:33:30 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/23 01:25:11 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void				init_game(t_list_circ **a, t_list_circ **b, \
-						t_list **op, char **argv);
 static t_node_circ	*value_node(char *data);
 static void			init_stack(t_list_circ *a, t_list_circ *b, \
 						t_list *op, char **argv);

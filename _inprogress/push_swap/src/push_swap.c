@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/25 19:38:27 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 14:32:18 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,32 @@
 
 void	push_swap(t_list_circ *a, t_list_circ *b, t_list *op)
 {
-	int			cmp;
 	t_node_circ	*ref;
+	int			sorted;
 
 	ref = a->last;
-	while (a->first != ref)
+	sorted = 1;
+	while (a->first != ref && sorted)
 	{
-		cmp = cmp_first_combine(a, b);
-		swap(a, b, op, cmp);
+		sorted &= (*(int *)a->first->content < *(int *)a->first->next->content);
 		push(a, b, op, 'b');
-		cmp = cmp_last_combine(a, b);
-		rotate(a, b, op, cmp);
-	if (isduplicate(a->first) || isduplicate(a->last) \
-		|| isduplicate(b->first) || isduplicate(b->last))
-		return (raise_error(a, b, op));
+		rotate(a, b, op);
 	}
-	while (b->size)
+	push(a, b, op, 'b');
+	rotate(a, b, op);
+	ref = a->last;
+	while (right_bit(b->first->content))
 	{
-		cmp = cmp_first_combine(a, b);
-		swap(a, b, op, cmp);
+		sorted &= (*(int *)b->first->content == 0);
 		push(a, b, op, 'a');
-		cmp = cmp_last_combine(a, b);
-		rotate(a, b, op, cmp);
-	if (isduplicate(a->first) || isduplicate(a->last) \
-		|| isduplicate(b->first) || isduplicate(b->last))
-		return (raise_error(a, b, op));
+		rotate(a, b, op);
 	}
+	ref = b->first;
+	while (ref != b->last)
+	{
+		right_shift(ref->content);
+		ref = ref->next;
+	}
+	right_shift(ref->content);
+							display_game(a, b, op);
 }

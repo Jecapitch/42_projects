@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/25 18:54:58 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 01:56:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	t_list_circ	*a;
 	t_list_circ	*b;
 	t_list		*op;
+	int			sorted;
 
 	if (argc < 2)
 		return (0);
@@ -25,11 +26,14 @@ int	main(int argc, char **argv)
 	b = NULL;
 	op = NULL;
 	argv++;
-	init_game(&a, &b, &op, argv);
-	if (a->size > 1)
+	sorted = init_game(&a, &b, &op, argv);
+	if (a->size < 2 || sorted)
 	{
-											push_swap(a, b, op);
+		clear_game(&a, &b, &op);
+		return (0);
 	}
+	push_swap(a, b, op);
+	ft_list_str_display(op, "\n");
 	clear_game(&a, &b, &op);
 	return (0);
 }

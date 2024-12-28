@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/25 03:04:10 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 02:05:25 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 #include "push_swap.h"
 
 static t_node_circ	*value_node(char *data);
-static void			init_stack(t_list_circ *a, t_list_circ *b, \
+static int			init_stack(t_list_circ *a, t_list_circ *b, \
 						t_list *op, char **argv);
 
-void	init_game(t_list_circ **a, t_list_circ **b, t_list **op, char **argv)
+int	init_game(t_list_circ **a, t_list_circ **b, t_list **op, char **argv)
 {
+	int	sorted;
+
 	*a = ft_init_list_circ();
 	*b = ft_init_list_circ();
 	*op = ft_init_list();
 	if (!a || !b || !op)
 		raise_error(*a, *b, *op);
-	init_stack(*a, *b, *op, argv);
+	sorted = init_stack(*a, *b, *op, argv);
+	return (sorted);
 }
 
 static t_node_circ	*value_node(char *data)
@@ -40,29 +43,31 @@ static t_node_circ	*value_node(char *data)
 	return (node);
 }
 
-static void	init_stack(t_list_circ *a, t_list_circ *b, t_list *op, char **argv)
+static int	init_stack(t_list_circ *a, t_list_circ *b, t_list *op, char **argv)
 {
 	t_node_circ	*node;
 	char		**tmp;
-	char		**p_tmp;
+	size_t		i;
+	int			sorted;
 
+	sorted = 1;
 	while (*argv)
 	{
-		tmp = ft_split(*argv, ' ');
+		tmp = ft_split(*argv++, ' ');
 		if (!tmp)
 			raise_error(a, b, op);
-		p_tmp = tmp;
-		while (*tmp)
+		i = 0;
+		while (tmp[i])
 		{
-			node = value_node(*tmp);
+			node = value_node(tmp[i++]);
 			if (!node)
-				return (ft_free_all(p_tmp), raise_error(a, b, op));
+				return (ft_free_all(tmp), raise_error(a, b, op), sorted);
 			ft_append_circ(a, node);
 			if (a->size > 1 && isduplicate(node))
-				return (ft_free_all(p_tmp), raise_error(a, b, op));
-			tmp++;
+				return (ft_free_all(tmp), raise_error(a, b, op), sorted);
+			sorted &= (a->size == 1 || (a->size > 1 && *(int *)node->content > *(int *)node->prev->content));
 		}
-		ft_free_all(p_tmp);
-		argv++;
+		ft_free_all(tmp);
 	}
+	return (sorted);
 }

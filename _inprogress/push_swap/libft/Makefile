@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/21 23:31:23 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/28 15:34:40 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		calloc putendl_fd strnstr \
 		count_words putmnbr_fd strrchr \
 		free_all free_nul putnbr_fd strtrim \
-		intlen putstr_fd substr \
+		intlen intlen_base putstr_fd substr \
 		isalnum split tolower \
 		isalpha strchr toupper \
 		isascii strdup \

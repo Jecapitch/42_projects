@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/28 21:39:29 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 01:56:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	main(int argc, char **argv)
 		clear_game(&a, &b, &op);
 		return (0);
 	}
-//	push_swap(a, b, op);
-//	ft_list_str_display(op, "\n");
+	push_swap(a, b, op);
+	ft_list_str_display(op, "\n");
 	clear_game(&a, &b, &op);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/28 20:25:09 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 19:04:38 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	push_swap(t_list_circ *a, t_list_circ *b, t_list *op)
 {
 	t_node_circ	*ref;
 	int			sorted;
-	//int			divpow;
+	int			turns;
 
 	ref = a->last;
 	sorted = 1;
+	turns = 0;
+	while (turns < 3)
 	{
 	while (a->first != ref && sorted)
 	{
@@ -31,7 +33,7 @@ void	push_swap(t_list_circ *a, t_list_circ *b, t_list *op)
 	push(a, b, op, 'b');
 	rotate(a, b, op);
 	ref = a->last;
-	while (b->size && mod3(b->first->content))
+	while (b->size && right_bit(b->first->content))
 	{
 		sorted &= (getval(b->first) == 0);
 		push(a, b, op, 'a');
@@ -40,10 +42,11 @@ void	push_swap(t_list_circ *a, t_list_circ *b, t_list *op)
 	ref = b->first;
 	while (b->size && ref != b->last)
 	{
-		div3(ref->content);
+		right_shift(ref->content);
 		ref = ref->next;
 	}
-	div3(ref->content);
+	right_shift(ref->content);
 							display_game(a, b, op);
+turns++;
 	}
 }

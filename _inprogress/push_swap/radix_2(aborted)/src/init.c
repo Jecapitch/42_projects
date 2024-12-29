@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/29 23:07:45 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 19:09:33 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 static t_node_circ	*value_node(char *data);
 static int			init_stack(t_list_circ *a, t_list_circ *b, \
 						t_list *op, char **argv);
-static void			normalize(t_list_circ *stack);
 
 int	init_game(t_list_circ **a, t_list_circ **b, t_list **op, char **argv)
 {
@@ -28,12 +27,7 @@ int	init_game(t_list_circ **a, t_list_circ **b, t_list **op, char **argv)
 	if (!a || !b || !op)
 		raise_error(*a, *b, *op);
 	sorted = init_stack(*a, *b, *op, argv);
-	if (sorted)
-		return (1);
-	display_game(*a, *b, *op);
-	normalize(*a);
-	display_game(*a, *b, *op);
-		return (0);
+	return (sorted);
 }
 
 static t_node_circ	*value_node(char *data)
@@ -42,7 +36,7 @@ static t_node_circ	*value_node(char *data)
 
 	if (!ft_isint(data))
 		return (NULL);
-	node = ft_newnode_circ(malloc(sizeof(double)));
+	node = ft_newnode_circ((int *)malloc(sizeof(int)));
 	if (!node || !node->content)
 		return (ft_listdelone_circ(node, ft_free_nul), NULL);
 	*(int *)node->content = ft_atoi(data);
@@ -76,38 +70,4 @@ static int	init_stack(t_list_circ *a, t_list_circ *b, t_list *op, char **argv)
 		ft_free_all(tmp);
 	}
 	return (sorted);
-}
-
-static void	normalize(t_list_circ *stack)
-{
-	t_node_circ	*node;
-	int			min;
-	double		mean;
-	long		val;
-	double		std_dev;
-
-	node = stack->first;
-	min = getval(node);
-	while (node != stack->last)
-	{
-		node = node->next;
-		val = getval(node);
-		min = min * (min < val) + val * (val < min);
-	}
-	node = stack->first;
-	while (node != stack->last)
-	{
-		*(int *)node->content += ft_absval(min);
-		node = node->next;
-	}
-	*(int *)node->content += ft_absval(min) + 1;
-	std_dev = ft_std_dev_list_circ(stack);
-	mean = ft_mean_list_circ(stack);
-	node = stack->first;
-	while (node != stack->last)
-	{
-		*(int *)node->content = (int)(((double)getval(node) - mean) * 1000000 / std_dev); 
-		node = node->next;
-	}
-	*(int *)node->content = (int)(((double)getval(node) - mean) * 1000000 / std_dev); 
 }

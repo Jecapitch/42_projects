@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 23:36:18 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/29 22:38:09 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include "libft.h"
 
 typedef struct s_node_single	t_node;
-typedef struct s_list			t_list;
+typedef struct s_list_single	t_list;
 
 struct s_node_single
 {
@@ -23,7 +23,7 @@ struct s_node_single
 	t_node	*next;
 };
 
-struct s_list
+struct s_list_single
 {
 	t_node	*first;
 	t_node	*last;
@@ -35,6 +35,7 @@ t_list	*ft_init_list(void);
 t_node	*ft_newnode(void *content);
 void	ft_push(t_list *list, t_node *newnode);
 void	ft_append(t_list *list, t_node *newnode);
+void	ft_insert(t_list *list, t_node *prev_node, t_node *newnode);
 t_node	*ft_dequeue(t_list *list);
 t_node	*ft_pop(t_list *list);
 

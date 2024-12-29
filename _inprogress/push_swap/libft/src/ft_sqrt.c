@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/28 21:39:29 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/29 20:43:41 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "push_swap.h"
-
-int	main(int argc, char **argv)
+double	ft_sqrt(double n)
 {
-	t_list_circ	*a;
-	t_list_circ	*b;
-	t_list		*op;
-	int			sorted;
+	double	x;
+	double	y;
+	double	precision;
 
-	if (argc < 2)
+	if (n <= 0)
 		return (0);
-	a = NULL;
-	b = NULL;
-	op = NULL;
-	argv++;
-	sorted = init_game(&a, &b, &op, argv);
-	if (a->size < 2 || sorted)
+	x = n;
+	y = 1;
+	precision = 0.00001;
+	while (x - y > precision)
 	{
-		clear_game(&a, &b, &op);
-		return (0);
+		x = (x + y) / 2;
+		y = n / x;
 	}
-//	push_swap(a, b, op);
-//	ft_list_str_display(op, "\n");
-	clear_game(&a, &b, &op);
-	return (0);
+	return (x);
 }

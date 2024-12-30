@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/29 22:13:25 by jpiscice         ###   ########.fr        #
+#    Updated: 2024/12/29 23:30:49 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		printf printf_format printf_utils \
 		get_next_line \
 		sum mean absval power sqrt \
+		log \
 		std_dev))
 
 OBJ = $(SRC:.c=.o)

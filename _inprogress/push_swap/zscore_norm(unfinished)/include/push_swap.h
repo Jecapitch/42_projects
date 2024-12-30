@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/30 12:35:13 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/30 19:03:03 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 # include "libft.h"
 # include "mymath.h"
 # define ERROR	"Error\n"
+
+typedef struct s_minmax	t_minmax;
+
+struct s_minmax
+{
+	int	min;
+	int	max;
+};
 
 // START & END
 int			init_game(t_list_circ **a, t_list_circ **b, t_list **op, char **argv);

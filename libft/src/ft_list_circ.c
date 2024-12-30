@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 16:49:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 22:40:08 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/29 20:40:35 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,19 @@ void	ft_append_circ(t_list_circ *list, t_node_circ *newnode)
 	list->last = newnode;
 	list->last->next = list->first;
 	list->first->prev = list->last;
+	list->size++;
+}
+
+void	ft_insert_circ(t_list_circ *list, t_node_circ *prev_node, \
+			t_node_circ *newnode)
+{
+	if (!list || !newnode)
+		return ;
+	if (!prev_node)
+		return (ft_push_circ(list, newnode));
+	newnode->next = prev_node->next;
+	newnode->prev = prev_node;
+	prev_node->next = newnode;
+	newnode->next->prev = newnode;
 	list->size++;
 }

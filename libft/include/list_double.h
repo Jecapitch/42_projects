@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 22:14:53 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:56:36 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_list_2	*ft_init_list_2(void);
 t_node_2	*ft_newnode_2(void *content);
 void		ft_push_2(t_list_2 *list, t_node_2 *newnode);
 void		ft_append_2(t_list_2 *list, t_node_2 *newnode);
+void		ft_insert_2(t_list_2 *list, t_node_2 *prev_node, t_node_2 *newnode);
 t_node_2	*ft_dequeue_2(t_list_2 *list);
 t_node_2	*ft_pop_2(t_list_2 *list);
 

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 20:51:54 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/29 22:48:28 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void		ft_free_nul(void *ptr);
 
 // INT-STR
 size_t		ft_intlen(int n);
+size_t		ft_intlen_base(int n, int base);
 size_t		ft_uintlen(unsigned int u);
 size_t		ft_ullen(unsigned long n, unsigned int base);
 int			ft_atoi(const char *str);

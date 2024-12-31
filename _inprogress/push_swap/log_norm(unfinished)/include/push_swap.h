@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/31 20:05:51 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/31 00:50:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,8 @@ int			div3(t_node_circ *node);
 void		push(t_game *game, char operation);
 void		rotate(t_game *game, char operation);
 void		rrotate(t_game *game, char operation);
-void		add_op(t_list *op, char *operation);
-
-// SORT
-void		sortn(t_game *game, size_t size);
-void		sort2(t_game *game);
-void		sort3(t_game *game);
-void		sort4(t_game *game);
-void		sort5(t_game *game);
 void		push_swap(t_game *game);
+void		add_op(t_list *op, char *operation);
 
 // UTILS
 int			getval_int(t_node_circ *node);

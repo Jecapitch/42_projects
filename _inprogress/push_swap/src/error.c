@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 15:44:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/30 12:36:47 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/30 23:13:21 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	isduplicate(t_node_circ *node)
 			|| (node != next && c_val == n_val));
 }
 
-void	raise_error(t_list_circ *a, t_list_circ *b, t_list *op)
+void	raise_error(t_game *game)
 {
-	clear_game(&a, &b, &op);
+	clear_game(&game);
 	ft_printf(ERROR);
 	exit(1);
 }

@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*																			*/
-/*														:::	  ::::::::   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   ft_log.c                                           :+:      :+:    :+:   */
-/*													+:+ +:+		 +:+	 */
-/*   By: jpiscice <jpiscice@student.42.fr>		  +#+  +:+	   +#+		*/
-/*												+#+#+#+#+#+   +#+		   */
-/*   Created: 2024/12/29 23:24:30 by jpiscice		  #+#	#+#			 */
-/*   Updated: 2024/12/30 13:47:38 by jpiscice         ###   ########.fr       */
-/*																			*/
+/*                                                    +:+ +:+         +:+     */
+/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/31 01:21:54 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/31 01:23:09 by jpiscice         ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include "mymath.h"
@@ -47,11 +47,11 @@ double	ft_log10(double x)
 
 double	ft_log(double n, int base)
 {
-	double res;
-	double fraction;
-	double power;
+	double	res;
+	double	fraction;
+	double	power;
 
-	power= 0.5;
+	power = 0.5;
 	res = 0;
 	while (n > 1)
 	{

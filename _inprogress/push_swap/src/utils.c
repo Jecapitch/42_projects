@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/30 12:34:51 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/31 00:50:05 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	add_op(t_list *op, char *operation)
 int	getval_int(t_node_circ *node)
 {
 	return (*(int *)node->content);
+}
+
+long	getval_long(t_node_circ *node)
+{
+	return (*(long *)node->content);
 }
 
 double	getval_double(t_node_circ *node)

@@ -6,14 +6,14 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/31 00:51:06 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/31 22:19:01 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-static int	init_stack(t_game *game, char **argv);
+static void	init_stack(t_game *game, int *sorted, char **argv);
 static void	normalized_list(t_game *game);
 
 int	init_game(t_game **game, char **argv)
@@ -30,7 +30,7 @@ int	init_game(t_game **game, char **argv)
 		|| !(*game)->a2 || !(*game)->b2 \
 		|| !(*game)->op)
 		raise_error(*game);
-	sorted = init_stack(*game, argv);
+	init_stack(*game, &sorted, argv);
 	if (sorted)
 		return (1);
 	normalized_list(*game);
@@ -74,14 +74,13 @@ t_node_circ	*value_node(char *data)
 	return (node);
 }
 
-static int	init_stack(t_game *game, char **argv)
+static void	init_stack(t_game *game, int *sorted, char **argv)
 {
 	t_node_circ	*node;
 	char		**tmp;
 	size_t		i;
-	int			sorted;
 
-	sorted = 1;
+	*sorted = 1;
 	while (*argv)
 	{
 		tmp = ft_split(*argv++, ' ');
@@ -92,15 +91,15 @@ static int	init_stack(t_game *game, char **argv)
 		{
 			node = value_node(tmp[i++]);
 			if (!node)
-				return (ft_free_all(tmp), raise_error(game), sorted);
+				return (ft_free_all(tmp), raise_error(game));
 			ft_append_circ(game->a, node);
 			if (game->a->size > 1 && isduplicate(node))
-				return (ft_free_all(tmp), raise_error(game), sorted);
-			sorted &= (game->a->size > 1 && getval_long(node) > getval_long(node->prev));
+				return (ft_free_all(tmp), raise_error(game));
+			*sorted &= (game->a->size > 1 \
+						&& getval_long(node) > getval_long(node->prev));
 		}
 		ft_free_all(tmp);
 	}
-	return (sorted);
 }
 
 void	clear_game(t_game **game)

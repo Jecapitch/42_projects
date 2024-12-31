@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/31 19:55:47 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/31 22:38:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	scale(t_list_circ *list, long min, long max)
 	while (i++ < list->size)
 	{
 		val = getval_long(node);
-		*(long *)node->content = (long)((double)(val - min) / (max - min) * (list->size - 1)) ;
+		*(long *)node->content = (long)((double)(val - min) \
+												/ (max - min) \
+												* (list->size - 1) \
+												* ft_power(10, (int)ft_log(max, 10)));
 		node = node->next;
 	}
 }

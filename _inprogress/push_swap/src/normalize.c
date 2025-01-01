@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/31 22:38:48 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/3 18:15:11 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/01/01 02:06:24 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,18 @@ void	scale(t_list_circ *list, long min, long max)
 	long		val;
 	t_node_circ	*node;
 	size_t		i;
+	long		diff;
+//	int			exp;
 
 	node = list->first;
+	diff = max - min;
+//	exp = ft_powerof(diff, 3);
 	i = 0;
 	while (i++ < list->size)
 	{
 		val = getval_long(node);
 		*(long *)node->content = (long)((double)(val - min) \
-												/ (max - min) \
-												* (list->size - 1) \
-												* ft_power(10, (int)ft_log(max, 10)));
+												/ (diff) * 1000);
 		node = node->next;
 	}
 }

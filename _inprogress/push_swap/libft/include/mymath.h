@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 22:25:41 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/30 13:47:57 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/01 01:37:40 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ long	ft_sum_list(t_list *list);
 long	ft_sum_list2(t_list_2 *list);
 long	ft_sum_list_circ(t_list_circ *list);
 long	ft_power(int n, int pow);
+int		ft_powerof(int x, int base);
 double	ft_sqrt(double n);
 double	ft_ln_taylor(double x);
 double	ft_log10(double x);

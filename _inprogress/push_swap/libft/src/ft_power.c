@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 20:03:08 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/29 20:41:03 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/01 01:43:30 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,17 @@ long	ft_power(int n, int pow)
 	while (pow-- > 1)
 		res *= n;
 	return (res);
+}
+
+int	ft_powerof(int x, int base)
+{
+	int	exp;
+
+	exp = 0;
+	while (x > 10)
+	{
+		x /= base;
+		exp++;
+	}
+	return (exp);
 }

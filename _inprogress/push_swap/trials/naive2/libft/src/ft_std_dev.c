@@ -1,46 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_std_dev.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/29 22:03:05 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/29 22:22:22 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
-{
-	int	sqr;
+#include "mymath.h"
 
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
-	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
-	}
+/*
+double	ft_std_dev_arr(int *arr)
+{
 	return (0);
 }
+*/
 
-double	ft_sqrt(double n)
+double	ft_std_dev_list_circ(t_list_circ *list)
 {
-	double	x;
-	double	y;
-	double	precision;
+	double		mean;
+	long		sum;
+	size_t		i;
+	t_node_circ	*node;
+	int			val;
 
-	if (n <= 0)
+	if (!list || !list->size)
 		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
+	mean = ft_mean_list_circ(list);
+	sum = 0;
+	i = 0;
+	node = list->first;
+	while (i < list->size)
 	{
-		x = (x + y) / 2;
-		y = n / x;
+		val = *(int *)node->content;
+		sum += ft_power(val - mean, 2);
+		node = node->next;
+		i++;
 	}
-	return (x);
+	return (ft_sqrt(sum));
 }

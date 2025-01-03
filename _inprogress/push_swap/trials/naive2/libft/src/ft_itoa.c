@@ -1,46 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/10 00:39:49 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/23 01:11:04 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+#include "libft.h"
+
+char	*ft_itoa(int n)
 {
-	int	sqr;
+	char	*str;
+	long	ln;
+	size_t	intlen;
 
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
+	ln = n;
+	intlen = ft_intlen(n);
+	str = ft_calloc(intlen + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	str[0] = '0';
+	if (n < 0)
 	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
+		ln = -ln;
+		str[0] = '-';
 	}
-	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
+	while (ln)
 	{
-		x = (x + y) / 2;
-		y = n / x;
+		str[intlen - 1] = ln % 10 + '0';
+		ln /= 10;
+		intlen--;
 	}
-	return (x);
+	return (str);
 }

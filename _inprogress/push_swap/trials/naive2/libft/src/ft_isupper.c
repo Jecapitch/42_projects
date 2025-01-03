@@ -1,46 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/11/18 05:19:59 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/18 20:37:55 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+#include "libft.h"
+
+int	ft_isupper(int c)
 {
-	int	sqr;
-
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
-	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
-	}
-	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
+	return (c >= 'A' && c <= 'Z');
 }

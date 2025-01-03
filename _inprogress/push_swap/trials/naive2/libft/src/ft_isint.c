@@ -1,46 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_isint.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/18 13:11:05 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/22 23:35:00 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+#include "libft.h"
+
+int	ft_isint(char *s)
 {
-	int	sqr;
+	long	n;
+	size_t	i;
 
-	sqr = 1;
-	if (nb <= 0)
+	n = ft_strtol(s);
+	if (n < INT_MIN || n > INT_MAX)
 		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
-	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
-	}
-	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
+	i = 0;
+	while (ft_isspace(s[i]))
+		i++;
+	i += (s[i] == '+' || s[i] == '-');
+	if (!(s[i]))
 		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
+	while (s[i])
 	{
-		x = (x + y) / 2;
-		y = n / x;
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
 	}
-	return (x);
+	return (1);
 }

@@ -1,46 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/11/18 04:35:37 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/19 12:09:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+#include "libft.h"
+
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	sqr;
+	char	a[12];
+	char	*conv;
+	int		isneg;
+	long	ln;
 
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
+	isneg = n < 0;
+	ln = n;
+	if (isneg)
+		ln = -ln;
+	a[10] = '0';
+	a[11] = '\0';
+	conv = a + 10 - (!n);
+	while (ln)
 	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
+		*conv = ln % 10 + '0';
+		ln /= 10;
+		conv--;
 	}
-	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
+	if (isneg)
+		*conv = '-';
+	else
+		conv++;
+	write(fd, conv, ft_strlen(conv));
 }

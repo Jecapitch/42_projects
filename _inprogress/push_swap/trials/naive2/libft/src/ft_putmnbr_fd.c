@@ -1,34 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putmnbr_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 22:43:31 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/09 23:10:12 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/02 23:31:27 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_putmnbr_fd(int n, int fd)
 {
-	t_game	*game;
-	int		sorted;
+	char	*str;
+	char	isneg;
+	char	ismin;
+	size_t	intlen;
 
-	if (argc < 2)
-		return (0);
-	argv++;
-	sorted = init_game(&game, argv);
-	if (game->a->size < 2 || sorted)
+	intlen = ft_intlen(n);
+	str = ft_calloc(intlen + 1, sizeof(char));
+	isneg = (n < 0);
+	ismin = (n == INT_MIN);
+	n += ismin;
+	if (isneg)
+		n = -n;
+	str[0] = '0';
+	while (n)
 	{
-		clear_game(&game);
-		return (0);
+		str[intlen - 1] = n % 10 + ismin + '0';
+		n /= 10;
+		ismin = 0;
+		intlen--;
 	}
-	push_swap(game);
-	ft_list_str_display(game->op, "\n");
-	clear_game(&game);
-	return (0);
+	if (isneg)
+		str[0] = '-';
+	ft_putstr_fd(str, fd);
+	free(str);
 }

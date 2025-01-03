@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 20:03:08 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 23:22:06 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/02 01:11:58 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ double	ft_power(double n, int pow)
 	return (res);
 }
 
-int	ft_powerof10(long n)
+int	ft_powerof10(int n)
 {
 	int	exp;
 
-	exp = 0;
-	while (n > 9)
+	exp = 1;
+	while (n > 99)
 	{
 		n /= 10;
 		exp++;

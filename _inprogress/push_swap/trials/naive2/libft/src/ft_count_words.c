@@ -1,46 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/14 23:59:38 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/02 23:06:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+#include "libft.h"
+
+size_t	ft_count_words(const char *s, char c)
 {
-	int	sqr;
+	size_t	n;
 
-	sqr = 1;
-	if (nb <= 0)
+	if (!s)
 		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
+	n = 0;
+	while (*s)
 	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
+		while (*s && *s == c)
+			s++;
+		if (*s && *s != c)
+			n++;
+		while (*s && *s != c)
+			s++;
 	}
-	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
+	return (n);
 }

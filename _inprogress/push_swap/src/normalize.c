@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/3 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/01 02:06:24 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/03 00:21:17 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,29 @@ void	scale(t_list_circ *list, long min, long max)
 	long		val;
 	t_node_circ	*node;
 	size_t		i;
-	long		diff;
-//	int			exp;
+//	long		diff;
+	int			length[10];
 
-	node = list->first;
-	diff = max - min;
-//	exp = ft_powerof(diff, 3);
+//	diff = max - min;
 	i = 0;
+	node = list->first;
 	while (i++ < list->size)
 	{
-		val = getval_long(node);
-		*(long *)node->content = (long)((double)(val - min) \
-												/ (diff) * 1000);
+		val = (getval_long(node) - min);
+		*(long*)node->content = val;
+		length[ft_powerof10(val)] = 1;
+		node = node->next;
+	}
+	i = 0;
+	while (i < 10)
+		ft_printf("%d\n", length[i++]);
+	max -= min;
+	min = 0;
+	node = list->first;
+	while (i++ < list->size && max)
+	{
+	//	val = (getval_long(node) - mean) / (max - mean);
+	//	*(long *)node->content = val;
 		node = node->next;
 	}
 }

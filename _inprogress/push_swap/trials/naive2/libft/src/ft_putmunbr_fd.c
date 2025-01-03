@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_putmunbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/09 23:10:12 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/10 22:42:58 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+#include "libft.h"
+
+void	ft_putmunbr_fd(unsigned int n, int fd)
 {
-	int	sqr;
+	char	*str;
+	size_t	len;
 
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
+	len = ft_uintlen(n);
+	str = ft_calloc(len + 1, sizeof(char));
+	str[0] = '0';
+	while (n)
 	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
+		str[len - 1] = n % 10 + '0';
+		n /= 10;
+		len--;
 	}
-	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
+	ft_putstr_fd(str, fd);
+	free(str);
 }

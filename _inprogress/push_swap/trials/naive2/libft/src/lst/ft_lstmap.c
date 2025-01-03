@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 22:43:31 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/17 16:38:23 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/19 12:13:22 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "push_swap.h"
 
-int	main(int argc, char **argv)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_game	*game;
-	int		sorted;
+	t_list	*newlst;
+	t_list	*newnode;
 
-	if (argc < 2)
-		return (0);
-	argv++;
-	sorted = init_game(&game, argv);
-	if (game->a->size < 2 || sorted)
+	if (!lst || !f || !del)
+		return (NULL);
+	newlst = NULL;
+	while (lst)
 	{
-		clear_game(&game);
-		return (0);
+		newnode = ft_lstnew(lst->content);
+		if (!newnode)
+		{
+			ft_lstclear(&newlst, del);
+			return (NULL);
+		}
+		newnode->content = f(newnode->content);
+		ft_lstadd_back(&newlst, newnode);
+		lst = lst->next;
 	}
-	push_swap(game);
-	ft_list_str_display(game->op, "\n");
-	clear_game(&game);
-	return (0);
+	return (newlst);
 }

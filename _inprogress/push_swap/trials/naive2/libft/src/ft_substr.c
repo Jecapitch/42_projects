@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/20 01:09:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+#include "libft.h"
+
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	int	sqr;
+	char	*subs;
+	size_t	s_len;
 
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
-	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
-	}
-	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (s_len <= start)
+		return (ft_calloc(1, sizeof(char)));
+	s_len -= start;
+	s += start;
+	if (len > s_len)
+		len = s_len;
+	subs = ft_calloc(len + 1, sizeof(char));
+	if (!subs)
+		return (NULL);
+	ft_strlcpy(subs, s, len + 1);
+	return (subs);
 }

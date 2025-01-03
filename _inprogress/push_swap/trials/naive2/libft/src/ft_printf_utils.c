@@ -1,46 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/30 00:58:25 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/07 02:22:08 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
-{
-	int	sqr;
+#include "ft_printf.h"
 
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
-	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
-	}
-	return (0);
+int	ft_isflag(int c)
+{
+	return (ft_isset(c, FFLAGS));
 }
 
-double	ft_sqrt(double n)
+int	ft_isconv(int c)
 {
-	double	x;
-	double	y;
-	double	precision;
+	return (ft_isset(c, FCONV));
+}
 
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
+char	*chartostr(int c)
+{
+	char	*s;
+
+	s = ft_calloc(2, sizeof(char));
+	if (!s)
+		return (NULL);
+	*s = c;
+	return (s);
 }

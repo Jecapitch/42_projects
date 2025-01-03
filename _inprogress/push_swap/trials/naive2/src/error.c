@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 22:43:31 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/20 15:44:25 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/25 03:38:45 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	isduplicate(t_node_circ *node)
 {
-	t_game	*game;
-	int		sorted;
+	t_node_circ	*prev;
+	t_node_circ	*next;
+	int			c_val;
+	int			p_val;
+	int			n_val;
 
-	if (argc < 2)
+	if (!node)
 		return (0);
-	argv++;
-	sorted = init_game(&game, argv);
-	if (game->a->size < 2 || sorted)
-	{
-		clear_game(&game);
-		return (0);
-	}
-	push_swap(game);
-	ft_list_str_display(game->op, "\n");
-	clear_game(&game);
-	return (0);
+	prev = node->prev;
+	next = node->next;
+	c_val = *(int *)node->content;
+	p_val = *(int *)prev->content;
+	n_val = *(int *)next->content;
+	return ((node != prev && c_val == p_val) || (node != next && c_val == n_val));
+}
+
+void	raise_error(t_list_circ *a, t_list_circ *b, t_list *op)
+{
+	clear_game(&a, &b, &op);
+	ft_printf(ERROR);
+	exit(1);
 }

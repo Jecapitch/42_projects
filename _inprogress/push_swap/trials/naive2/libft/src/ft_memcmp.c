@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/11/02 23:17:04 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
-{
-	int	sqr;
+#include "libft.h"
 
-	sqr = 1;
-	if (nb <= 0)
-		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	const unsigned char	*chs1;
+	const unsigned char	*chs2;
+
+	chs1 = (const unsigned char *)s1;
+	chs2 = (const unsigned char *)s2;
+	while (n)
 	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
+		if (*chs1 != *chs2)
+			return (*chs1 - *chs2);
+		chs1++;
+		chs2++;
+		n--;
 	}
 	return (0);
-}
-
-double	ft_sqrt(double n)
-{
-	double	x;
-	double	y;
-	double	precision;
-
-	if (n <= 0)
-		return (0);
-	x = n;
-	y = 1;
-	precision = 0.00001;
-	while (x - y > precision)
-	{
-		x = (x + y) / 2;
-		y = n / x;
-	}
-	return (x);
 }

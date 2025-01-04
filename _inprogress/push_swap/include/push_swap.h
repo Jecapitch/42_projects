@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/31 20:05:51 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/04 01:43:05 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ struct s_game
 };
 
 // START & END
-int			init_game(t_game **game, char **argv);
-t_node_circ	*value_node(char *data);
-void		normalize(t_list_circ *list);
+_Bool		init_game(t_game **game, char **argv, \
+				int nperlength[], int actual_length[]);
+t_node_circ	*value_node(long data);
+void		normalize(t_game *game, int nperlength[]);
+void		lengths_to_treat(int nperlength[], int actual_lengths[]);
 void		clear_game(t_game **game);
 
 // ERRORS
@@ -54,7 +56,7 @@ void		sort2(t_game *game);
 void		sort3(t_game *game);
 void		sort4(t_game *game);
 void		sort5(t_game *game);
-void		push_swap(t_game *game);
+void		push_swap(t_game *game, int nperlength[], int actual_lengths[]);
 
 // UTILS
 int			getval_int(t_node_circ *node);

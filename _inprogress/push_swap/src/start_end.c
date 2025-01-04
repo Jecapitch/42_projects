@@ -6,19 +6,18 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/31 22:19:01 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/04 01:42:14 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-static void	init_stack(t_game *game, int *sorted, char **argv);
-static void	normalized_list(t_game *game);
+static void	init_stack(t_game *game, _Bool *sorted, char **argv);
 
-int	init_game(t_game **game, char **argv)
+_Bool	init_game(t_game **game, char **argv, int nperlength[], int actual_lengths[])
 {
-	int	sorted;
+	_Bool	sorted;
 
 	*game = malloc(sizeof(t_game));
 	(*game)->a = ft_init_list_circ();
@@ -31,50 +30,26 @@ int	init_game(t_game **game, char **argv)
 		|| !(*game)->op)
 		raise_error(*game);
 	init_stack(*game, &sorted, argv);
-	if (sorted)
-		return (1);
-	normalized_list(*game);
-	return (0);
-}
-
-static void	normalized_list(t_game *game)
-{
-	t_node_circ	*node;
-	t_node_circ	*newnode;
-	char		*val;
-	size_t		i;
-
-	node = game->a->first;
-	i = 0;
-	while (i++ < game->a->size)
+	if (!sorted)
 	{
-		val = ft_itoa(getval_long(node));
-		if (!val)
-			return (raise_error(game));
-		newnode = value_node(val);
-		if (!newnode)
-			return (ft_free_nul(val), raise_error(game));
-		ft_append_circ(game->a2, newnode);
-		ft_free_nul(val);
-		node = node->next;
+		normalize(*game, nperlength);
+		lengths_to_treat(nperlength, actual_lengths);
 	}
-	normalize(game->a2);
+	return (sorted);
 }
 
-t_node_circ	*value_node(char *data)
+t_node_circ	*value_node(long data)
 {
 	t_node_circ	*node;
 
-	if (!ft_isint(data))
-		return (NULL);
 	node = ft_newnode_circ(malloc(sizeof(long)));
 	if (!node || !node->content)
 		return (ft_listdelone_circ(node, ft_free_nul), NULL);
-	*(long *)node->content = ft_atoi(data);
+	*(long *)node->content = data;
 	return (node);
 }
 
-static void	init_stack(t_game *game, int *sorted, char **argv)
+static void	init_stack(t_game *game, _Bool *sorted, char **argv)
 {
 	t_node_circ	*node;
 	char		**tmp;
@@ -89,14 +64,13 @@ static void	init_stack(t_game *game, int *sorted, char **argv)
 		i = 0;
 		while (tmp[i])
 		{
-			node = value_node(tmp[i++]);
-			if (!node)
+			node = value_node(ft_strtol(tmp[i++]));
+			if (!node || !ft_isint(tmp[i - 1]))
 				return (ft_free_all(tmp), raise_error(game));
 			ft_append_circ(game->a, node);
 			if (game->a->size > 1 && isduplicate(node))
 				return (ft_free_all(tmp), raise_error(game));
-			*sorted &= (game->a->size > 1 \
-						&& getval_long(node) > getval_long(node->prev));
+			*sorted &= (getval_long(node) > getval_long(node->prev));
 		}
 		ft_free_all(tmp);
 	}

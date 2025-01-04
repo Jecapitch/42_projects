@@ -4,6 +4,7 @@
 
 int main()
 {
-    printf("%u\n", ft_powerof10(-53));
+	ft_newnode(42);
+//    printf("%ld\n", ft_ullen((long)INT_MAX - (long)INT_MIN, 36));
     return 0;
 }

@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/07 20:11:45 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/28 22:22:04 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/30 12:40:43 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	power3(int pow)
 {
-	t_game	*game;
+	return (ft_power(3, pow));
+}
 
-	if (argc < 2)
+int	mod3(t_node_circ *node)
+{
+	int	n;
+
+	if (!node)
 		return (0);
-	argv++;
-	if (init_game(&game, argv) || game->a->size < 2)
-	{
-		clear_game(&game);
+	n = getval_int(node);
+	n = ft_absval(n);
+	return (n % 3);
+}
+
+int	div3(t_node_circ *node)
+{
+	int	n;
+
+	if (!node)
 		return (0);
-	}
-	push_swap(game);
-	ft_list_str_display(game->op, " ");
-	clear_game(&game);
-	return (0);
+	n = getval_int(node);
+	return (n / 3);
 }

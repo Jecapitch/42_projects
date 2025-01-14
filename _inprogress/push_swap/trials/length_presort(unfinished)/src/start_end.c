@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/07 18:47:44 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/04 01:42:14 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,26 @@
 
 static void	init_stack(t_game *game, _Bool *sorted, char **argv);
 
-_Bool	init_game(t_game **game, char **argv)
+_Bool	init_game(t_game **game, char **argv, int nperlength[], int actual_lengths[])
 {
 	_Bool	sorted;
 
 	*game = malloc(sizeof(t_game));
-	if (!game)
-		return (raise_error(*game), 0);
 	(*game)->a = ft_init_list_circ();
 	(*game)->b = ft_init_list_circ();
+	(*game)->a2 = ft_init_list_circ();
+	(*game)->b2 = ft_init_list_circ();
 	(*game)->op = ft_init_list();
-	if (!(*game)->a || !(*game)->b || !(*game)->op)
-		return (raise_error(*game), 0);
+	if (!(*game)->a || !(*game)->b \
+		|| !(*game)->a2 || !(*game)->b2 \
+		|| !(*game)->op)
+		raise_error(*game);
 	init_stack(*game, &sorted, argv);
+	if (!sorted)
+	{
+		normalize(*game, nperlength);
+		lengths_to_treat(nperlength, actual_lengths);
+	}
 	return (sorted);
 }
 
@@ -73,5 +80,7 @@ void	clear_game(t_game **game)
 {
 	ft_listclear_circ(&(*game)->a, ft_free_nul);
 	ft_listclear_circ(&(*game)->b, ft_free_nul);
+	ft_listclear_circ(&(*game)->a2, ft_free_nul);
+	ft_listclear_circ(&(*game)->b2, ft_free_nul);
 	ft_listclear(&(*game)->op, ft_free_nul);
 }

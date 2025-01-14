@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 22:34:21 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/04 22:59:02 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	push_swap(t_list_circ *a, t_list_circ *b, t_list *op)
 			cmp = cmp_first_combine(a, b);
 			sorted &= swap(a, b, op, cmp);
 			push(a, b, op, 'b');
-			if (b->size == 1)
+			if (!bref && b->size == 1)
 				bref = b->first;
 		if (isduplicate(a->first) || isduplicate(a->last) \
 				|| isduplicate(b->first) || isduplicate(b->last))

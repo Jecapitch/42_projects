@@ -6,11 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/01/07 18:48:06 by jpiscice         ###   ########.fr        #
-=======
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
->>>>>>> refs/remotes/origin/main
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +20,7 @@ SRCDIR = src
 
 INCDIR = include
 
-SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap start_end operations math utils error))
+SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap start_end normalize operations math utils error))
 
 OBJ = $(SRC:.c=.o)
 

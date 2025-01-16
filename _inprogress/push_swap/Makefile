@@ -6,11 +6,8 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/01/07 18:48:06 by jpiscice         ###   ########.fr        #
-=======
+#    Updated: 2025/01/16 21:12:06 by jpiscice         ###   ########.fr        #
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
->>>>>>> refs/remotes/origin/main
 #                                                                              #
 # **************************************************************************** #
 

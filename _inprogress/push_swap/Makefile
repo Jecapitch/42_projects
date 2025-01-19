@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/01/16 21:12:06 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/01/17 14:20:38 by jpiscice         ###   ########.fr        #
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -27,7 +27,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-#CFLAGS += -Wall -Wextra -Werror -fsanitize=address
+CFLAGS += -Wall -Wextra -Werror -fsanitize=address
 
 CPPFLAGS += -I$(LFTDIR)/include -I$(INCDIR)
 

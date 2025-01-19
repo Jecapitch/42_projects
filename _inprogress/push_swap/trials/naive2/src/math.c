@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_countwhile_condition.c                          :+:      :+:    :+:   */
+/*   math.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 14:17:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/06 13:01:41 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/28 22:22:04 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/30 12:40:43 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-size_t	ft_countwhile_condition(const char *s, int (*f)(int))
+int	power3(int pow)
 {
-	size_t	len;
+	return (ft_power(3, pow));
+}
 
-	if (!s || !f)
+int	mod3(t_node_circ *node)
+{
+	int	n;
+
+	if (!node)
 		return (0);
-	len = 0;
-	while (s[len] && f(s[len]))
-		len++;
-	return (len);
+	n = getval_int(node);
+	n = ft_absval(n);
+	return (n % 3);
+}
+
+int	div3(t_node_circ *node)
+{
+	int	n;
+
+	if (!node)
+		return (0);
+	n = getval_int(node);
+	return (n / 3);
 }

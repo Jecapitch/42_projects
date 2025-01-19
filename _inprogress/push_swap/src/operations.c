@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/07 20:29:02 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:18:04 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	swap_nodes(t_game *game, char list)
 	}
 }
 
-int	swap(t_game *game)
+void	swap(t_game *game)
 {
 	static char	ope[3] = "s";
 	t_node_circ	*a1;
@@ -55,22 +55,25 @@ int	swap(t_game *game)
 			+ 'b' * ((game->b->size > 1 && getval_int(b1) < getval_int(b2)) \
 				&& (game->a->size < 2 || getval_int(a1) < getval_int(a2)));
 	if (!ope[1])
-		return (1);
+		return ;
 	if (ope[1] != 'b')
 		swap_nodes(game, 'a');
 	if (ope[1] != 'a')
 		swap_nodes(game, 'b');
-	return (add_op(game, ope), 0);
+	return (add_op(game, ope));
 }
 
-void	push(t_game *game, char operation, t_node_circ *ref)
+void	push(t_game *game, char operation, int div)
 {
 	t_node_circ	*node;
 	static char	ope[3] = "p";
+	int			mod;
 
-	ope[1] = 'b' * (operation == 'b' && game->a->size \
-				&& getval_int(game->a->first) < getval_int(ref)) \
-			+ 'a' * (operation == 'a' && game->b->size); 
+	mod = (operation == 'b') * ((getval_int(game->a->first) / div) % 3) \
+		+ (operation == 'a') * ((getval_int(game->b->first) / div) % 3) \
+		+ (operation == 'e') * 2; 
+	ope[1] = 'b' * (game->a->size && operation == 'b' && mod != 2) \
+			+ 'a' * (game->b->size && (operation == 'a' || operation == 'e') && mod); 
 	if (!ope[1])
 		return ;
 	else if (ope[1] == 'b')
@@ -86,18 +89,20 @@ void	push(t_game *game, char operation, t_node_circ *ref)
 	add_op(game, ope);
 }
 
-void	rotate(t_game *game, t_node_circ *aref, t_node_circ *bref)
+void	rotate(t_game *game, int div)
 {
 	static char	ope[3] = "r";
+	int			amod;
+	int			bmod;
 
-	ope[1] = 'r' * ((game->a->size > 1 \
-						&& getval_int(game->a->first) > getval_int(aref)) \
-					&& (game->b->size > 1 \
-						&& getval_int(game->b->first) < getval_int(bref))) \
-			+ 'a' * (game->a->size > 1 \
-						&& getval_int(game->a->first) > getval_int(aref)) \
-			+ 'b' * (game->b->size > 1 \
-						&& getval_int(game->b->first) < getval_int(bref));
+	amod = (getval_int(game->a->first) / div) % 3;
+	bmod = (getval_int(game->b->first) / div) % 3;
+	ope[1] = 'r' * ((game->a->size > 1 	&& amod == 2) \
+					&& (game->b->size > 1 && !bmod)) \
+			+ 'a' * ((game->a->size > 1 && amod == 2) \
+					&& (game->b->size < 2 || bmod != 0)) \
+			+ 'b' * ((game->b->size > 1 && !bmod)
+					&& (game->a->size < 2 || amod != 2));
 	if (!ope[1])
 		return ;
 	if (ope[1] != 'b')

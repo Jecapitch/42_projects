@@ -6,38 +6,48 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/25 22:55:11 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/07 19:54:10 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	add_op(t_list *op, char *operation)
+void	add_op(t_game *game, char *operation)
 {
 	t_node	*node;
 	char	*content;
 
-	content = ft_calloc(4, sizeof(char));
-	ft_strlcpy(content, operation, 4);
+	content = ft_strdup(operation);
+	if (!content)
+		raise_error(game);
 	node = ft_newnode(content);
-	ft_append(op, node);
+	if (!node)
+		raise_error(game);
+	ft_append(game->op, node);
 }
 
-void	clear_game(t_list_circ **a, t_list_circ **b, t_list **op)
+int	getval_int(t_node_circ *node)
 {
-	ft_listclear_circ(a, ft_free_nul);
-	ft_listclear_circ(b, ft_free_nul);
-	ft_listclear(op, ft_free_nul);
+	return (*(int *)node->content);
 }
 
-void	display_game(t_list_circ *a, t_list_circ *b, t_list *op)
+long	getval_long(t_node_circ *node)
 {
-	ft_list_str_display(op, "->");
+	return (*(long *)node->content);
+}
+
+double	getval_double(t_node_circ *node)
+{
+	return (*(double *)node->content);
+}
+
+void	display_game(t_game *game)
+{
+	ft_list_str_display(game->op, "->");
 	ft_printf("a : ");
-	ft_list_circ_int_display(a, "->");
+	ft_list_circ_int_display(game->a, "->");
 	ft_printf("b : ");
-	ft_list_circ_int_display(b, "->");
+	ft_list_circ_int_display(game->b, "->");
 	ft_printf("=============\n");
 }
-

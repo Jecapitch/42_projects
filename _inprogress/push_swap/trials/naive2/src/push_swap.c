@@ -6,63 +6,65 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/04 22:59:02 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/07 20:37:27 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-void	push_swap(t_list_circ *a, t_list_circ *b, t_list *op)
+void	push_swap(t_game *game)
 {
-	int			cmp;
 	t_node_circ	*aref;
 	t_node_circ	*bref;
+	t_node_circ	*node;
 	int			sorted;
 
+	if (!game || !game->a || !game->b)
+		return (raise_error(game));
 	sorted = 0;
-	while (!sorted || b->size)
+	if (game->a->size == 2)
 	{
-		aref = a->last;
-		bref = b->last;
+		swap(game);
 		sorted = 1;
-		while (a->size > 4 && a->first != aref)
+	ft_list_str_display(game->op, "\n");
+	}
+	while (!sorted)
+	{
+		aref = game->a->last;
+		sorted = 1;
+		while (game->a->size > 2 && game->a->first != aref)
 		{
-			cmp = cmp_first_combine(a, b);
-			sorted &= swap(a, b, op, cmp);
-			cmp = cmp_2_last_combine(a, b);
-			rrotate(a, b, op, cmp);
-			cmp = cmp_first_combine(a, b);
-			sorted &= swap(a, b, op, cmp);
-			cmp = cmp_last_combine(a, b, aref, bref);
-			rotate(a, b, op, cmp);
-			cmp = cmp_first_combine(a, b);
-			sorted &= swap(a, b, op, cmp);
-			push(a, b, op, 'b');
-			if (!bref && b->size == 1)
-				bref = b->first;
-		if (isduplicate(a->first) || isduplicate(a->last) \
-				|| isduplicate(b->first) || isduplicate(b->last))
-			return (raise_error(a, b, op));
+			sorted &= swap(game);
+			rrotate(game);
+			sorted &= swap(game);
+			rotate(game, aref, bref);
+			sorted &= swap(game);
+			push(game, 'b', aref);
+			if (game->b->size == 1)
+				bref = game->b->first;
+			if (isduplicate(game->a->first) || isduplicate(game->a->last) \
+					|| isduplicate(game->b->first) || isduplicate(game->b->last))
+				return (raise_error(game));
 		}
-		aref = a->last;
-		bref = b->last;
-		while (b->size && b->first != bref)
+		while (game->b->size && game->b->first != bref)
 		{
-			cmp = cmp_first_combine(a, b);
-			sorted &= swap(a, b, op, cmp);
-			cmp = cmp_2_last_combine(a, b);
-			rrotate(a, b, op, cmp);
-			cmp = cmp_first_combine(a, b);
-			sorted &= swap(a, b, op, cmp);
-			cmp = cmp_last_combine(a, b, aref, bref);
-			rotate(a, b, op, cmp);
-			cmp = cmp_first_combine(a, b);
-			sorted &= swap(a, b, op, cmp);
-			push(a, b, op, 'a');
-			if (isduplicate(a->first) || isduplicate(a->last) \
-					|| isduplicate(b->first) || isduplicate(b->last))
-				return (raise_error(a, b, op));
+			sorted &= swap(game);
+			rrotate(game);
+			sorted &= swap(game);
+			rotate(game, aref, bref);
+			sorted &= swap(game);
+			push(game, 'a', bref);
+			if (isduplicate(game->a->first) || isduplicate(game->a->last) \
+					|| isduplicate(game->b->first) || isduplicate(game->b->last))
+				return (raise_error(game));
+		}
+		node = game->a->first;
+		sorted = 1;
+		while (node != game->a->last && sorted)
+		{
+			sorted &= getval_int(node) < getval_int(node->next);
+			node = node->next;
 		}
 	}
 }

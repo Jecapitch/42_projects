@@ -6,7 +6,8 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/25 03:20:19 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/01/16 21:12:06 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +21,13 @@ SRCDIR = src
 
 INCDIR = include
 
-SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap init operations compare utils error))
+SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap start_end operations math utils error))
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS += -Wall -Wextra -Werror -fsanitize=address
+#CFLAGS += -Wall -Wextra -Werror -fsanitize=address
 
 CPPFLAGS += -I$(LFTDIR)/include -I$(INCDIR)
 

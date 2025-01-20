@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/17 14:24:10 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/19 19:35:44 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,17 @@ int	getval_int(t_node_circ *node)
 	if (!node)
 		return (0);
 	return (*(int *)node->content);
+}
+
+t_node_circ	*value_node(int data)
+{
+	t_node_circ	*node;
+
+	node = ft_newnode_circ(malloc(sizeof(int)));
+	if (!node || !node->content)
+		return (ft_listdelone_circ(node, ft_free_nul), NULL);
+	*(int *)node->content = data;
+	return (node);
 }
 
 void	display_game(t_game *game)

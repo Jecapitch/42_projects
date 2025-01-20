@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   empty.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/19 22:38:27 by jpiscice         ###   ########.fr       */
+/*   Created: 2025/01/19 19:40:40 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/01/19 19:41:05 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+char	stack_to_empty(t_game *game)
 {
-	t_game	*game;
+	if (game->a->size < game->b->size)
+		return ('a');
+	return ('b');
+}
 
-	if (argc < 2)
-		return (0);
-	argv++;
-	if (init_game(&game, argv) || game->a->size < 2)
+void	empty_stack(t_game *game, char stack)
+{
+	if (stack == 'a')
 	{
-		clear_game(&game);
-		return (0);
+		while (game->a->size)
+			push(game, 'B', 1);
 	}
-	push_swap(game);
-	ft_list_str_display(game->op, " ");
-	clear_game(&game);
-	return (0);
+	else
+	{
+		while (game->b->size)
+			push(game, 'A', 1);
+	}
 }

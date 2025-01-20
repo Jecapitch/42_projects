@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/17 15:18:04 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/19 22:57:23 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,12 @@ void	swap(t_game *game)
 	b1 = game->b->first;
 	if (b1 && b1->next)
 		b2 = b1->next;
-	ope[1] = 's' * ((game->a->size > 1 && getval_int(a1) > getval_int(a2)) \
-				&& (game->b->size > 1 && getval_int(b1) < getval_int(b2))) \
-			+ 'a' * ((game->a->size > 1 && getval_int(a1) > getval_int(a2)) \
-				&& (game->b->size < 2 || getval_int(b1) > getval_int(b2))) \
-			+ 'b' * ((game->b->size > 1 && getval_int(b1) < getval_int(b2)) \
-				&& (game->a->size < 2 || getval_int(a1) < getval_int(a2)));
+	ope[1] = 'a' * (game->a->size > 1 && getval_int(a1) > getval_int(a2)) \
+			+ 'b' * (game->b->size > 1 && getval_int(b1) < getval_int(b2));
 	if (!ope[1])
 		return ;
+	if (ope[1] && ope[1] != 'a' && ope[1] != 'b')
+		ope[1] = 's';
 	if (ope[1] != 'b')
 		swap_nodes(game, 'a');
 	if (ope[1] != 'a')
@@ -70,13 +68,14 @@ void	push(t_game *game, char operation, int div)
 	int			mod;
 
 	mod = (operation == 'b') * ((getval_int(game->a->first) / div) % 3) \
-		+ (operation == 'a') * ((getval_int(game->b->first) / div) % 3) \
-		+ (operation == 'e') * 2; 
+		+ (operation == 'a') * ((getval_int(game->b->first) / div) % 3);
 	ope[1] = 'b' * (game->a->size && operation == 'b' && mod != 2) \
-			+ 'a' * (game->b->size && (operation == 'a' || operation == 'e') && mod); 
+			+ 'b' * (operation == 'B') \
+			+ 'a' * (game->b->size && operation == 'a' && mod != 0) \
+			+ 'a' * (operation == 'A');
 	if (!ope[1])
 		return ;
-	else if (ope[1] == 'b')
+	if (ope[1] == 'b')
 	{
 		node = ft_dequeue_circ(game->a);
 		ft_push_circ(game->b, node);
@@ -97,14 +96,12 @@ void	rotate(t_game *game, int div)
 
 	amod = (getval_int(game->a->first) / div) % 3;
 	bmod = (getval_int(game->b->first) / div) % 3;
-	ope[1] = 'r' * ((game->a->size > 1 	&& amod == 2) \
-					&& (game->b->size > 1 && !bmod)) \
-			+ 'a' * ((game->a->size > 1 && amod == 2) \
-					&& (game->b->size < 2 || bmod != 0)) \
-			+ 'b' * ((game->b->size > 1 && !bmod)
-					&& (game->a->size < 2 || amod != 2));
+	ope[1] = 'a' * (game->a->size > 1 && amod == 2) \
+			+ 'b' * (game->b->size > 1 && bmod == 0);
 	if (!ope[1])
 		return ;
+	if (ope[1] && ope[1] != 'a' && ope[1] != 'b')
+		ope[1] = 'r';
 	if (ope[1] != 'b')
 		ft_rotlist_circ(game->a);
 	if (ope[1] != 'a')
@@ -117,13 +114,13 @@ void	rrotate(t_game *game)
 	static char	ope[4] = "rr";
 
 	ope[2] = 'r' * ((game->a->size > 1 \
-						&& getval_int(game->a->last) < getval_int(game->a->first)) \
-					&& (game->b->size > 1 \
-						&& getval_int(game->b->last) > getval_int(game->b->first))) \
+					&& getval_int(game->a->last) < getval_int(game->a->first)) \
+				&& (game->b->size > 1 \
+					&& getval_int(game->b->last) > getval_int(game->b->first))) \
 			+ 'a' * (game->a->size > 1 \
-						&& getval_int(game->a->last) < getval_int(game->a->first)) \
+					&& getval_int(game->a->last) < getval_int(game->a->first)) \
 			+ 'b' * (game->b->size > 1 \
-						&& getval_int(game->b->last) > getval_int(game->b->first));
+					&& getval_int(game->b->last) > getval_int(game->b->first));
 	if (!ope[2])
 		return ;
 	if (ope[2] != 'b')

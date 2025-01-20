@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/17 14:26:02 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/19 19:34:20 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void		swap(t_game *game);
 void		push(t_game *game, char operation, int div);
 void		rotate(t_game *game, int div);
 void		rrotate(t_game *game);
+char		stack_to_empty(t_game *game);
+void		empty_stack(t_game *game, char stack);
 void		add_op(t_game *game, char *operation);
 
 // SORT

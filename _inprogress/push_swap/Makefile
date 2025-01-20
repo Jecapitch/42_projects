@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/01/17 14:20:38 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/01/19 19:41:35 by jpiscice         ###   ########.fr        #
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -21,7 +21,7 @@ SRCDIR = src
 
 INCDIR = include
 
-SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap start_end operations math utils error))
+SRC = main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, push_swap start_end operations empty math utils error))
 
 OBJ = $(SRC:.c=.o)
 

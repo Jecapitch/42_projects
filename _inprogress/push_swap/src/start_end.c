@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/17 14:25:20 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/19 19:35:53 by jpiscice         ###   ########.fr       */
 /*   Updated: 2025/01/04 23:00:12 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -34,17 +34,6 @@ _Bool	init_game(t_game **game, char **argv)
 	if (!sorted)
 		normalize(*game);
 	return (sorted);
-}
-
-t_node_circ	*value_node(int data)
-{
-	t_node_circ	*node;
-
-	node = ft_newnode_circ(malloc(sizeof(int)));
-	if (!node || !node->content)
-		return (ft_listdelone_circ(node, ft_free_nul), NULL);
-	*(int *)node->content = data;
-	return (node);
 }
 
 static void	init_stack(t_game *game, _Bool *sorted, char **argv)
@@ -104,7 +93,7 @@ static void	compute_position(t_game *game, int *c)
 
 static void	normalize(t_game *game)
 {
-	int 		*c;
+	int			*c;
 	size_t		i;
 	t_node_circ	*node;
 

@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/29 23:30:49 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/02/13 01:34:01 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,14 +39,13 @@ SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		printf printf_format printf_utils \
 		get_next_line \
 		sum mean absval power sqrt \
-		log \
 		std_dev))
 
 OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror -fsanitize=address -O3
 
 CPPFLAGS += -I$(INCDIR)
 

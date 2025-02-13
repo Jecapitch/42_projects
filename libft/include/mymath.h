@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 22:25:41 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/30 13:47:57 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/02 23:22:27 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ long	ft_sum_arr(int *arr);
 long	ft_sum_list(t_list *list);
 long	ft_sum_list2(t_list_2 *list);
 long	ft_sum_list_circ(t_list_circ *list);
-long	ft_power(int n, int pow);
+double	ft_power(double n, int pow);
+long	ft_power_int(int n, int pow);
+int		ft_powerof10(long n);
+int		ft_sqrt_int(int nb);
 double	ft_sqrt(double n);
 double	ft_ln_taylor(double x);
+double	ft_ln(double x);
 double	ft_log10(double x);
-double	ft_log(double n, int base);
 double	ft_mean_arr(int *arr);
 double	ft_mean_list(t_list *list);
 double	ft_mean_list2(t_list_2 *list);

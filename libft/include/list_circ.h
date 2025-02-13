@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/28 23:56:09 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/01/21 20:40:04 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_node_circ	*ft_pop_circ(t_list_circ *list);
 void		ft_list_circ_int_display(t_list_circ *list, char *sep);
 size_t		ft_listsize_circ(t_list_circ *list);
 t_node_circ	*ft_listlast_circ(t_list_circ *list);
+void		ft_listiter_circ(t_list_circ *list, void (*f)(void *));
 void		ft_rotlist_circ(t_list_circ *list);
 void		ft_rrotlist_circ(t_list_circ *list);
 

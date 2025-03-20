@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/02/17 20:31:38 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/20 00:56:32 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int	main(int argc, char **argv)
 	t_game	*game;
 	int		sorted;
 
-	if (argc < 2)
-		return (0);
-	argv++;
-	if (init_game(&game, argv) || game->a->size < 2)
+	if (argc < 2 || init_game(&game, ++argv) || game->a->size < 2)
 	{
 		clear_game(&game);
 		return (0);

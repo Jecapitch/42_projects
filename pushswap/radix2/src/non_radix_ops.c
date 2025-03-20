@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_not_radix.c                                    :+:      :+:    :+:   */
+/*   non_radix_ops.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/02/17 20:29:28 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/20 00:51:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ _Bool	swap(t_game *game, int aref, int bref)
 	int			b1;
 	int			b2;
 
-	if (issorted(game))
-		return (0);
 	a1 = first_val(game->a);
 	a2 = second_val(game->a);
 	b1 = first_val(game->b);
@@ -53,8 +51,7 @@ _Bool	swap(t_game *game, int aref, int bref)
 	return (add_op(game, ope), 1);
 }
 
-_Bool	smallpush(t_game *game, t_list_circ *stack, \
-			int aref, int bref)
+_Bool	push(t_game *game, t_list_circ *stack, int aref, int bref)
 {
 	static char	ope[3] = "p";
 	t_node_circ	*node;
@@ -62,7 +59,7 @@ _Bool	smallpush(t_game *game, t_list_circ *stack, \
 	int			val2;
 	t_list_circ	*dest;
 
-	if (stack->size < 2 || issorted(game))
+	if (stack->size < 2)
 		return (0);
 	if (stack == game->a)
 		dest = game->b;
@@ -79,7 +76,7 @@ _Bool	smallpush(t_game *game, t_list_circ *stack, \
 	return (add_op(game, ope), 1);
 }
 
-_Bool	smallrotate(t_game *game, int aref, int bref)
+_Bool	rotate(t_game *game, int aref, int bref)
 {
 	static char	ope[3] = "r";
 	int			a1;
@@ -87,15 +84,13 @@ _Bool	smallrotate(t_game *game, int aref, int bref)
 	int			b1;
 	int			b2;
 
-	if (issorted(game))
-		return (0);
 	a1 = first_val(game->a);
 	a2 = second_val(game->a);
 	b1 = first_val(game->b);
 	b2 = second_val(game->b);
-	ope[1] = 'a' * (game->a->size > 1 && a1 > aref && !(a2 > aref \
+	ope[1] = 'a' * (game->a->size > 2 && a1 > aref && !(a2 > aref \
 				&& a1 > a2) && a1 > last_val(game->a)) \
-			+ 'b' * (game->b->size > 1 && b1 < bref && !(b2 < bref \
+			+ 'b' * (game->b->size > 2 && b1 < bref && !(b2 < bref \
 				&& b1 < b2) && b1 < last_val(game->b));
 	if (!ope[1])
 		return (0);
@@ -116,15 +111,13 @@ _Bool	rrotate(t_game *game, int aref, int bref)
 	int			b1;
 	int			b2;
 
-	if (issorted(game))
-		return (0);
 	a1 = first_val(game->a);
 	a2 = second_val(game->a);
 	b1 = first_val(game->b);
 	b2 = second_val(game->b);
-	ope[2] = 'a' * (game->a->size > 1 && a1 > aref && !(a2 > aref \
+	ope[2] = 'a' * (game->a->size > 2 && a1 > aref && !(a2 > aref \
 				&& a1 > a2) && a1 < last_val(game->a)) \
-			+ 'b' * (game->b->size > 1 && b1 < bref && !(b2 < bref \
+			+ 'b' * (game->b->size > 2 && b1 < bref && !(b2 < bref \
 				&& b1 < b2) && b1 > last_val(game->b));
 	if (!ope[2])
 		return (0);

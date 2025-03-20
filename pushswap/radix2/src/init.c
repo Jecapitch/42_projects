@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/02/17 20:22:34 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:43:21 by jpiscice         ###   ########.fr       */
 /*   Updated: 2025/01/04 23:00:12 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -16,6 +16,8 @@
 
 static void	init_stack(t_game *game, _Bool *sorted, char **argv);
 static void	get_min_max(t_game *game);
+static void	compute_position(t_game *game, int *c);
+static void	normalize(t_game *game);
 
 _Bool	init_game(t_game **game, char **argv)
 {
@@ -34,6 +36,8 @@ _Bool	init_game(t_game **game, char **argv)
 	if (!(*game)->a || !(*game)->b || !(*game)->op)
 		return (raise_error(*game), 0);
 	init_stack(*game, &sorted, argv);
+	normalize(*game);
+	check_duplicate(*game);
 	get_min_max(*game);
 	return (sorted);
 }
@@ -57,15 +61,13 @@ static void	init_stack(t_game *game, _Bool *sorted, char **argv)
 			if (!node || !ft_isint(tmp[i++]))
 				return (ft_free_all(tmp), raise_error(game));
 			ft_append_circ(game->a, node);
-			if (game->a->size > 1 && isduplicate(game, node))
-				return (ft_free_all(tmp), raise_error(game));
 			*sorted &= (getval(node) > getval(node->prev));
 		}
 		ft_free_all(tmp);
 	}
 }
 
-void	get_min_max(t_game *game)
+static void	get_min_max(t_game *game)
 {
 	size_t		i;
 	int			val;
@@ -91,7 +93,7 @@ void	get_min_max(t_game *game)
 	}
 }
 
-void	compute_position(t_game *game, int *c)
+static void	compute_position(t_game *game, int *c)
 {
 	t_node_circ	*node;
 	t_node_circ	*cmp;
@@ -119,7 +121,7 @@ void	compute_position(t_game *game, int *c)
 	}
 }
 
-void	normalize(t_game *game)
+static void	normalize(t_game *game)
 {
 	int			*c;
 	size_t		i;

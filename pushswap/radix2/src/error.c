@@ -6,32 +6,37 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 15:44:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/02/17 18:05:36 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:41:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "push_swap.h"
 
-_Bool	isduplicate(t_game *game, t_node_circ *node)
+void	check_duplicate(t_game *game)
 {
-	t_node_circ	*prev;
-	t_node_circ	*next;
-	int			node_val;
-	int			prev_val;
-	int			next_val;
+	int			*tab;
+	int			val;
+	size_t		i;
+	t_node_circ	*node;
 
-	if (!node)
-		return (0);
-	prev = node->prev;
-	next = node->next;
-	node_val = getval(node);
-	prev_val = getval(prev);
-	next_val = getval(next);
-	if ((node != prev && node_val == prev_val) \
-			|| (node != next && node_val == next_val))
-		return (raise_error(game), 1);
-	return (0);
+	tab = malloc(game->a->size * sizeof(int));
+	if (!tab)
+		raise_error(game);
+	i = 0;
+	while (i < game->a->size)
+		tab[i++] = -1;
+	i = 0;
+	node = game->a->first;
+	while (game->a->size > i++)
+	{
+		val = getval(node);
+		if (tab[val] == val)
+			raise_error(game);
+		tab[val] = val;
+		node = node->next;
+	}
+	free(tab);
 }
 
 void	raise_error(t_game *game)

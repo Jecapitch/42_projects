@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/02/17 20:23:40 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:00:26 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "push_swap.h"
 
 static void		pushrot(t_game *game, t_list_circ *stack, int div, int ref);
+static void		rad_push(t_game *game, t_list_circ *stack);
+static _Bool	rad_rotate(t_game *game, t_list_circ *stack);
 
 static void	pushrot(t_game *game, t_list_circ *stack, int div, int ref)
 {
@@ -31,7 +33,7 @@ static void	pushrot(t_game *game, t_list_circ *stack, int div, int ref)
 	}
 }
 
-void	rad_push(t_game *game, t_list_circ *stack)
+static void	rad_push(t_game *game, t_list_circ *stack)
 {
 	static char	ope[3] = "p";
 	t_node_circ	*node;
@@ -50,7 +52,7 @@ void	rad_push(t_game *game, t_list_circ *stack)
 	return ;
 }
 
-_Bool	rad_rotate(t_game *game, t_list_circ *stack)
+static _Bool	rad_rotate(t_game *game, t_list_circ *stack)
 {
 	static char	ope[3] = "r";
 
@@ -78,7 +80,6 @@ void	radix_sort(t_game *game)
 {
 	int			div;
 
-	normalize(game);
 	div = 0;
 	while (!issorted(game))
 	{

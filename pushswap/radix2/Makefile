@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/02/17 21:00:29 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/03/19 11:52:46 by jpiscice         ###   ########.fr        #
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -29,7 +29,8 @@ OBJ = $(SRC:.c=.o)
 
 CC = gcc
 
-CFLAGS += -Wall -Wextra -Werror -fsanitize=address
+#CFLAGS += -Wall -Wextra -Werror -fsanitize=address
+CFLAGS += -fsanitize=address
 
 CPPFLAGS += -I$(LFTDIR)/include -I$(INCDIR)
 
@@ -49,8 +50,10 @@ lib: $(LIBFT)
 $(LIBFT):
 	@cd $(LFTDIR) ; make
 
-clean:
+clean: oclean
 	@cd $(LFTDIR) ; make clean
+
+oclean:
 	@echo "Deleting $(NAME) object files..."
 	@rm -f $(OBJ)
 	@echo "Object files deleted"
@@ -59,12 +62,12 @@ fclean: clean
 	@echo "Deleting $(LIBFT)..."
 	@rm -f $(LIBFT)
 	@echo "$(LIBFT) deleted"
-	@echo "Deleting $(NAME)..."
+	@echo "Deleting program $(NAME)..."
 	@rm -f $(NAME)
-	@echo "$(NAME) deleted"
+	@echo "Program $(NAME) deleted"
 
 re: fclean all
 
 bonus: all
 
-.PHONY: all clean fclean re lib bonus compile_msg
+.PHONY: all clean oclean fclean re lib bonus compile_msg

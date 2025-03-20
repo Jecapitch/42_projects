@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 00:43:46 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/02/17 20:23:30 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/19 11:41:33 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,10 @@ struct s_game
 
 // START & END
 _Bool		init_game(t_game **game, char **argv);
-void		compute_position(t_game *game, int *c);
-void		normalize(t_game *game);
 void		clear_game(t_game **game);
 
 // ERRORS
-_Bool		isduplicate(t_game *game, t_node_circ *node);
+void		check_duplicate(t_game *game);
 void		raise_error(t_game *game);
 
 // GET NODE VALUE
@@ -48,14 +46,11 @@ int			last_val(t_list_circ *stack);
 
 // RADIX SORT
 void		radix_sort(t_game *game);
-void		rad_push(t_game *game, t_list_circ *stack);
-_Bool		rad_rotate(t_game *game, t_list_circ *stack);
 
 // OPERATIONS - SMALL LIST
 _Bool		swap(t_game *game, int aref, int bref);
-_Bool		smallpush(t_game *game, t_list_circ *stack, \
-				int aref, int bref);
-_Bool		smallrotate(t_game *game, int aref, int bref);
+_Bool		push(t_game *game, t_list_circ *stack, int aref, int bref);
+_Bool		rotate(t_game *game, int aref, int bref);
 _Bool		rrotate(t_game *game, int aref, int bref);
 
 // OPERATIONS - COMMON

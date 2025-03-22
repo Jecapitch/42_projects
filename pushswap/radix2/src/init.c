@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 18:15:11 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/19 11:43:21 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:50:25 by jpiscice         ###   ########.fr       */
 /*   Updated: 2025/01/04 23:00:12 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -52,7 +52,7 @@ static void	init_stack(t_game *game, _Bool *sorted, char **argv)
 	while (*argv)
 	{
 		tmp = ft_split(*argv++, ' ');
-		if (!tmp || !tmp[0])
+		if (!tmp)
 			raise_error(game);
 		i = 0;
 		while (tmp[i])

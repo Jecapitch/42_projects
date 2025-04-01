@@ -36,7 +36,7 @@ SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		list1 list1_del list1_utils list1_display \
 		list2 list2_del list2_utils list2_display \
 		list_circ list_circ_del list_circ_utils list_circ_display \
-		printf fprintf printf_format printf_utils \
+		printf fprintf printf_format printf_utils fill_line \
 		get_next_line \
 		getenv \
 		sum mean absval power sqrt \

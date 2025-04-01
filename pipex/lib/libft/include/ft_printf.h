@@ -61,5 +61,6 @@ void	ft_end_format(char *s, t_printf *format);
 void	ft_end_padding(t_printf *format);
 int		ft_printf(const char *fstr, ...);
 int		ft_fprintf(int fd, const char *fstr, ...);
+void	ft_fill_line(size_t len, size_t maxlen, int fill, int end);
 
 #endif

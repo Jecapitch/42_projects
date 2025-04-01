@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/27 23:16:05 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/31 00:48:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <ft_printf.h>
 # include <get_next_line.h>
 # include <lists.h>
+# include <colors.h>
 
 # ifndef STDIN
 #  define STDIN		0

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 23:09:40 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/26 19:26:40 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:12:02 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_getenv(char *name)
 	extern char	**environ;
 	size_t		size;
 
-	if (!name)
+	if (!name || !environ)
 		return (NULL);
 	size = ft_strlen(name);
 	while (*environ && ft_strncmp(*environ, name, size))

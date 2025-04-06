@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 04:40:14 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 05:13:05 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	mousehook(int button, int x, int y, t_data *data)
 	if (button == 1)
 		return (center_on_click(coord, data), button);
 	if (button == 2 || button == 3)
-		return (data->c += (x + y * I - data->w_center) / data->ref, button);
+		return (new_c_value(data), button);
 	if (button == 4 || button == 5)
 		return (zoom(button, coord, data), button);
 	return (0);

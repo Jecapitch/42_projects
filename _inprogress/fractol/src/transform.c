@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   transform.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 04:00:02 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 05:12:31 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ void	rotate(int keysym, t_data *data)
 void	center_on_click(int complex coord, t_data *data)
 {
 	data->ref -= (coord - data->w_center);
+}
+
+void	new_c_value(t_data *data)
+{
+	data->c += (x + y * I - data->w_center) / data->ref;
 }
 
 void	reset(t_data *data)

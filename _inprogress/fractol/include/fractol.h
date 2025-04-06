@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:40:02 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 05:01:23 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 05:13:40 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void		reset(t_data *data);
 void		rotate(int keysym, t_data *data);
 int complex	move(int keysym);
 void		center_on_click(int complex coord, t_data *data);
+void		new_c_value(t_data *data);
 
 // WINDOW EVENTS
 int			quit(t_data *data);

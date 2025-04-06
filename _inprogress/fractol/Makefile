@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/04/06 03:59:33 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/04/06 05:10:53 by jpiscice         ###   ########.fr        #
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -28,7 +28,7 @@ LFT		=	$(LFTDIR)/$(LFTNAME)
 LIBS	=	$(LFT) $(MLX)
 
 SRC = 	main.c $(addprefix $(SRCDIR)/, $(addsuffix .c, parse init julia \
-		hook move precision main_event help_event misc))
+		hook transform precision main_event help_event misc))
 
 OBJ	= $(addprefix $(OBJDIR)/, $(SRC:%.c=%.o))
 

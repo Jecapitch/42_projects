@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 05:12:31 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 20:20:03 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int complex	move(int keysym)
 
 void	rotate(int keysym, t_data *data)
 {
-	float	r;
-	float	l;
+	double	r;
+	double	l;
 
-	r = THETA * (keysym == XK_r);
-	l = THETA * (keysym == XK_e);
+	r = THETA * (keysym == XK_s);
+	l = THETA * (keysym == XK_a);
 	data->rotation -= (r - l);
 }
 
@@ -40,9 +40,20 @@ void	center_on_click(int complex coord, t_data *data)
 	data->ref -= (coord - data->w_center);
 }
 
-void	new_c_value(t_data *data)
+void	new_c_value(t_data *data, int x, int y)
 {
-	data->c += (x + y * I - data->w_center) / data->ref;
+	double complex	coord;
+	double complex	c;
+	int complex		center;
+	int complex		ref;
+	int				zoom;
+
+	c = data->c;
+	center = data->w_center;
+	ref = data->ref;
+	zoom = data->zoom;
+	coord = x + y * I;
+	data->c = (c * zoom + (coord - center) / ref) - c * zoom;
 }
 
 void	reset(t_data *data)

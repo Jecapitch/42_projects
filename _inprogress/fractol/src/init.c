@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 21:24:48 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 04:59:23 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 18:02:23 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	wincreate(t_data *data)
 	int				*s_height;
 	int				*w_width;
 	int				*w_height;
-	float complex	*w_center;
+	double complex	*w_center;
 
 	s_width = &data->s_width;
 	s_height = &data->s_height;
@@ -60,4 +60,5 @@ void	init_data(t_data *data)
 	data->threshold = 2 * (*data->title == 'M') + 4 * (*data->title == 'J');
 	data->rotation = 0;
 	data->curr_img = &data->img2;
+	data->help.open = 0;
 }

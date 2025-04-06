@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 05:00:16 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 18:06:00 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void	help_txt(t_data *data)
 							"Right click", "use coordinates for c", \
 							"Scroll up/down", "zoom in/out", \
 							"Arrow keys", "move fractal", \
-							"E / R", "rotate left/right", \
-							"I / J", "more/less iterations", \
+							"A / S", "rotate left/right", \
+							"I / O", "less/more iterations", \
 							"X", "reset fractal"};
 
 	mlx_set_font(data->mlx, data->help.win, HELPFONT);
@@ -75,7 +75,7 @@ int	close_help(t_data *data)
 		img = NULL;
 		win = NULL;
 		data->help.open = 0;
-		mlx_hook(data->help.win, 17, 1L << 2, open_help, data);
+		mlx_hook(data->help.win, 2, 1L << 0, help_window, data);
 	}
 	return (0);
 }

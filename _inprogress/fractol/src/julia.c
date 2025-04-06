@@ -6,55 +6,65 @@
 /*   By: jpiscice <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:12:49 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/05 22:53:28 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 20:18:27 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
-static void	rotatepix(float complex *z, t_data data);
-static void	jpoint(float complex pix, t_pic *img, t_data data);
-static void	colorize(t_pic *img, float complex pix, int i, int in_set);
+static void	rotatepix(double complex *z, t_data data);
+static void	jpoint(int complex pix, t_pic *img, t_data data);
+static void	colorize(t_data data, t_pic *img, int complex pix, \
+					double complex abs_z_i);
 
-static void	rotatepix(float complex *z, t_data data)
+static void	rotatepix(double complex *z, t_data data)
 {
-	float	theta;
+	double	theta;
 
 	theta = data.rotation;
 	*z *= cexp(I * theta);
 }
 
-static void	jpoint(float complex pix, t_pic *img, t_data data)
+static void	jpoint(int complex pix, t_pic *img, t_data data)
 {
-	size_t					i;
-	float complex			z;
+	size_t			i;
+	double complex	z;
+	double			abs_z;
 
 	z = (pix - data.ref) / data.zoom;
 	i = 0;
 	rotatepix(&z, data);
-	while (i++ < data.itermax && cabs(z) <= data.threshold)
-	{
-		if (*data.title == 'M')
-			data.c = pix;
+	while (i++ < data.itermax && cabs(z) < data.threshold)
 		z = cpow(z, 2.0) + data.c;
-	}
-	colorize(img, pix, i, i > data.itermax && cabs(z) <= data.threshold);
+	abs_z = cabs(z);
+	i = (i != data.itermax) * i;
+	colorize(data, img, pix, abs_z + i * I);
 }
 
-static void	colorize(t_pic *img, float complex pix, int i, int in_set)
+static void	colorize(t_data data, t_pic *img, int complex pix, \
+					double complex abs_z_i)
 {
-	int	color;
+	double	abs_z;
+	int		i;
+	int		color;
+	int		*rgb;
 
-	(void)i;
-	color = 0x00000000;
-	if (!in_set)
-		color = 19 * 42 * i;
+	abs_z = creal(abs_z_i);
+	i = cimag(abs_z_i);
+	rgb = data.rgb;
+	color = 0;
+	if (i)
+	{
+		i++;
+		color = (rgb[0] << 16) * i + (rgb[1] << 8) * i + rgb[2] * i;
+		color -= log(log(abs_z)) / log(2);
+	}
 	pixel_put(img, pix, color);
 }
 
 int	julia(t_data data)
 {
-	float complex	pix;
+	double complex	pix;
 	t_pic			*img;
 	int				endl;
 	int				w_width;

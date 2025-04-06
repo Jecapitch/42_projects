@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:40:02 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 05:13:40 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 19:34:32 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,20 @@ typedef struct s_pic		t_pic;
 typedef struct s_button		t_button;
 typedef struct s_help		t_help;
 
+# define M				"Mandelbrot"
+# define J				"Julia"
+# define ITERMAX		20000
+# define ITERDEF		1000
+# define RDEF			19
+# define GDEF			42
+# define BDEF			1942
+# define ZOOM			200
+# define ZOOM_MAX		LONG_MAX
+# define THETA			0.05
 # define TITLE_SIZE		32
-# define ITERMAX		1000
-# define ITERDEF		800
 # define ARTLINE		42
 # define LINESEP		'='
 # define FRMBORDER		'+'
-# define ZOOM			100
-# define ZOOM_MAX		LONG_MAX
-# define THETA			0.05
-# define M				"Mandelbrot"
-# define J				"Julia"
 # define HELPTITLE		"Help"
 # define HELPW			313
 # define HELPH			163
@@ -49,14 +52,6 @@ struct s_pic
 	int		line_length;
 	int		endian;
 	char	*addr;
-};
-
-struct s_button
-{
-	int	x_min;
-	int	y_min;
-	int	x_max;
-	int	y_max;
 };
 
 struct s_help
@@ -77,15 +72,16 @@ struct s_data
 	t_pic			img2;
 	t_pic			*curr_img;
 	t_help			help;
-	float complex	ref;
-	float complex	c;
-	float complex	w_center;
-	float			threshold;
-	float			rotation;
+	double complex	ref;
+	double complex	c;
+	double complex	w_center;
+	double			threshold;
+	double			rotation;
 	int				s_width;
 	int				s_height;
 	int				w_width;
 	int				w_height;
+	int				rgb[3];
 	char			title[TITLE_SIZE];
 };
 
@@ -107,7 +103,7 @@ void		reset(t_data *data);
 void		rotate(int keysym, t_data *data);
 int complex	move(int keysym);
 void		center_on_click(int complex coord, t_data *data);
-void		new_c_value(t_data *data);
+void		new_c_value(t_data *data, int x, int y);
 
 // WINDOW EVENTS
 int			quit(t_data *data);

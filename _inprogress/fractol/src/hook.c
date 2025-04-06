@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 05:13:05 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 18:06:29 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	keyhook(int keysym, t_data *data)
 	if (keysym == XK_Left || keysym == XK_Right \
 		|| keysym == XK_Up || keysym == XK_Down)
 		return ((data->ref += move(keysym)), keysym);
-	if (keysym == XK_r || keysym == XK_e)
+	if (keysym == XK_a || keysym == XK_s)
 		return (rotate(keysym, data), keysym);
 	if (keysym == XK_Escape || keysym == XK_q)
 		return (quit(data), keysym);
 	if (keysym == XK_x)
 		return (reset(data), keysym);
-	if (keysym == XK_i || keysym == XK_j)
+	if (keysym == XK_i || keysym == XK_o)
 		return (iter_increment(keysym, data), keysym);
 	if (keysym == XK_h)
 		return (help_window(keysym, data), keysym);
@@ -38,7 +38,7 @@ int	mousehook(int button, int x, int y, t_data *data)
 	if (button == 1)
 		return (center_on_click(coord, data), button);
 	if (button == 2 || button == 3)
-		return (new_c_value(data), button);
+		return (new_c_value(data, x, y), button);
 	if (button == 4 || button == 5)
 		return (zoom(button, coord, data), button);
 	return (0);

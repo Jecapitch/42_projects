@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 18:06:00 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/06 23:59:02 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	help_txt(t_data *data)
 	size_t		i;
 	int			i_even;
 	size_t		y;
-	static char	txt[][64] = {"Esc / Q", "quit", \
+	static char	txt[][64] = {"Esc / Q", "quit", "J / M", "switch type", \
 							"H", "open/close help", \
 							"Left click", "center on clicked point", \
 							"Right click", "use coordinates for c", \
@@ -27,7 +27,7 @@ static void	help_txt(t_data *data)
 							"Arrow keys", "move fractal", \
 							"A / S", "rotate left/right", \
 							"I / O", "less/more iterations", \
-							"X", "reset fractal"};
+							"X", "reset"};
 
 	mlx_set_font(data->mlx, data->help.win, HELPFONT);
 	i = 0;
@@ -57,6 +57,7 @@ int	open_help(t_data *data)
 		data->help.open = 1;
 		mlx_hook(data->help.win, 17, 1L << 2, close_help, data);
 		mlx_hook(data->help.win, 2, 1L << 0, help_window, data);
+		mlx_hook(data->help.win, 2, 1L << 0, keyhook, data);
 	}
 	return (0);
 }

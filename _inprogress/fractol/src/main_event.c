@@ -6,13 +6,40 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 04:11:57 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/07 03:58:42 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
 
 static void	destroy_window(t_data *data);
+
+void	switch_fractal(int keysym, t_data *data)
+{
+	char	*type;
+
+	type = &data->type;
+	if (keysym == XK_j)
+	{
+		*type = J;
+		ft_strlcpy(data->title, JULIA, TITLE_SIZE);
+		data->itermax = JITERDEF;
+	}
+	else if (keysym == XK_m)
+	{
+		*type = M;
+		ft_strlcpy(data->title, MANDEL, TITLE_SIZE);
+		data->itermax = MITERDEF;
+	}
+	else if (keysym == XK_s)
+	{
+		*type = S;
+		ft_strlcpy(data->title, SIERP, TITLE_SIZE);
+		data->itermax = SITERDEF;
+	}
+	data->r = M_R * (data->type == M) + J_R * (data->type == J);
+	print_data(*data);
+}
 
 static void	destroy_window(t_data *data)
 {

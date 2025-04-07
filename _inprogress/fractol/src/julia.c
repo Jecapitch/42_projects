@@ -6,7 +6,7 @@
 /*   By: jpiscice <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 16:12:49 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 20:18:27 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/07 02:06:44 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,18 @@ static void	jpoint(int complex pix, t_pic *img, t_data data)
 {
 	size_t			i;
 	double complex	z;
+	double complex	c;
 	double			abs_z;
+	double			n;
 
 	z = (pix - data.ref) / data.zoom;
+	c = data.c * (data.type == J) + z * (data.type == M);
+	z = z * (data.type == J);
+	n = data.n;
 	i = 0;
 	rotatepix(&z, data);
-	while (i++ < data.itermax && cabs(z) < data.threshold)
-		z = cpow(z, 2.0) + data.c;
+	while (i++ < data.itermax && cabs(z) < pow(data.r, n))
+		z = cpow(z, n) + c;
 	abs_z = cabs(z);
 	i = (i != data.itermax) * i;
 	colorize(data, img, pix, abs_z + i * I);
@@ -57,12 +62,12 @@ static void	colorize(t_data data, t_pic *img, int complex pix, \
 	{
 		i++;
 		color = (rgb[0] << 16) * i + (rgb[1] << 8) * i + rgb[2] * i;
-		color -= log(log(abs_z)) / log(2);
+		color -= log(log(abs_z)) / log(data.n);
 	}
 	pixel_put(img, pix, color);
 }
 
-int	julia(t_data data)
+void	julia(t_data data)
 {
 	double complex	pix;
 	t_pic			*img;
@@ -84,5 +89,4 @@ int	julia(t_data data)
 	}
 	mlx_put_image_to_window(data.mlx, data.win, img->img, 0, 0);
 	data.curr_img = img;
-	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 01:35:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/07 04:21:48 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:54:35 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ static int complex	midpix(t_data data, int complex pix, int complex vertex)
 	int			x;
 	int			y;
 
-	x = (int)((creal(pix) + creal(vertex)) / fabs(creal(data.c))) % data.w_width;
-	y = (int)((cimag(pix) + cimag(vertex)) / fabs(cimag(data.c))) % data.w_height;
+	x = (int)((creal(pix) \
+		+ creal(vertex)) / fabs(creal(data.c))) % data.w_width;
+	y = (int)((cimag(pix) \
+		+ cimag(vertex)) / fabs(cimag(data.c))) % data.w_height;
 	return (x + y * I);
 }
 

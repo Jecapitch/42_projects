@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/07 19:53:43 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/08 01:07:37 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	argc_check(int argc)
 		"                                Ignored for other types.\n" \
 		"> factor1, factor2, factor3 (int): factors for color range.\n" \
 		"                                   Default is 1942 42 19.\n" \
-		"> zoom (int): initial zoom factor.\n" \
-		"              Default is %d.\n" \
-		"              Ignored for "SIERP".\n" \
+		"> zoom (long): initial zoom factor.\n" \
+		"               Default is %d.\n" \
+		"               Ignored for "SIERP".\n" \
 		"\n", \
 		ITERMAX, MITERDEF, JITERDEF, SITERDEF, ZOOM);
 	exit(EXIT_SUCCESS);

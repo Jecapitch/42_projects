@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/07 03:58:42 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/08 03:03:56 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,20 @@ void	switch_fractal(int keysym, t_data *data)
 	char	*type;
 
 	type = &data->type;
-	if (keysym == XK_j)
-	{
-		*type = J;
+	*type = J * (keysym == XK_j) + M * (keysym == XK_m) + S * (keysym == XK_s);
+	data->itermax = JITERDEF * (*type == J) + MITERDEF * (*type == M) \
+					+ SITERDEF * (*type == S);
+	data->c = CDEF * (*type == J) + SCDEF * (*type == S);
+	data->r = M_R * (*type == M) + J_R * (*type == J);
+	if (*type == J)
 		ft_strlcpy(data->title, JULIA, TITLE_SIZE);
-		data->itermax = JITERDEF;
-	}
-	else if (keysym == XK_m)
-	{
-		*type = M;
+	else if (*type == M)
 		ft_strlcpy(data->title, MANDEL, TITLE_SIZE);
-		data->itermax = MITERDEF;
-	}
-	else if (keysym == XK_s)
+	else if (*type == S)
 	{
-		*type = S;
 		ft_strlcpy(data->title, SIERP, TITLE_SIZE);
-		data->itermax = SITERDEF;
+//		data->rgb[2] = 255;
 	}
-	data->r = M_R * (data->type == M) + J_R * (data->type == J);
 	print_data(*data);
 }
 

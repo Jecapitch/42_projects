@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 21:24:48 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/07 03:53:23 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/08 02:39:22 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ static void	c_val(int argc, char **argv, t_data *data)
 	int		divx;
 	int		divy;
 
-	data->c = 0.42 - 0.19 * I;
+	data->c = CDEF * (data->type == J) + SCDEF * (data->type == S);
 	if (argc < 5 || !ft_strncmp(argv[4], "d", ft_strlen(argv[4])))
 		return ;
 	arg = ft_split(argv[4], ' ');

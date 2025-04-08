@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:40:02 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/07 19:46:08 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/08 03:02:45 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@
 # define JITERDEF		1000
 # define MITERDEF		100
 # define SITERDEF		ITERMAX
+# define CDEF			(0.42 + 0.19 * I)
+# define SCDEF			(2 + 2 * I)
 # define M_R			M_SQRT2
 # define J_R			2.0
 # define N				2.0
-# define RDEF			19
-# define GDEF			42
-# define BDEF			1942
+# define RDEF			2
+# define GDEF			3
+# define BDEF			5
 # define ZOOM			200
 # define ZOOM_MAX		LONG_MAX
 # define THETA			0.05

@@ -6,23 +6,11 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 21:24:48 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/07 02:18:33 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:08:41 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <fractol.h>
-
-int	fractal(t_data data)
-{
-	char	type;
-
-	type = data.type;
-	if (type == J || type == M)
-		return (julia(data), type);
-	if (type == S)
-		return (sierpinski(data), type);
-	return (0);
-}
 
 void	pixel_put(t_pic *img, int complex pixel, int color)
 {

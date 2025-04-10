@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/04/08 02:35:22 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/04/09 13:05:52 by jpiscice         ###   ########.fr        #
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -27,8 +27,8 @@ MLXDIR	=	$(LIBDIR)/minilibx
 LFT		=	$(LFTDIR)/$(LFTNAME)
 LIBS	=	$(LFT) $(MLX)
 
-SRC = 	$(addprefix $(SRCDIR)/, $(addsuffix .c, main parse init julia \
-		sierpinski hook transform precision main_event help_event misc))
+SRC = 	$(addprefix $(SRCDIR)/, $(addsuffix .c, main parse parse2 init fractal julia \
+		chaos sierpinski hook move modify precision main_event help_event misc))
 
 OBJ	= $(addprefix $(OBJDIR)/, $(SRC:%.c=%.o))
 

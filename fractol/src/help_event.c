@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/06 23:59:02 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 03:50:19 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@ static void	help_txt(t_data *data)
 	size_t		i;
 	int			i_even;
 	size_t		y;
-	static char	txt[][64] = {"Esc / Q", "quit", "J / M", "switch type", \
-							"H", "open/close help", \
-							"Left click", "center on clicked point", \
-							"Right click", "use coordinates for c", \
-							"Scroll up/down", "zoom in/out", \
-							"Arrow keys", "move fractal", \
-							"A / S", "rotate left/right", \
-							"I / O", "less/more iterations", \
-							"X", "reset"};
+	const char	txt[][64] = {"Esc / Q", "quit", "H", "open/close help", \
+				"Arrow keys", "move fractal", "A / Z", "rotate left/right", \
+				"Scroll up/down", "zoom in/out", \
+				"Left click", "center on clicked point", \
+				"", "for "SIERP", results in", "", " chaos", \
+				"Right click", "use coordinates as c references", \
+				"K / L // Y / U:", "change x // y value (c = x + yi)", \
+				"I / O", "-/+ iterations", \
+				"W / D", "-/+ n", "J / M / S / C", \
+				"switch type by initial letter", \
+				"X", "reset fractal"};
 
 	mlx_set_font(data->mlx, data->help.win, HELPFONT);
 	i = 0;
@@ -36,9 +38,8 @@ static void	help_txt(t_data *data)
 	{
 		i_even = (i % 2 == 0);
 		mlx_string_put(data->mlx, data->help.win, \
-						19 + 113 * !i_even, y, 0, txt[i]);
+						19 + 131 * !i_even, y, 0, (char *)txt[i++]);
 		y += 17 * !i_even;
-		i++;
 	}
 }
 

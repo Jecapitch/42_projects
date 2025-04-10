@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/07 05:00:01 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 03:42:05 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	iter_increment(int keysym, t_data *data)
 	val = -incr * (keysym == XK_i) \
 			+ incr * (keysym == XK_o);
 	newval = data->itermax + val;
-	if (newval >= 0 && newval <= ITERMAX)
+	if (newval > 0 && newval <= ITERMAX)
 		data->itermax = newval;
 }

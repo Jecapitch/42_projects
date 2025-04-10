@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:40:02 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/08 03:02:45 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 03:48:07 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,22 @@
 # define J				'j'
 # define M				'm'
 # define S				's'
+# define C				'c'
 # define JULIA			"Julia"
 # define MANDEL			"Mandelbrot"
-# define SIERP			"Sierpinski"
+# define SIERP			"Sierpinski triangle"
+# define CHAOS			"Chaos game"
 # define ITERMAX		100000
 # define JITERDEF		1000
 # define MITERDEF		100
 # define SITERDEF		ITERMAX
-# define CDEF			(0.42 + 0.19 * I)
+# define CITERDEF		ITERMAX
+# define JCDEF			(0.42 + 0.19 * I)
 # define SCDEF			(2 + 2 * I)
 # define M_R			M_SQRT2
 # define J_R			2.0
-# define N				2.0
+# define N				2
+# define NC				3
 # define RDEF			2
 # define GDEF			3
 # define BDEF			5
@@ -47,15 +51,10 @@
 # define LINESEP		'='
 # define FRMBORDER		'+'
 # define HELPTITLE		"Help"
-# define HELPW			313
-# define HELPH			163
+# define HELPW			450
+# define HELPH			250
 # define HELPCOLOR		0x999999
-# define HELPFONT		"-adobe-helvetica-*-r-normal-*-13-120-*-*-*-*-*-*"
-# define ARGLIST		"Missing argument (-_-)\n" \
-						"./fractol fractal_type [max_iterations] [exponent]" \
-						"[\"c_x c_y div_x div_y\"]\n" \
-						"          [\"factor1 factor2 factor3\"] [zoom]\n" "\n" \
-						"Use d or \"\" for default.\n"
+# define HELPFONT		"-*-clean-*-r-normal-*-13-130-*-*-*-*-*-*"
 
 typedef struct s_data		t_data;
 typedef struct s_winsize	t_wsize;
@@ -105,8 +104,15 @@ struct s_data
 	char			title[TITLE_SIZE];
 };
 
+// PARSE
+void		get_type(t_data *data, char *argv);
+void		n_iter(int argc, char **argv, t_data *data);
+void		get_n(int argc, char **argv, t_data *data);
+void		c_val(int argc, char **argv, t_data *data);
+void		rgb_init(int argc, char **argv, t_data *data);
+void		zoom_init(int argc, char **argv, t_data *data);
+
 // INIT
-void		argparse(int argc, char **argv, t_data *data);
 void		mlxcreate(t_data *data);
 void		init_data(t_data *data);
 void		wincreate(t_data *data);
@@ -114,9 +120,10 @@ void		imgcreate(t_data *data, t_pic *img, int width, int height);
 void		fill_win(t_pic *img, int width, int height, int color);
 
 // FRACTALS
-int			fractal(t_data data);
-void		julia(t_data data);
-void		sierpinski(t_data data);
+int			fractal(t_data *data);
+void		julia(t_data *data);
+void		sierpinski(t_data *data);
+void		chaos(t_data *data);
 void		switch_fractal(int keysym, t_data *data);
 
 // TRANSFORMATIONS
@@ -126,7 +133,8 @@ void		reset(t_data *data);
 void		rotate(int keysym, t_data *data);
 int complex	move(int keysym);
 void		center_on_click(int complex coord, t_data *data);
-void		new_c_value(t_data *data, int x, int y);
+void		mouse_new_c_value(t_data *data, int x, int y);
+void		key_new_c_value(int keysym, t_data *data);
 void		new_n_value(int keysym, t_data *data);
 void		change_color(int keysym, t_data *data);
 
@@ -136,6 +144,7 @@ void		keyquit(t_data *data);
 int			open_help(t_data *data);
 int			close_help(t_data *data);
 int			help_window(int keysym, t_data *data);
+void		destroy_window(t_data *data);
 
 // HOOKS
 int			keyhook(int keysym, t_data *data);

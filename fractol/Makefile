@@ -46,8 +46,7 @@ endif
 LINK	=	$(LIBLINK) $(XLINK)
 MLX		=	$(MLXDIR)/$(MLXNAME)
 
-CFLAGS += -O3 -Wall -Wextra -Werror -Wno-error=unused-result -Wno-unused-result \
-			-g -fsanitize=address
+CFLAGS += -Ofast -Wall -Wextra -Werror -Wno-error=unused-result -Wno-unused-result -g
 
 CPPFLAGS += -MMD -MP -I$(INCDIR) -I$(LFTDIR)/include -I$(MLXDIR) -I/usr/include
 

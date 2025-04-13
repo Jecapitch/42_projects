@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/10 02:55:03 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/14 00:03:33 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	print_arglist1(void)
 		"\n" \
 		"Use d or \"\" for default.\n" \
 		"> fractal_type (char): "BHRED"m"CRESET"andelbrot " \
-		BHRED"j"CRESET"ulia "BHRED"s"CRESET"ierpinski\n" \
+		BHRED"j"CRESET"ulia "BHRED"c"CRESET"haos_game " \
+		BHRED"s"CRESET"ierpinski_triangle\n" \
 		"> max_iterations (int): 0-%d.\n" \
 		"                        Default: - %d for "MANDEL" set,\n" \
 		"                                 - %d for "JULIA" set,\n" \
@@ -51,12 +52,15 @@ static void	print_arglist2(void)
 	"                                         - in "CHAOS", c = jump = " \
 												"n / (n + 3).\n" \
 	"                                Ignored for "MANDEL".\n" \
-	"> r, g, b (int): factors for color range. Default: %d %d %d.\n" \
+	"> r, g, b (int): factors for color range. "\
+	"                 Default: - %d %d %d for "JULIA" and "MANDEL".\n" \
+	"                          - %d %d %d for "CHAOS" and "SIERP".\n" \
 	"> zoom (long): initial zoom factor. Default: %d.\n" \
 	"               Ignored for "SIERP" and "CHAOS".\n" \
 	"\n", \
 	N, NC, (int)(creal(JCDEF) * 100), (int)(cimag(JCDEF) * 100), \
-	(int)(creal(SCDEF)), (int)(cimag(SCDEF)), RDEF, GDEF, BDEF, ZOOM);
+	(int)(creal(SCDEF)), (int)(cimag(SCDEF)), RDEF, GDEF, BDEF, \
+	CRDEF, CGDEF, CBDEF, ZOOM);
 }
 
 static void	argc_check(int argc)

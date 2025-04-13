@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/10 03:31:53 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/14 00:11:59 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,14 @@ void	switch_fractal(int keysym, t_data *data)
 	data->c = JCDEF * (*type == J) + SCDEF * (*type == S) \
 				+ ((double)data->n / (data->n + 3)) * (*type == C);
 	data->r = M_R * (*type == M) + J_R * (*type == J);
-	data->rgb[2] = data->rgb[2] * (*type != S && *type != C) \
-					+ 255 * (*type == S || *type == C);
-	if (*type == J)
-		ft_strlcpy(data->title, JULIA, TITLE_SIZE);
-	else if (*type == M)
+	data->rgb[0] = data->rgb[0] * (*type == J || *type == M) \
+					+ CBDEF * (*type == S || *type == C);
+	data->rgb[1] = data->rgb[1] * (*type == J || *type == M) \
+					+ CBDEF * (*type == S || *type == C);
+	data->rgb[2] = data->rgb[2] * (*type == J || *type == M) \
+					+ CBDEF * (*type == S || *type == C);
+	ft_strlcpy(data->title, JULIA, TITLE_SIZE);
+	if (*type == M)
 		ft_strlcpy(data->title, MANDEL, TITLE_SIZE);
 	else if (*type == S)
 		ft_strlcpy(data->title, SIERP, TITLE_SIZE);

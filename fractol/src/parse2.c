@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 21:24:48 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/09 01:07:38 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:39:43 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,23 @@ static void	color_input(int rgb[3], int r, int g, int b)
 void	rgb_init(int argc, char **argv, t_data *data)
 {
 	char	**arg;
+	char	type;
 	int		r;
 	int		g;
 	int		b;
 
+	type = data->type;
+	type = (type == J || type == M);
 	if (argc < 6 || !ft_strncmp(argv[5], "d", ft_strlen(argv[5])))
-		return (color_input(data->rgb, RDEF, GDEF, BDEF));
+		return (color_input(data->rgb, RDEF * type + CRDEF * !type, \
+				GDEF * type + CGDEF * !type, BDEF * type + CBDEF * !type));
 	arg = ft_split(argv[5], ' ');
 	if (!arg)
 		return (perror("Initialisation"), quit(data), exit(EXIT_FAILURE));
 	if (!arg[0] || !arg[1] || !arg[2] || arg[3] || !ft_isint(arg[0]) \
 		|| !ft_isint(arg[1]) || !ft_isint(arg[2]))
-		return (ft_fprintf(STDERR, \
-				"color_factor must be \"int int int\" or d\n"), \
-				ft_free_all(arg), exit(EXIT_SUCCESS));
+		return (ft_fprintf(STDERR, "color_factor must be " \
+		"\"int int int\" or d\n"), ft_free_all(arg), exit(EXIT_SUCCESS));
 	r = ft_atoi(arg[0]);
 	g = ft_atoi(arg[1]);
 	b = ft_atoi(arg[2]);

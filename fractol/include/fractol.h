@@ -6,12 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 13:40:02 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/10 03:48:07 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/14 00:04:25 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
+
 # include <libft.h>
 # include <mlx.h>
 # include <X11/Xlib.h>
@@ -28,11 +29,11 @@
 # define MANDEL			"Mandelbrot"
 # define SIERP			"Sierpinski triangle"
 # define CHAOS			"Chaos game"
-# define ITERMAX		100000
+# define ITERMAX		20000000
 # define JITERDEF		1000
 # define MITERDEF		100
-# define SITERDEF		ITERMAX
-# define CITERDEF		ITERMAX
+# define SITERDEF		100000
+# define CITERDEF		100000
 # define JCDEF			(0.42 + 0.19 * I)
 # define SCDEF			(2 + 2 * I)
 # define M_R			M_SQRT2
@@ -42,19 +43,23 @@
 # define RDEF			2
 # define GDEF			3
 # define BDEF			5
-# define ZOOM			200
+# define CRDEF			50
+# define CGDEF			100
+# define CBDEF			200
+# define ZOOM			200.0
 # define ZOOM_MAX		LONG_MAX
 # define THETA			0.05
+# define WINFACTOR		0.33333333333333
 # define TITLE			"fract-ol"
 # define TITLE_SIZE		32
 # define ARTLINE		42
 # define LINESEP		'='
 # define FRMBORDER		'+'
 # define HELPTITLE		"Help"
-# define HELPW			450
-# define HELPH			250
+# define HELPW			567
+# define HELPH			333
 # define HELPCOLOR		0x999999
-# define HELPFONT		"-*-clean-*-r-normal-*-13-130-*-*-*-*-*-*"
+# define HELPFONT		"-*-clean-*-r-normal-*-23-140-*-*-*-*-*-*"
 
 typedef struct s_data		t_data;
 typedef struct s_winsize	t_wsize;
@@ -83,8 +88,8 @@ struct s_data
 	void			*mlx;
 	void			*win;
 	size_t			itermax;
-	long			zoom;
-	long			zoom_max;
+	double			zoom;
+	double			zoom_max;
 	t_pic			img1;
 	t_pic			img2;
 	t_pic			*curr_img;

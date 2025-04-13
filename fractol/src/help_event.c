@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 23:34:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/10 03:50:19 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:59:51 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static void	help_txt(t_data *data)
 				"Arrow keys", "move fractal", "A / Z", "rotate left/right", \
 				"Scroll up/down", "zoom in/out", \
 				"Left click", "center on clicked point", \
-				"", "for "SIERP", results in", "", " chaos", \
+				"", "for "SIERP", results", "", " in chaos", \
 				"Right click", "use coordinates as c references", \
-				"K / L // Y / U:", "change x // y value (c = x + yi)", \
+				"K / L // Y / U", "change x // y value (c = x + yi)", \
 				"I / O", "-/+ iterations", \
 				"W / D", "-/+ n", "J / M / S / C", \
 				"switch type by initial letter", \
@@ -38,8 +38,8 @@ static void	help_txt(t_data *data)
 	{
 		i_even = (i % 2 == 0);
 		mlx_string_put(data->mlx, data->help.win, \
-						19 + 131 * !i_even, y, 0, (char *)txt[i++]);
-		y += 17 * !i_even;
+						19 + 181 * !i_even, y, 0, (char *)txt[i++]);
+		y += 23 * !i_even;
 	}
 }
 

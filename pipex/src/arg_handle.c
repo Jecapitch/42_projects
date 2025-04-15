@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 23:09:40 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/28 01:04:39 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 23:58:59 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ void	init(t_arg *args)
 
 static void	check_args(char *name)
 {
-	int	res;
-
-	res = (access(name, F_OK) && access(name, R_OK));
-	if (res)
+	if (access(name, F_OK) < 0)
 	{
 		perror(name);
-		exit(errno);
+		exit(EXIT_FAILURE);
+	}
+	if (access(name, R_OK) < 0)
+	{
+		perror(name);
+		exit(EXIT_FAILURE);
 	}
 }
 

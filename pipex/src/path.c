@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 23:09:40 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/27 22:22:35 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 23:44:57 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,15 @@ void	splitcmd(t_arg *args, char *cmd1, char *cmd2)
 {
 	if (!(*cmd1) || !(*cmd2))
 	{
-		ft_fprintf(2, "Invalid argument\n");
-		exit(EXIT_FAILURE);
+		ft_fprintf(STDERR, "Invalid argument\n");
+		exit(EXIT_SUCCESS);
 	}
 	args->cmd1 = ft_split(cmd1, ' ');
 	args->cmd2 = ft_split(cmd2, ' ');
 	if (!args->cmd1 || !args->cmd2)
 	{
 		free_arg(args);
-		ft_fprintf(2, "Command error\n");
+		perror("ft_split");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -41,7 +41,7 @@ static char	**pathlist(void)
 	res = ft_split(path, ':');
 	free(path);
 	if (!res)
-		ft_fprintf(2, "path: error");
+		ft_fprintf(STDERR, "path: error");
 	return (res);
 }
 
@@ -52,7 +52,9 @@ static char	*binpath(char *cmd)
 	size_t	i;
 
 	if (!cmd)
-		return (ft_fprintf(2, "%s: command not found\n", cmd), NULL);
+		return (ft_fprintf(STDERR, "%s: command not found\n", cmd), NULL);
+	if (!access(cmd, F_OK))
+		return (ft_strdup(cmd));
 	path = pathlist();
 	if (!path)
 		return (NULL);
@@ -68,7 +70,7 @@ static char	*binpath(char *cmd)
 		i++;
 	}
 	ft_free_all(path);
-	ft_fprintf(2, "%s: command not found\n", cmd);
+	ft_fprintf(STDERR, "%s: command not found\n", cmd);
 	return (NULL);
 }
 

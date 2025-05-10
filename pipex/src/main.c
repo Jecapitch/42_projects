@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 23:09:40 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/15 21:06:39 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:44:32 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,21 @@ int	main(int argc, char **argv)
 
 	if (argc != 5)
 	{
-		errno = -1;
-		return (ft_fprintf(STDERR, "./pipex: number of arguments must be 4\n"), 1);
+		ft_fprintf(STDERR, "./pipex: number of arguments must be 4\n");
+		return (EXIT_SUCCESS);
 	}
 	init(&args);
 	arg_parse(argv, &args);
 	if (pipe(pipe_fd) < 0)
-		return (perror("pipe"), free_arg(&args), errno);
+		return (perror("pipe"), free_arg(&args), EXIT_FAILURE);
 	pid1 = fork();
 	fork_process(pid1, pipe_fd, 0, &args);
 	pid2 = fork();
 	fork_process(pid2, pipe_fd, 1, &args);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
-	return (close(pipe_fd[0]), close(pipe_fd[1]), \
-				free_arg(&args), EXIT_SUCCESS);
+	close(pipe_fd[0]);
+	close(pipe_fd[1]);
+	free_arg(&args);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 23:09:40 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/15 21:07:58 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:50:30 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,13 @@ static int	openfd(char *file, int mode)
 void	fork_process(pid_t pid, int pipe_fd[2], int pipe_end, t_arg *args)
 {
 	if (pid < 0)
-		return (perror("fork"), close(pipe_fd[0]), close(pipe_fd[1]), \
-				free_arg(args), exit(EXIT_FAILURE));
+	{
+		perror("fork");
+		close(pipe_fd[0]);
+		close(pipe_fd[1]);
+		free_arg(args);
+		exit(EXIT_FAILURE);
+	}
 	if (!pid)
 		process(pipe_fd, pipe_end, args);
 	close(pipe_fd[!pipe_end]);

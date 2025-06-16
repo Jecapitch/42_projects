@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_fill_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/10 00:39:49 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/23 14:59:59 by jpiscice         ###   ########.fr       */
+/*   Created: 2025/04/01 00:16:22 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/04/01 00:16:26 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_fill_line(size_t len, size_t maxlen, int fill, int end)
 {
-	int		n;
-	int		sign;
+	char	*blank;
+	size_t	size;
 
-	if (!str)
-		return (0);
-	n = 0;
-	sign = 1;
-	while (*str && ft_isspace(*str))
-		str++;
-	if (*str && (*str == '+' || *str == '-'))
+	size = maxlen - len - 1;
+	blank = ft_calloc(size + 1, sizeof(char));
+	if (!blank)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
+		perror("ft_calloc");
+		exit(EXIT_FAILURE);
 	}
-	while (*str && *str >= '0' && *str <= '9')
-	{
-		n = n * 10 + *str - '0';
-		str++;
-	}
-	return (n * sign);
+	ft_memset(blank, fill, size);
+	blank[size -1] = end;
+	ft_putendl_fd(blank, 1);
+	free(blank);
 }

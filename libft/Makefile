@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2025/02/13 01:34:01 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/03/27 14:01:14 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ SHELL = 	/bin/sh
 
 NAME = 		libft.a
 
-SRCDIR =	src/
+SRCDIR =	src
+INCDIR =	include
+OBJDIR =	obj
 
-INCDIR =	include/
-
-SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
+SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		arr_reverse itoa memmove strlen \
 		atoi strtol countwhile countwhile_set countwhile_condition memset strmapi \
 		bzero putchar_fd strncmp \
@@ -36,41 +36,40 @@ SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		list1 list1_del list1_utils list1_display \
 		list2 list2_del list2_utils list2_display \
 		list_circ list_circ_del list_circ_utils list_circ_display \
-		printf printf_format printf_utils \
+		printf fprintf printf_format printf_utils fill_line \
 		get_next_line \
+		getenv \
 		sum mean absval power sqrt \
 		std_dev))
 
-OBJ = $(SRC:.c=.o)
+OBJ	= $(addprefix $(OBJDIR)/, $(SRC:%.c=%.o))
 
 CC = cc
+ifeq ($(UNAME),FreeBSD)
+	CC = clang
+endif
 
-CFLAGS += -Wall -Wextra -Werror -fsanitize=address -O3
+CFLAGS += -O3 -Wall -Wextra -Werror -Wno-error=unused-result -Wno-unused-result -g
 
-CPPFLAGS += -I$(INCDIR)
+CPPFLAGS += -MMD -MP -I$(INCDIR)/
 
-all: compile_msg $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo ""
 	@ar rcs $@ $(OBJ)
-	@echo "$(NAME) OK"
+	@echo ""
 	
-%.o: %.c
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(OBJDIR)/$(SRCDIR)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@printf ">"
-
-compile_msg:
-	@printf "Compiling $(NAME) "
+	@printf "\033[1;46m \033[0m"
 
 clean: 
-	@echo "Deleting $(NAME) object files..."
-	@rm -f $(OBJ)
-	@echo "Object files deleted"
+	@rm -rf $(OBJDIR)
 
 fclean: clean
 	@echo "Deleting $(NAME)..."
-	@rm -f $(NAME)
+	@rm -f $(NAME) *.d
 	@echo "$(NAME) deleted"
 
 re: fclean all
@@ -78,4 +77,4 @@ re: fclean all
 .SUFFIXES:
 .SUFFIXES: .c .o .a
 
-.PHONY: all clean fclean re compile_msg
+.PHONY: all clean fclean re

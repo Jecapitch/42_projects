@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 00:58:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/27 23:20:26 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/25 16:55:46 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void	ft_toprint(va_list *ptr, t_buf *buffer, t_printf *format, int fd)
 		bufferize(" ", 1, buffer, fd);
 }
 
-int	ft_printf(const char *fstr, ...)
+int	ft_fprintf(int fd, const char *fstr, ...)
 {
 	t_printf	format;
 	t_buf		buffer;
@@ -76,20 +76,20 @@ int	ft_printf(const char *fstr, ...)
 	buffer.print_count = 0;
 	while (*fstr && buffer.print_count != -1)
 	{
-		fstr += bufferize(fstr, ft_countwhile(fstr, '%'), &buffer, STDIN);
+		fstr += bufferize(fstr, ft_countwhile(fstr, '%'), &buffer, fd);
 		if (*fstr == '%')
 			fstr++;
 		ft_format(fstr, &format);
 		if (ft_isconv(format.conv))
 		{
-			ft_toprint(&ptr, &buffer, &format, STDIN);
+			ft_toprint(&ptr, &buffer, &format, fd);
 			fstr += ft_countwhile_set(fstr, FCONV) + 1;
 		}
 		else if (*fstr)
-			bufferize("%", 1, &buffer, STDIN);
+			bufferize("%", 1, &buffer, fd);
 	}
 	va_end(ptr);
-	if (write(STDIN, buffer.buffer, buffer.len) == -1)
+	if (write(fd, buffer.buffer, buffer.len) == -1)
 		return (-1);
 	return (buffer.print_count + buffer.len);
 }

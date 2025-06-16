@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/29 22:48:28 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:43:21 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,24 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <stddef.h>
 # include <inttypes.h>
 # include <limits.h>
+# include "ft_printf.h"
+# include "get_next_line.h"
 # include "lists.h"
+# include "colors.h"
+
+# ifndef STDIN
+#  define STDIN		0
+# endif
+# ifndef STDOUT
+#  define STDOUT	1
+# endif
+# ifndef STDERR
+#  define STDERR	2
+# endif
 
 typedef enum e_case
 {
@@ -53,6 +67,7 @@ int			ft_count_seq(const char *s, int c);
 ///splitjoin
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 char		*ft_strjoin(const char *s1, const char *s2);
+char		*ft_strjoin_sep(const char *s1, const char *s2, const char sep);
 char		**ft_split(const char *s, char c);
 
 // ARRAY SEARCH
@@ -93,7 +108,12 @@ long		ft_strtol(const char *str);
 char		*ft_itoa(int n);
 char		*ft_ltostr(unsigned long n, int base);
 
-// FILE
+// ENVIRONMENT
+char		*ft_getenv(char *name);
+char		*ft_getenv_val(char *name);
+char		*ft_getenv_key(char *name);
+
+// READ FILE
 char		*get_next_line(int fd);
 
 // PRINT
@@ -103,6 +123,5 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putunbr_fd(unsigned int n, int fd);
 void		ft_putmnbr_fd(int n, int fd);
-int			ft_printf(const char *str, ...);
 
 #endif

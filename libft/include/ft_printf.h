@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/15 23:04:09 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:18:26 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 # include <stdarg.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	1024
-# endif
-# ifndef FD
-#  define FD			1
 # endif
 # define FCONV			"sdipucxXbBovV%"
 # define FFLAGS			"-+.0# "
@@ -63,5 +60,7 @@ char	*ft_conversion(va_list *ptr, t_printf *format);
 void	ft_end_format(char *s, t_printf *format);
 void	ft_end_padding(t_printf *format);
 int		ft_printf(const char *fstr, ...);
+int		ft_fprintf(int fd, const char *fstr, ...);
+void	ft_fill_line(size_t len, size_t maxlen, int fill, int end);
 
 #endif

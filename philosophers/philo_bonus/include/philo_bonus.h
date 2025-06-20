@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:22:47 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/20 06:29:43 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:11:14 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 # define FORK_ERROR			"fork error\n"
 # define START_SEM			"/start_sem"
 # define END_SEM			"/end_sem"
-# define DEAD_SEM			"/dead_sem"
 # define DONE_SEM			"/done_sem"
 # define FORK_SEM			"/fork_sem"
 # define GLOB_SEM			"/glob_sem"
@@ -65,7 +64,6 @@ struct s_data
 	size_t			death_time;
 	sem_t			*start_sem;
 	sem_t			*end_sem;
-	sem_t			*dead_sem;
 	sem_t			*done_sem;
 	sem_t			*fork_sem;
 	sem_t			*glob_sem;

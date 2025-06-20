@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 00:10:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/20 07:30:27 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:28:33 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	*monitor(void *ptr_philo)
 		sem_post(data->glob_sem);
 	}
 	sem_post(data->end_sem);
-	usleep(200000);
-	sem_post(data->glob_sem);
 	return (NULL);
 }
 
@@ -67,6 +65,7 @@ void	*done_monitor(void *ptr_data)
 	i = 0;
 	while (i++ < (size_t)data->nbr)
 		sem_wait(data->done_sem);
+	sem_wait(data->glob_sem);
 	sem_post(data->end_sem);
 	return (NULL);
 }
@@ -88,5 +87,7 @@ void	*end_monitor(void *ptr_philo)
 		sem_post(data->end_sem);
 		sem_post(data->done_sem);
 	}
+	usleep(200000);
+	sem_post(data->glob_sem);
 	return (NULL);
 }

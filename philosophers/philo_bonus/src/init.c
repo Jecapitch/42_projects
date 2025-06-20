@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:32:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/20 06:27:49 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:09:32 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	init_data(t_data *data)
 	memset(data->pid_table, 0, sizeof(data->pid_table));
 	data->start_sem = NULL;
 	data->end_sem = NULL;
-	data->dead_sem = NULL;
 	data->done_sem = NULL;
 	data->fork_sem = NULL;
 	data->glob_sem = NULL;

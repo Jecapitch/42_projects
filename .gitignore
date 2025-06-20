@@ -2,3 +2,8 @@
 a.out
 *.o
 *.a
+*.d
+*/obj
+*.d
+*.dSYM
+*output

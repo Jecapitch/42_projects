@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 22:21:59 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/20 07:26:19 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/20 23:33:43 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	if (create_thread(&data, &data, done_monitor, &all_done_thread) == -1)
 		return (end_simulation(&data), EXIT_FAILURE);
+	if (detach_thread(&data, &all_done_thread) == -1)
+		return (end_simulation(&data), EXIT_FAILURE);
 	if (launch_simulation(&data) == -1)
 		return (end_simulation(&data), EXIT_FAILURE);
 	waitpid(-1, NULL, 0);
-	if (join_thread(&data, &all_done_thread) == -1)
-		return (end_simulation(&data), EXIT_FAILURE);
 	return (end_simulation(&data));
 }

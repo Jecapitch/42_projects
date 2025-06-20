@@ -9,3 +9,4 @@ You can e-mail me at jpiscice@student.s19.be.
 - push_swap : a sorting algorithm using two stacks and predefined operations.
 - pipex: reproduce the behaviour of "file1 < cmd1 | cmd 2 > file2".
 - fractol : make fractals using MiniLibX, a small graphics library based on X11. My program can generate Julia set, Mandelbrot set, Sierpinski triangle and chaos game with various values and colors. I added some extra features to the mandatory ones.
+- philosophers : solving the dining philosophers problem with threads and mutexes on one hand (/philo), processes and semaphores on the other hand (/philo_bonus).

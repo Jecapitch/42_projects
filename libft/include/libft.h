@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/10 15:43:21 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/25 00:52:42 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,13 @@ int			ft_isint(char *s);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 
-// STRINGS UTILS
+// STRINGS
 size_t		ft_strlen(const char *s);
 size_t		ft_countwhile(const char *s, const char endc);
 size_t		ft_countwhile_set(const char *s, const char *endset);
 size_t		ft_countwhile_condition(const char *s, int (*f)(int));
 char		*ft_strtrim(const char *s1, const char *set);
+char		*ft_strtrim_sp(const char *s1);
 void		ft_arr_reverse(void *arr, size_t size, size_t elem_size);
 size_t		ft_count_words(const char *s, char c);
 int			ft_count_seq(const char *s, int c);

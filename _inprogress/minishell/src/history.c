@@ -6,59 +6,69 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/25 14:11:05 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 01:21:39 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	open_history(t_shdata *shdata)
+int	open_history(t_shdata *shdata, int oflag)
 {
-	int		fd;
-
-	expand_path(shdata->history_file, "HOME", HISTORY_FILE);
-	fd = open(shdata->history_file, O_RDWR | O_APPEND | O_CREAT, 0644);
-	if (fd == -1)
-	{
-		perror("open "HISTORY_FILE);
+	shdata->fd_history = open(shdata->history_file, oflag, 0644);
+	if (shdata->fd_history == -1)
 		return (-1);
-	}
-	return (fd);
-}
-
-int	close_history(int fd)
-{
-	if (close(fd) == -1)
-	{
-		perror("close "HISTORY_FILE);
-		return (-1);
-	}
 	return (0);
 }
 
 int	load_history(t_shdata *shdata)
 {
 	char	*line;
-	int		fd;
 
 	line = NULL;
-	fd = open_history(shdata);
-	if (fd == -1)
+	expand_path(shdata->sh_environ, shdata->history_file, \
+				"HOME", HISTORY_FILE);
+	shdata->sh_history = ft_init_list();
+	if (open_history(shdata, O_RDONLY | O_CREAT) == -1)
 		return (-1);
-	line = get_next_line(fd);
+	line = get_next_line(shdata->fd_history);
 	while (line)
 	{
-		add_history(line);
-		ft_free_nul(line);
-		line = get_next_line(fd);
+		history_add(shdata->sh_history, line);
+		line = get_next_line(shdata->fd_history);
 	}
-	return (fd);
+	if (close(shdata->fd_history))
+		return (-1);
+	return (0);
 }
 
-int	save_history(char *line, int fd)
+int	history_add(t_list *history, char *line)
 {
-	if (!line && !*line)
-		return (0);
+	if (!line || !*line)
+		return (-1);
 	add_history(line);
-	return (ft_fprintf(fd, "%s\n", line));
+	ft_append(history, ft_newnode(line));
+	if (history->size > HIST_MAX_SIZE)
+		ft_listdelone(ft_dequeue(history), (void (*))ft_free_nul);
+	return (0);
+}
+
+int	save_history(t_shdata *shdata)
+{
+	t_node	*node;
+	char	*line;
+
+	node = NULL;
+	line = NULL;
+	if (open_history(shdata, O_WRONLY | O_CREAT | O_TRUNC))
+		return (-1);
+	node = shdata->sh_history->first;
+	while (node)
+	{
+		line = (char *)node->content;
+		ft_fprintf(shdata->fd_history, "%s\n", line);
+		node = node->next;
+	}
+	if (close(shdata->fd_history))
+		return (-1);
+	return (0);
 }

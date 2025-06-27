@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 23:31:10 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 22:41:10 by jpiscice         ###   ########.fr       */
+/*   Created: 2025/06/25 07:24:51 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/06/27 22:40:30 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	print_env_list(t_shdata *shdata, char sep)
+int	pwd(const t_shdata *shdata)
 {
-	return (print_var_list(shdata->sh_environ, sep));
+	if (printf("%s\n", shdata->cwd) == -1)
+		return (errno);
+	return (0);
 }

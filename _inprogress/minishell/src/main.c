@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 06:37:29 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 01:23:09 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,22 @@ int	main(int argc, char **argv)
 	t_line		line;
 
 	(void)argv;
-	if (check_argc(argc))
-		exit(EXIT_FAILURE);
+	if (argc != 1)
+		return (ft_fprintf(STDERR_FILENO, NAME": No argument allowed\n"), \
+				EXIT_FAILURE);
 	line.line = NULL;
+	line.type = NULL;
 	if (init_shdata(&shdata) == -1)
 		return (end_program(&shdata), EXIT_FAILURE);
-//	print_env_list(&shdata, '\n');
 	while (1)
 	{
 		line.line = readline(shdata.prompt);
 		line.line = close_quotes(line.line);
 		line.line = strip_line(line.line);
-		save_history(line.line, shdata.fd_history);
+		history_add(shdata.sh_history, line.line);
 		if (ft_strncmp(line.line, "exit", 5) == 0)
 			break ;
-		ft_free_nul((line.line));
 	}
-	ft_free_nul(line.line);
 	end_program(&shdata);
 	exit(EXIT_SUCCESS);
 }

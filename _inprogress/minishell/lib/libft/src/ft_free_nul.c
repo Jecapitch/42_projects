@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:22:27 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/25 23:54:22 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 00:47:51 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_free_nul(void *ptr)
 {
-	if (!ptr)
-		return ;
-	free(ptr);
+	if (ptr)
+		free(ptr);
 	ptr = NULL;
 }

@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/06/27 06:24:46 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/06/27 22:59:48 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,13 +28,16 @@ LIBS	=	$(LFT)
 SRC		= 	$(addsuffix .c, \
 				$(addprefix $(SRCDIR)/, \
 						main init parse \
-						var \
+						var var2 \
 						path \
 						history oldpwd \
 						end \
 				) \
 				$(addprefix $(BUILDIR)/, \
-						dir \
+						cd \
+						pwd \
+						echo \
+						exit \
 						env \
 				) \
 			)
@@ -53,7 +56,7 @@ endif
 
 LINK	=	$(LIBLINK)
 
-CFLAGS += $(OPTIM) -Wall -Wextra -Werror \
+CFLAGS += $(OPTIM) -fcommon -Wall -Wextra -Werror \
 			-Wno-error=unused-result -Wno-unused-result -g
 
 CPPFLAGS += -MMD -MP -I$(INCDIR) -I$(LFTDIR)/include -I/usr/include
@@ -64,7 +67,6 @@ $(NAME): $(LFT) $(OBJ)
 	@cc $(SRC) $(CFLAGS) $(CPPFLAGS) $(LINK) -o $(NAME)
 	@echo ""
 	@echo "$(NAME) OK"
-	@make oclean
 
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(OBJDIR)/$(SRCDIR) $(OBJDIR)/$(BUILDIR)

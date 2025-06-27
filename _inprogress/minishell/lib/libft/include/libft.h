@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/25 07:09:47 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 00:49:55 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # ifndef STDERR
 #  define STDERR	2
 # endif
+
+extern char	**environ;
 
 typedef enum e_case
 {

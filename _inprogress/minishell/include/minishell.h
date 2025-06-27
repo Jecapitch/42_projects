@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 06:16:23 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 00:00:56 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,18 @@
 #  define NAME				"minishell"
 # endif
 
-# define PROMPT_SYMBOL		" % " // define PROMPT_SYM_LEN accordingly
-# define PROMPT_SYM_LEN		4
-# define QUOTE_PROMPT		"quote > "
-# define DQUOTE_PROMPT		"dquote > "
-# define OPERATORS			";()&|\"\'$<>"
-# define VAR_TABLE_SIZE		256
+# ifndef HIST_MAX_SIZE
+#  define HIST_MAX_SIZE		1000
+# endif
+
+# ifndef MISC
+#  define PROMPT_SYMBOL		" % " // define PROMPT_SYM_LEN accordingly
+#  define PROMPT_SYM_LEN		4
+#  define QUOTE_PROMPT		"quote > "
+#  define DQUOTE_PROMPT		"dquote > "
+#  define OPERATORS			";()&|\"\'$<>"
+#  define VAR_TABLE_SIZE		256
+# endif
 
 typedef struct s_shdata	t_shdata;
 typedef struct s_line	t_line;
@@ -54,20 +60,21 @@ typedef enum e_quote	t_quote;
 typedef int				t_signal;
 
 extern char				**environ;
-t_signal				g_signalisation;
+t_signal				g_signal;
 
 struct s_shdata
 {
 	t_list	*sh_environ;
 	t_list	*sh_variables;
+	t_list	*sh_history;
 	int		fd_history;
 	int		fd_oldpwd;
+	char	*home_path;
 	char	cwd[MAXPATHLEN + 1];
 	char	oldpwd[MAXPATHLEN + 1];
 	char	prompt[MAXPATHLEN + PROMPT_SYM_LEN + 1];
 	char	history_file[MAXPATHLEN + 1];
 	char	oldpwd_file[MAXPATHLEN + 1];
-	char	home_path[MAXPATHLEN + 1];
 };
 
 struct s_line
@@ -108,9 +115,9 @@ enum e_chartype
 };
 
 // INIT
-int		check_argc(int argc);
+void	set_zero(t_shdata *data);
 int		init_shdata(t_shdata *shdata);
-int		init_var_list(t_list *var_list);
+int		load_environ(t_shdata *shdata);
 char	*prompt_value(t_shdata *shdata);
 
 // PARSING
@@ -118,31 +125,34 @@ char	*prompt_value(t_shdata *shdata);
 t_quote	check_quotes(const char *line);
 char	*close_quotes(char *line);
 // 2. strip
-char	*strip_line(const char *line);
+char	*strip_line(char *line);
 
 //PATHS
-int		expand_path(char dest[MAXPATHLEN + 1], \
+int		expand_path(t_list *var_list, char dest[MAXPATHLEN + 1], \
 				char *path_to_expand, char *path_end);
 
 // VARIABLES
-int		export_var(t_list *var_list, char *keyval);
-t_node	*search_var(const char *var, const t_list *var_list);
-t_node	*set_node(t_list *var_list, t_node *node);
-int		add_var_list(t_list *var_list, t_node *node, \
-			char *newkey, char *newval);
+t_list	*init_var_list(void);
+void	free_var(void *node_content);
 int		print_var_list(const t_list *var_list, const char sep);
+t_node	*search_var(const char *var, const t_list *var_list);
+int		export_var(t_shdata *shdata, t_list *var_list, \
+					char *key, char *val);
+int		add_var_list(t_node *node, char *newkey, char *newval);
+t_node	*reset_node(t_list *var_list, t_node *node);
 
 // HISTORY
-int		open_history(t_shdata *shdata);
+int		open_history(t_shdata *shdata, int oflag);
 int		close_history(int fd);
 int		load_history(t_shdata *shdata);
-int		save_history(char *line, int fd);
+int		history_add(t_list *history, char *line);
+int		save_history(t_shdata *shdata);
 
 // OLDPWD
-int		open_oldpwd(t_shdata *shdata);
+int		open_oldpwd(t_shdata *shdata, int oflag);
 int		close_oldpwd(int fd);
 int		load_oldpwd(t_shdata *shdata);
-int		save_oldpwd(char *line, int fd);
+int		save_oldpwd(t_shdata *shdata);
 
 // END
 int		end_program(t_shdata *shdata);

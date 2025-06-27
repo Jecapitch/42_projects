@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 22:19:02 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 00:49:33 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@ void	ft_listdelone(t_node *node, void (*del)(void *))
 	if (!node || !del)
 		return ;
 	del(node->content);
-	free(node);
+	node->content = NULL;
+	ft_free_nul(node);
+	node = NULL;
 }
 
 void	ft_listclear(t_list **list, void (*del)(void *))
@@ -31,9 +33,10 @@ void	ft_listclear(t_list **list, void (*del)(void *))
 		to_rm = (*list)->first;
 		(*list)->first = (*list)->first->next;
 		ft_listdelone(to_rm, del);
+		to_rm = NULL;
 		(*list)->size--;
 	}
-	free(*list);
+	ft_free_nul(*list);
 	*list = NULL;
 }
 

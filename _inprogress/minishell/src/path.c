@@ -12,15 +12,15 @@
 
 #include <minishell.h>
 
-int	expand_path(t_list *var_list, char dest[MAXPATHLEN + 1], \
+int	expand_path(t_list *var_list, char dest[PATH_MAX + 1], \
 				char *path_to_expand, char *path_end)
 {
 	size_t	len;
 	t_var	*var;
 	t_node	*node;
-	char	full_end[MAXPATHLEN + 1];
+	char	full_end[PATH_MAX + 1];
 
-	len = MAXPATHLEN + 1;
+	len = PATH_MAX + 1;
 	var = NULL;
 	node = NULL;
 	ft_bzero(full_end, len);

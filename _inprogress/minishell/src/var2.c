@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:31:10 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 23:21:14 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:10:52 by Jeremie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	add_var_list(t_node *node, char *newkey, char *newval)
 		return (-1);
 	var = ft_calloc(sizeof(t_var), 1);
 	if (!var)
-		return (ft_free_nul(var), -1);
+		return (-1);
 	var->key = ft_strdup(newkey);
 	var->value = NULL;
 	if (!var->key)

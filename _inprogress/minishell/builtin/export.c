@@ -6,13 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/28 01:30:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/28 02:16:15 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:11:15 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	export(t_shdata *shdata)
+int	bi_export(t_shdata *shdata, char **args)
 {
 	char	**key_val;
 	int		status;

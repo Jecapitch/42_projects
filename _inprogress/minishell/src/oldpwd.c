@@ -32,7 +32,7 @@ int	load_oldpwd(t_shdata *shdata)
 		return (-1);
 	line = get_next_line(shdata->fd_oldpwd);
 	len = ft_strlen(line);
-	if (len && len <= MAXPATHLEN + 1)
+	if (len && len <= PATH_MAX + 1)
 		ft_strlcpy(shdata->oldpwd, line, len - 1);
 	ft_free_nul(line);
 	return (close(shdata->fd_oldpwd));

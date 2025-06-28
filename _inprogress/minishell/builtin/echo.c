@@ -6,26 +6,23 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:21:08 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 22:46:39 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 19:34:37 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	echo(const char **args)
+int	bi_echo(const char **args)
 {
 	int		nl;
 	size_t	i;
 
 	nl = '\n';
-	if (ft_strncmp(*args, "-n", 3))
-		nl = '\0';
-	i = 0;
-	args++;
-	if (ft_strncmp(*args, "-n", 3) == 0)
+	i = 1;
+	if (ft_strncmp(args[1], "-n", 3) == 0)
 	{
 		nl = '\0';
-		args++;
+		i++;
 	}
 	while (args[i])
 	{

@@ -71,11 +71,11 @@ struct s_shdata
 	int		fd_history;
 	int		fd_oldpwd;
 	char	*home_path;
-	char	cwd[MAXPATHLEN + 1];
-	char	oldpwd[MAXPATHLEN + 1];
-	char	prompt[MAXPATHLEN + PROMPT_SYM_LEN + 1];
-	char	history_file[MAXPATHLEN + 1];
-	char	oldpwd_file[MAXPATHLEN + 1];
+	char	cwd[PATH_MAX + 1];
+	char	oldpwd[PATH_MAX + 1];
+	char	prompt[PATH_MAX + PROMPT_SYM_LEN + 1];
+	char	history_file[PATH_MAX + 1];
+	char	oldpwd_file[PATH_MAX + 1];
 };
 
 struct s_line
@@ -129,7 +129,7 @@ char	*close_quotes(char *line);
 char	*strip_line(char *line);
 
 //PATHS
-int		expand_path(t_list *var_list, char dest[MAXPATHLEN + 1], \
+int		expand_path(t_list *var_list, char dest[PATH_MAX + 1], \
 				char *path_to_expand, char *path_end);
 
 // VARIABLES

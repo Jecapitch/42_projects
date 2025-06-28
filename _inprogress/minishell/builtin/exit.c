@@ -6,9 +6,14 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:50:13 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/28 02:46:39 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/29 00:37:09 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
+int	bi_exit(t_shdata *shdata)
+{
+	(void)shdata;
+	return (0);
+}

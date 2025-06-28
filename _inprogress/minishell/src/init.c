@@ -14,11 +14,11 @@
 
 void	set_zero(t_shdata *shdata)
 {
-	ft_bzero(shdata->cwd, MAXPATHLEN + 1);
-	ft_bzero(shdata->oldpwd, MAXPATHLEN + 1);
-	ft_bzero(shdata->history_file, MAXPATHLEN + 1);
-	ft_bzero(shdata->oldpwd_file, MAXPATHLEN + 1);
-	ft_bzero(shdata->prompt, MAXPATHLEN + 1);
+	ft_bzero(shdata->cwd, PATH_MAX + 1);
+	ft_bzero(shdata->oldpwd, PATH_MAX + 1);
+	ft_bzero(shdata->history_file, PATH_MAX + 1);
+	ft_bzero(shdata->oldpwd_file, PATH_MAX + 1);
+	ft_bzero(shdata->prompt, PATH_MAX + 1);
 	shdata->sh_environ = NULL;
 	shdata->sh_variables = NULL;
 	shdata->sh_history = NULL;
@@ -27,7 +27,7 @@ void	set_zero(t_shdata *shdata)
 int	init_shdata(t_shdata *shdata)
 {
 	set_zero(shdata);
-	if (!getcwd(shdata->cwd, MAXPATHLEN + 1))
+	if (!getcwd(shdata->cwd, PATH_MAX + 1))
 		return (-1);
 	load_environ(shdata);
 	load_history(shdata);
@@ -65,7 +65,7 @@ char	*prompt_value(t_shdata *shdata)
 	size_t	cwd_len;
 	size_t	len;
 
-	len = MAXPATHLEN + 1 + PROMPT_SYM_LEN;
+	len = PATH_MAX + 1 + PROMPT_SYM_LEN;
 	cwd_len = ft_strlcpy(shdata->prompt, ft_strrchr(shdata->cwd, '/'), len);
 	ft_strlcpy(shdata->prompt + cwd_len, PROMPT_SYMBOL, len - cwd_len);
 	return (shdata->prompt);

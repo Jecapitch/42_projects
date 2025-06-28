@@ -6,13 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 07:24:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 22:40:30 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 19:29:59 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-int	pwd(const t_shdata *shdata)
+int	bi_pwd(const t_shdata *shdata)
 {
 	if (printf("%s\n", shdata->cwd) == -1)
 		return (-1);

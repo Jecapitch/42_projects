@@ -48,11 +48,11 @@ int	print_var_list(const t_list *var_list, const char sep)
 	{
 		var = *(t_var *)node->content;
 		if (printf("%s%c", var.key_val, sep) == -1)
-			return (errno);
+			return (-1);
 		node = node->next;
 	}
 	var = *(t_var *)node->content;
 	if (printf("%s\n", var.key_val) == -1)
-		return (errno);
+		return (-1);
 	return (0);
 }

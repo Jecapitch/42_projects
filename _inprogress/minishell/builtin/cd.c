@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 07:24:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 22:40:39 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/28 02:41:12 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,19 @@
 
 int	cd(const char *path, t_shdata *shdata)
 {
-	char	expanded_path[MAXPATHLEN + 1];
-	size_t	len;
+	char	resolved_path[MAXPATHLEN + 1];
 
-	ft_bzero(expanded_path, MAXPATHLEN + 1);
-	len = 0;
+	ft_bzero(resolved_path, MAXPATHLEN + 1);
 	getcwd(shdata->oldpwd, MAXPATHLEN);
-	if (*path == '~')
-	{
-		len = ft_strlcpy(expanded_path, shdata->home_path, MAXPATHLEN + 1);
-		path++;
-	}
-	ft_strlcpy(expanded_path + len, path, MAXPATHLEN + 1 - len);
-	if (chdir(expanded_path) \
+	if (!path)
+		ft_strlcpy(resolved_path, shdata->home_path, MAXPATHLEN + 1);
+	else
+		ft_strlcpy(resolved_path, path, MAXPATHLEN + 1);
+	if (chdir(resolved_path) \
 		|| !getcwd(shdata->cwd, MAXPATHLEN) \
-		|| export_var(shdata, shdata->sh_environ, "PWD", expanded_path) \
+		|| export_var(shdata, shdata->sh_environ, "PWD", resolved_path) \
 		|| export_var(shdata, shdata->sh_environ, "OLDPWD", shdata->oldpwd))
-		return (errno);
+		return (-1);
 	prompt_value(shdata);
 	return (0);
 }

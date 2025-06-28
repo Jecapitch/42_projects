@@ -30,10 +30,10 @@ int	echo(const char **args)
 	while (args[i])
 	{
 		if (printf("%s", *args) == -1)
-			return (errno);
+			return (-1);
 		args++;
 	}
 	if (printf("%c", nl) == -1)
-		return (errno);
+		return (-1);
 	return (0);
 }

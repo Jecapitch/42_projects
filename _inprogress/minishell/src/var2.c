@@ -50,9 +50,9 @@ int	export_var(t_shdata *shdata, t_list *var_list, char *key, char *val)
 	node = search_var(key, var_list);
 	node = reset_node(var_list, node);
 	if (!node)
-		return (errno);
+		return (-1);
 	if (add_var_list(node, key, val))
-		return (errno);
+		return (-1);
 	var = (t_var *)node->content;
 	if (ft_strncmp(var->key, "HOME", 5) == 0)
 		shdata->home_path = var->value;
@@ -68,22 +68,22 @@ int	add_var_list(t_node *node, char *newkey, char *newval)
 		return (-1);
 	var = ft_calloc(sizeof(t_var), 1);
 	if (!var)
-		return (ft_free_nul(var), errno);
+		return (ft_free_nul(var), -1);
 	var->key = ft_strdup(newkey);
 	var->value = NULL;
 	if (!var->key)
-		return (errno);
+		return (-1);
 	node->content = var;
 	var->keylen = ft_strlen(var->key);
 	if (newval)
 	{
 		var->value = ft_strdup(newval);
 		if (!var->value)
-			return (errno);
+			return (-1);
 	}
 	var->key_val = ft_strjoin_sep(var->key, var->value, '=');
 	if (!var->key_val)
-		return (errno);
+		return (-1);
 	return (0);
 }
 

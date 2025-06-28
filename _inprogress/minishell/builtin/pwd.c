@@ -15,6 +15,6 @@
 int	pwd(const t_shdata *shdata)
 {
 	if (printf("%s\n", shdata->cwd) == -1)
-		return (errno);
+		return (-1);
 	return (0);
 }

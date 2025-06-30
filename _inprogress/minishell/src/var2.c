@@ -6,33 +6,27 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:31:10 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 01:32:05 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:59:57 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
 int	export_var(t_shdata *shdata, t_list *var_list, \
-				char *variable, char *escvar)
+				char *key, char *value)
 {
 	t_node	*node;
-	char	**keyval;
 
 	node = NULL;
-	keyval = NULL;
-	if (!variable || !(*variable) \
-		|| ft_countwhile(escvar, 0) == ft_strlen(variable))
+	if (!key || !(*key)) 
 		return (-1);
-	keyval = ft_split_mark(variable, escvar, "=");
-	if (!keyval)
+	node = search_var(key, shdata->variables);
+	if (add_var_list(shdata->variables, node, key, value))
 		return (-1);
-	node = search_var(keyval[0], shdata->variables);
-	if (add_var_list(shdata->variables, node, keyval[0], keyval[1]))
-		return (-1);
-	if (var_list == shdata->environ || ft_strncmp(keyval[0], "HOME", 5))
+	if (var_list == shdata->environ || ft_strncmp(key, "HOME", 5))
 	{
-		node = search_var(keyval[0], shdata->environ);
-		if (add_var_list(shdata->environ, node, keyval[0], keyval[1]))
+		node = search_var(key, shdata->environ);
+		if (add_var_list(shdata->environ, node, key, value))
 			return (-1);
 	}
 	update_shdata_env(shdata);
@@ -56,14 +50,11 @@ int	add_var_list(t_list *var_list, t_node *node, char *newkey, char *newval)
 		return (ft_free_nul(var->key), var->key = NULL, -1);
 	node->content = var;
 	var->keylen = ft_strlen(var->key);
-	if (newval)
-	{
+	if (!newval)
+		var->value = ft_strdup("''");
+	else
 		var->value = ft_strdup(newval);
-		if (!var->value)
-			return (-1);
-	}
-	var->keyval = ft_strjoin_sep(var->key, var->value, '=');
-	if (!var->keyval)
+	if (!var->value)
 		return (-1);
 	return (0);
 }
@@ -75,33 +66,29 @@ t_node	*reset_node(t_list *var_list, t_node *node)
 	var = NULL;
 	if (!var_list)
 		return (NULL);
-	if (node)
-	{
-		var = (t_var *)node->content;
-		ft_free_nul(var->key);
-		ft_free_nul(var->value);
-		ft_free_nul(var->keyval);
-		ft_free_nul(node->content);
-		return (node);
-	}
-	node = ft_newnode(NULL);
+	if (!node)
+		node = ft_newnode(NULL);
 	if (!node)
 		return (NULL);
+	if (!node->content)
+		node->content = ft_calloc(1, sizeof(t_var));
+	if (!node->content)
+		return (ft_free_nul(node), NULL);
+	var = (t_var *)node->content;
+	clear_var(var);
 	ft_append(var_list, node);
 	return (node);
 }
 
-void	free_var(void *node_content)
+void	clear_var(void *node_content)
 {
 	t_var	*var;
 
 	var = (t_var *)node_content;
 	ft_free_nul(var->key);
 	ft_free_nul(var->value);
-	ft_free_nul(var->keyval);
 	var->key = NULL;
 	var->value = NULL;
-	var->keyval = NULL;
 	var->keylen = 0;
 }
 
@@ -113,13 +100,12 @@ int	export_var_default(t_shdata *shdata)
 	if (export_var(shdata, shdata->environ, \
 				"PWD", getcwd(buffer, PATH_MAX + 1)) == -1 \
 		|| export_var(shdata, shdata->environ, \
-						"OLDPWD", 
+						"OLDPWD", \
+						get_var_val(search_var("OLDPWD", shdata->environ)))
 		|| export_var(shdata, shdata->variables, \
 					"HISTSIZE", HISTORY_SIZE) == -1 \
 		|| export_var(shdata, shdata->variables, \
-					"HISTFILE", HISTORY_FILE) == -1 \
-		|| export_var(shdata, shdata->variables, \
-					"OLDPWDFILE", OLDPWD_FILE) == -1)
+					"HISTFILE", HISTORY_FILE) == -1) 
 		return (-1);
 	return (0);
 }

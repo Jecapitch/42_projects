@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 00:46:09 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:58:44 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ struct s_shdata
 	char	*ptr_oldpwd;
 	char	*ptr_prompt;
 	char	*ptr_history_file;
-	char	*ptr_oldpwd_file;
 	size_t	history_size;
 	int		fd_history;
 	int		fd_oldpwd;
@@ -51,7 +50,6 @@ struct s_var
 {
 	char	*key;
 	char	*value;
-	char	*keyval;
 	size_t	keylen;
 };
 

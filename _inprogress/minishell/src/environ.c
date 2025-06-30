@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 05:33:54 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 01:30:46 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 16:00:45 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ void	update_shdata_env(t_shdata *shdata)
 		else if (ft_strncmp(key, "OLDPWD", 7) == 0)
 			shdata->ptr_oldpwd = get_var_val(search_var(key, shdata->environ));
 		else if (ft_strncmp(key, "HISTFILE", 9) == 0)
-			shdata->ptr_history_file = val;
-		else if (ft_strncmp(key, "OLDPWDFILE", 9) == 0)
 			shdata->ptr_history_file = val;
 		else if (ft_strncmp(key, "HISTSIZE", 9) == 0)
 			shdata->history_size = ft_strtol(val);

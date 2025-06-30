@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 05:33:54 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 01:28:40 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:58:34 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 void	set_zero(t_shdata *shdata)
 {
-	shdata->ptr_cwd = NULL;
-	shdata->ptr_oldpwd = NULL;
-	shdata->ptr_history_file = NULL;
-	shdata->ptr_oldpwd_file = NULL;
-	shdata->ptr_prompt = NULL;
-	shdata->environ = NULL;
-	shdata->variables = NULL;
-	shdata->history = NULL;
+	ft_free_nul(shdata->ptr_cwd);
+	ft_free_nul(shdata->ptr_oldpwd);
+	ft_free_nul(shdata->ptr_history_file);
+	ft_free_nul(shdata->ptr_prompt);
+	ft_free_nul(shdata->environ);
+	ft_free_nul(shdata->variables);
+	ft_free_nul(shdata->history);
 }
 
 int	init_shdata(t_shdata *shdata)

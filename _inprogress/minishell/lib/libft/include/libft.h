@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/29 02:17:04 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:12:29 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void		ft_bzero(void *s, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_calloc(size_t count, size_t size);
 void		ft_free_all(char **arr);
-void		ft_free_nul(void *ptr);
+void		*ft_free_nul(void *ptr);
 
 // INT-STR
 size_t		ft_intlen(int n);

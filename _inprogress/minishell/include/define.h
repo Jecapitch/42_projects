@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 00:58:32 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:58:55 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 # ifndef HISTORY_FILE
 #  define HISTORY_FILE		".minishell_history"
-# endif
-
-# ifndef OLDPWD_FILE
-#  define OLDPWD_FILE		".minishell_oldpwd"
 # endif
 
 # ifndef NAME

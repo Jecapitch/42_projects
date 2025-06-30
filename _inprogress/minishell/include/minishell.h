@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 01:06:27 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 15:27:01 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ char	*get_var_val(t_node *node);
 t_node	*search_var(const char *var_key, const t_list *var_list);
 int		print_var_list(const t_list *var_list, const char sep);
 int		export_var(t_shdata *shdata, t_list *var_list, \
-					char *variable, char *escvar);
+					char *key, char *value);
 int		add_var_list(t_list *var_list, t_node *node, \
 						char *newkey, char *newval);
 t_node	*reset_node(t_list *var_list, t_node *node);
-void	free_var(void *node_content);
+void	clear_var(void *node_content);
 int		export_var_default(t_shdata *shdata);
 
 // ENVIRON

@@ -6,7 +6,7 @@
 /*   By: jpiscice <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 09:34:37 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/02 23:08:38 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/27 05:00:22 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ char	*ft_strjoin_sep(const char *s1, const char *s2, const char sep)
 	if (!join_str)
 		return (NULL);
 	ft_strlcat(join_str, s1, total_len + 1);
-	join_str[s1_len - 1] = sep;
+	if (s2)
+		join_str[s1_len - 1] = sep;
 	ft_strlcat(join_str, s2, total_len + 1);
 	return (join_str);
 }

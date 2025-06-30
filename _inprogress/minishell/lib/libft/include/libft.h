@@ -103,7 +103,7 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 void		ft_bzero(void *s, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_calloc(size_t count, size_t size);
-void		ft_free_all(char **arr);
+void		ft_free_str_arr(char **arr);
 void		*ft_free_nul(void *ptr);
 
 // INT-STR

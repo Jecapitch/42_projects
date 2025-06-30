@@ -94,7 +94,7 @@ static void	check_c_arg(char **arg)
 		|| !ft_isint(arg[2]) || !ft_isint(arg[3]))
 		return (ft_fprintf(STDERR, \
 				"c_value must be \"int int int int\" or d\n"), \
-				ft_free_all(arg), exit(EXIT_SUCCESS));
+				ft_free_str_arr(arg), exit(EXIT_SUCCESS));
 }
 
 void	c_val(int argc, char **argv, t_data *data)
@@ -119,9 +119,9 @@ void	c_val(int argc, char **argv, t_data *data)
 	divy = ft_atoi(arg[3]);
 	if (!divx || !divy)
 		return (ft_fprintf(STDERR, BRED"Argl!"CRESET \
-		" Why are you dividing by 0?\n"), ft_free_all(arg), exit(EXIT_SUCCESS));
+		" Why are you dividing by 0?\n"), ft_free_str_arr(arg), exit(EXIT_SUCCESS));
 	if (data->type == C && (x / divx <= 0 || x / divx >= 1))
 		return (ft_fprintf(STDERR, CHAOS": 0 < cx / divx < 1\n"), \
-				ft_free_all(arg), exit(EXIT_SUCCESS));
-	return ((data->c = x / divx + (y / divy) * I), ft_free_all(arg));
+				ft_free_str_arr(arg), exit(EXIT_SUCCESS));
+	return ((data->c = x / divx + (y / divy) * I), ft_free_str_arr(arg));
 }

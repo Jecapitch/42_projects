@@ -50,13 +50,13 @@ static void	init_stack(t_game *game, _Bool *sorted, char **argv)
 		{
 			node = set_node_val(ft_strtol(tmp[i]));
 			if (!node || !ft_isint(tmp[i++]))
-				return (ft_free_all(tmp), raise_error(game));
+				return (ft_free_str_arr(tmp), raise_error(game));
 			ft_append_circ(game->a, node);
 			if (game->a->size > 1 && isduplicate(node))
-				return (ft_free_all(tmp), raise_error(game));
+				return (ft_free_str_arr(tmp), raise_error(game));
 			*sorted &= (getval(node) > getval(node->prev));
 		}
-		ft_free_all(tmp);
+		ft_free_str_arr(tmp);
 	}
 }
 

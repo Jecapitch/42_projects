@@ -52,8 +52,8 @@ void	arg_parse(char **argv, t_arg *args)
 
 void	free_arg(t_arg *args)
 {
-	ft_free_all(args->cmd1);
-	ft_free_all(args->cmd2);
+	ft_free_str_arr(args->cmd1);
+	ft_free_str_arr(args->cmd2);
 	ft_free_nul(args->path1);
 	ft_free_nul(args->path2);
 }

@@ -318,7 +318,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	ft_free_all(w);
+	ft_free_str_arr(w);
 
 	ft_putendl_fd("\n", 1);
 
@@ -330,7 +330,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	ft_free_all(w);
+	ft_free_str_arr(w);
 
 	ft_putendl_fd("\n", 1);
 
@@ -342,7 +342,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	ft_free_all(w);
+	ft_free_str_arr(w);
 }
 
 void	search(void)

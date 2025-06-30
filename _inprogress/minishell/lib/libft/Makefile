@@ -26,7 +26,7 @@ SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		bzero putchar_fd strncmp \
 		calloc putendl_fd strnstr \
 		count_words count_words_mark putmnbr_fd strrchr \
-		free_all free_nul putnbr_fd strtrim strstrip \
+		free_str_arr free_nul putnbr_fd strtrim strstrip \
 		intlen intlen_base putstr_fd substr \
 		isalnum split split_set split_mark tolower \
 		isalpha strchr toupper \

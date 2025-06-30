@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/27 23:18:26 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/26 20:06:33 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	ft_end_format(char *s, t_printf *format);
 void	ft_end_padding(t_printf *format);
 int		ft_printf(const char *fstr, ...);
 int		ft_fprintf(int fd, const char *fstr, ...);
+int		ft_print_arr(void *arr, int data_type, \
+					const char sep[], size_t arr_size);
 void	ft_fill_line(size_t len, size_t maxlen, int fill, int end);
 
 #endif

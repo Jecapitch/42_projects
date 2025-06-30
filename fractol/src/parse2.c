@@ -40,14 +40,14 @@ void	rgb_init(int argc, char **argv, t_data *data)
 	if (!arg[0] || !arg[1] || !arg[2] || arg[3] || !ft_isint(arg[0]) \
 		|| !ft_isint(arg[1]) || !ft_isint(arg[2]))
 		return (ft_fprintf(STDERR, "color_factor must be " \
-		"\"int int int\" or d\n"), ft_free_all(arg), exit(EXIT_SUCCESS));
+		"\"int int int\" or d\n"), ft_free_str_arr(arg), exit(EXIT_SUCCESS));
 	r = ft_atoi(arg[0]);
 	g = ft_atoi(arg[1]);
 	b = ft_atoi(arg[2]);
 	if (r < 0 || g < 0 || b < 0)
-		return (ft_fprintf(STDERR, "color_factor < 0\n"), ft_free_all(arg), \
+		return (ft_fprintf(STDERR, "color_factor < 0\n"), ft_free_str_arr(arg), \
 				exit(EXIT_SUCCESS));
-	return (color_input(data->rgb, r, g, b), ft_free_all(arg));
+	return (color_input(data->rgb, r, g, b), ft_free_str_arr(arg));
 }
 
 void	zoom_init(int argc, char **argv, t_data *data)

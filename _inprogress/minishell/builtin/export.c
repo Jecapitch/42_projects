@@ -28,8 +28,8 @@ int	bi_export(t_shdata *shdata, char **args)
 			keyval = ft_split(*argv);
 			if (export_var(shdata, shdata->environ, keyval[0], \
 							keyval[1]) == -1)
-				return (ft_free_all(keyval), keyval = NULL, -1);
-			ft_free_all(keyval);
+				return (ft_free_str_arr(keyval), keyval = NULL, -1);
+			ft_free_str_arr(keyval);
 			keyval = NULL;
 		}
 		argv++;

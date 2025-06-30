@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2025/03/27 14:01:14 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/06/29 02:17:22 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ OBJDIR =	obj
 
 SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		arr_reverse itoa memmove strlen \
-		atoi strtol countwhile countwhile_set countwhile_condition memset strmapi \
+		atoi strtol \
+		countwhile countwhile_set countwhile_condition \
+		memset strmapi \
 		bzero putchar_fd strncmp \
 		calloc putendl_fd strnstr \
-		count_words putmnbr_fd strrchr \
-		free_all free_nul putnbr_fd strtrim \
+		count_words count_words_mark putmnbr_fd strrchr \
+		free_str_arr free_nul putnbr_fd strtrim strstrip \
 		intlen intlen_base putstr_fd substr \
-		isalnum split tolower \
+		isalnum split split_set split_mark tolower \
 		isalpha strchr toupper \
 		isascii strdup \
 		isdigit isint striteri \
@@ -36,7 +38,7 @@ SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		list1 list1_del list1_utils list1_display \
 		list2 list2_del list2_utils list2_display \
 		list_circ list_circ_del list_circ_utils list_circ_display \
-		printf fprintf printf_format printf_utils fill_line \
+		printf fprintf printf_format printf_utils print_arr fill_line \
 		get_next_line \
 		getenv \
 		sum mean absval power sqrt \

@@ -63,13 +63,13 @@ static char	*binpath(char *cmd)
 	{
 		fullpath = ft_strjoin_sep(path[i], cmd, '/');
 		if (!fullpath)
-			return (ft_free_all(path), NULL);
+			return (ft_free_str_arr(path), NULL);
 		if (!access(fullpath, F_OK))
-			return (ft_free_all(path), fullpath);
+			return (ft_free_str_arr(path), fullpath);
 		free(fullpath);
 		i++;
 	}
-	ft_free_all(path);
+	ft_free_str_arr(path);
 	ft_fprintf(2, "%s: command not found\n", cmd);
 	return (NULL);
 }

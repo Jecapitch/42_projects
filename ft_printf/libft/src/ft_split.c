@@ -32,7 +32,7 @@ char	**ft_split(const char *s, char c)
 		split_str[i] = ft_substr(s, 0, ft_countwhile(s, c));
 		if (!split_str[i++])
 		{
-			ft_free_all(split_str);
+			ft_free_str_arr(split_str);
 			return (NULL);
 		}
 		while (*s && *s != c)

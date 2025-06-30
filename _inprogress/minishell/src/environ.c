@@ -27,8 +27,8 @@ int	load_environ(t_shdata *shdata)
 		keyval = ft_split(*environ, '=');
 		if (!keyval || export_var(shdata, shdata->environ, \
 			keyval[0], keyval[1]))
-			return (ft_free_all(keyval), -1);
-		ft_free_all(keyval);
+			return (ft_free_str_arr(keyval), -1);
+		ft_free_str_arr(keyval);
 		environ++;
 	}
 	update_shdata_env(shdata);

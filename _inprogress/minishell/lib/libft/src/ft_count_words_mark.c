@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_count_words_mark.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 08:39:43 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/29 22:11:22 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/14 23:59:38 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/06/29 01:53:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "libft.h"
 
-# include "typedef.h"
+size_t	ft_count_words_mark(const char *s, const char *mark, const char *set)
+{
+	size_t	n;
+	size_t	i;
 
-int		cd(const char *path, t_shdata *shdata);
-int		pwd(const t_shdata *shdata);
-int		echo(const char **args);
-
-// ENVIRON
-int		print_env_list(t_shdata *shdata, char sep);
-
-#endif
+	if (!s)
+		return (0);
+	n = 0;
+	i = 0;
+	while (s[i])
+	{
+		while (s[i] && mark[i] && ft_isset(s[i], set))
+			s++;
+		if (s[i] && !mark[i] && !ft_isset(s[i], set))
+			n++;
+		while (s[i] && !mark[i] && !ft_isset(s[i], set))
+			s++;
+	}
+	return (n);
+}

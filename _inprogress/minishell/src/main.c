@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/28 02:45:40 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 01:26:41 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,20 @@ int	main(int argc, char **argv)
 				EXIT_FAILURE);
 	line.line = NULL;
 	line.type = NULL;
+	printf("HAHAHA");
 	if (init_shdata(&shdata) == -1)
 		return (end_program(&shdata), EXIT_FAILURE);
 	while (1)
 	{
-		line.line = readline(shdata.prompt);
+		line.line = readline("$$$ ");
+		//line.line = readline(shdata.ptr_prompt);
 		line.line = close_quotes(line.line);
 		line.line = strip_line(line.line);
-		history_add(shdata.sh_history, line.line);
+//		history_add(&shdata, line.line);
 		if (ft_strncmp(line.line, "exit", 5) == 0)
 			break ;
+		ft_free_nul(line.line);
+		line.line = NULL;
 	}
 	end_program(&shdata);
 	exit(EXIT_SUCCESS);

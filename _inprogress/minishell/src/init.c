@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 05:33:54 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/28 00:59:50 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 01:28:40 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,59 +14,39 @@
 
 void	set_zero(t_shdata *shdata)
 {
-	ft_bzero(shdata->cwd, PATH_MAX + 1);
-	ft_bzero(shdata->oldpwd, PATH_MAX + 1);
-	ft_bzero(shdata->history_file, PATH_MAX + 1);
-	ft_bzero(shdata->oldpwd_file, PATH_MAX + 1);
-	ft_bzero(shdata->prompt, PATH_MAX + 1);
-	shdata->sh_environ = NULL;
-	shdata->sh_variables = NULL;
-	shdata->sh_history = NULL;
+	shdata->ptr_cwd = NULL;
+	shdata->ptr_oldpwd = NULL;
+	shdata->ptr_history_file = NULL;
+	shdata->ptr_oldpwd_file = NULL;
+	shdata->ptr_prompt = NULL;
+	shdata->environ = NULL;
+	shdata->variables = NULL;
+	shdata->history = NULL;
 }
 
 int	init_shdata(t_shdata *shdata)
 {
 	set_zero(shdata);
-	if (!getcwd(shdata->cwd, PATH_MAX + 1))
-		return (-1);
+	shdata->variables = init_var_list();
 	load_environ(shdata);
 	load_history(shdata);
 	load_oldpwd(shdata);
-	shdata->sh_variables = init_var_list();
-	if (!shdata->sh_environ || !shdata->sh_variables \
+	if (!shdata->environ || !shdata->variables \
 		|| shdata->fd_history == -1 || shdata->fd_oldpwd == -1)
 		return (-1);
 	prompt_value(shdata);
 	return (0);
 }
 
-int	load_environ(t_shdata *shdata)
+int	prompt_value(t_shdata *shdata)
 {
-	char	**key_val;
+	char	*prompt_start;
 
-	key_val = NULL;
-	shdata->sh_environ = init_var_list();
-	if (!shdata->sh_environ)
+	prompt_start = NULL;
+	ft_free_nul(shdata->ptr_prompt);
+	prompt_start = ft_strrchr(shdata->ptr_cwd, '/');
+	shdata->ptr_prompt = ft_strjoin(prompt_start, PROMPT_SYMBOL);
+	if (!shdata->ptr_prompt)
 		return (-1);
-	while (*environ)
-	{
-		key_val = ft_split(*environ, '=');
-		if (!key_val || export_var(shdata, shdata->sh_environ, \
-			key_val[0], key_val[1]))
-			return (ft_free_all(key_val), -1);
-		ft_free_all(key_val);
-		environ++;
-	}
 	return (0);
-}
-
-char	*prompt_value(t_shdata *shdata)
-{
-	size_t	cwd_len;
-	size_t	len;
-
-	len = PATH_MAX + 1 + PROMPT_SYM_LEN;
-	cwd_len = ft_strlcpy(shdata->prompt, ft_strrchr(shdata->cwd, '/'), len);
-	ft_strlcpy(shdata->prompt + cwd_len, PROMPT_SYMBOL, len - cwd_len);
-	return (shdata->prompt);
 }

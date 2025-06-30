@@ -14,7 +14,7 @@
 
 int	bi_pwd(const t_shdata *shdata)
 {
-	if (printf("%s\n", shdata->cwd) == -1)
+	if (printf("%s\n", shdata->ptr_cwd) == -1)
 		return (-1);
 	return (0);
 }

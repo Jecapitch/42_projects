@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2025/06/26 19:52:54 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/06/29 02:17:22 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,13 +20,15 @@ OBJDIR =	obj
 
 SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		arr_reverse itoa memmove strlen \
-		atoi strtol countwhile countwhile_set countwhile_condition memset strmapi \
+		atoi strtol \
+		countwhile countwhile_set countwhile_condition \
+		memset strmapi \
 		bzero putchar_fd strncmp \
 		calloc putendl_fd strnstr \
-		count_words putmnbr_fd strrchr \
+		count_words count_words_mark putmnbr_fd strrchr \
 		free_all free_nul putnbr_fd strtrim strstrip \
 		intlen intlen_base putstr_fd substr \
-		isalnum split tolower \
+		isalnum split split_set split_mark tolower \
 		isalpha strchr toupper \
 		isascii strdup \
 		isdigit isint striteri \

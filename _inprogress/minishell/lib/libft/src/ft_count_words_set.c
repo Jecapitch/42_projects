@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin.h                                          :+:      :+:    :+:   */
+/*   ft_count_words_set.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/25 08:39:43 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/29 22:11:22 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/14 23:59:38 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/06/29 01:45:17 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUILTIN_H
-# define BUILTIN_H
+#include "libft.h"
 
-# include "typedef.h"
+size_t	ft_count_words_set(const char *s, const char *set)
+{
+	size_t	n;
 
-int		cd(const char *path, t_shdata *shdata);
-int		pwd(const t_shdata *shdata);
-int		echo(const char **args);
-
-// ENVIRON
-int		print_env_list(t_shdata *shdata, char sep);
-
-#endif
+	if (!s)
+		return (0);
+	n = 0;
+	while (*s)
+	{
+		while (*s && ft_iset(*s, set))
+			s++;
+		if (*s && !ft_isset(*s, set))
+			n++;
+		while (*s && !fT_isset(*s, set))
+			s++;
+	}
+	return (n);
+}

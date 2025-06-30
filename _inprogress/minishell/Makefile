@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/06/27 22:59:48 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/06/30 00:36:26 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC		= 	$(addsuffix .c, \
 						main init parse \
 						var var2 \
 						path \
-						history oldpwd \
+						environ history oldpwd \
 						end \
 				) \
 				$(addprefix $(BUILDIR)/, \

@@ -19,13 +19,13 @@ int	bi_cd(t_shdata *shdata, char **args)
 	ft_bzero(path, PATH_MAX + 1);
 	if (args[1] && args[2])
 		return (-1);
-	getcwd(shdata->oldpwd, PATH_MAX);
+	getcwd(shdata->ptr_oldpwd, PATH_MAX);
 	if (ft_strlcpy(path, args[1], PATH_MAX + 1) == 0)
-		ft_strlcpy(path, shdata->home_path, PATH_MAX + 1);
+		ft_strlcpy(path, shdata->ptr_home_path, PATH_MAX + 1);
 	if (chdir(path) \
-		|| !getcwd(shdata->cwd, PATH_MAX) \
-		|| export_var(shdata, shdata->sh_environ, "PWD", path) \
-		|| export_var(shdata, shdata->sh_environ, "OLDPWD", shdata->oldpwd))
+		|| !getcwd(shdata->ptr_cwd, PATH_MAX) \
+		|| export_var(shdata, shdata->environ, "PWD", path) \
+		|| export_var(shdata, shdata->environ, "OLDPWD", shdata->ptr_oldpwd))
 		return (-1);
 	prompt_value(shdata);
 	return (0);

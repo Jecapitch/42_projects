@@ -22,5 +22,5 @@ int	bi_env(t_shdata *shdata, char **args)
 	if (isarg && (ft_strncmp(args[1], "-0", 3) || args[2]))
 		return (-1);
 	sep *= !isarg;
-	return (print_var_list(shdata->sh_environ, sep));
+	return (print_var_list(shdata->environ, sep));
 }

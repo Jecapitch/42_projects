@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/28 00:49:55 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/29 02:17:04 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,17 @@ char		*ft_strtrim(const char *s1, const char *set);
 char		*ft_strstrip(const char *s1);
 void		ft_arr_reverse(void *arr, size_t size, size_t elem_size);
 size_t		ft_count_words(const char *s, char c);
+size_t		ft_count_words_set(const char *s, const char *set);
+size_t		ft_count_words_mark(const char *s, const char *mark, \
+								const char *set);
 int			ft_count_seq(const char *s, int c);
 ///splitjoin
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 char		*ft_strjoin(const char *s1, const char *s2);
 char		*ft_strjoin_sep(const char *s1, const char *s2, const char sep);
 char		**ft_split(const char *s, char c);
+char		**ft_split_set(const char *s, const char *set);
+char		**ft_split_mark(const char *s, const char *mark, const char *set);
 
 // ARRAY SEARCH
 void		*ft_memchr(const void *s, int c, size_t n);

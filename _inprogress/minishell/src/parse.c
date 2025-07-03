@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 11:25:41 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:34:03 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*close_quotes(char *line)
 			quote_line = readline(DQUOTE_PROMPT);
 		quoted = check_quotes(quote_line);
 		tmp = line;
-		line = ft_strjoin_sep(line, quote_line, '\n');
+		line = ft_strjoin_sep(line, quote_line, "\n");
 		ft_free_nul(tmp);
 		ft_free_nul(quote_line);
 	}

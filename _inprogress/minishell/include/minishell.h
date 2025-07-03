@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 15:27:01 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:36:36 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,6 @@ int		close_history(int fd);
 int		load_history(t_shdata *shdata);
 int		history_add(t_shdata *shdata, char *line);
 int		save_history(t_shdata *shdata);
-
-// OLDPWD
-int		open_oldpwd(t_shdata *shdata, int oflag);
-int		close_oldpwd(int fd);
-int		load_oldpwd(t_shdata *shdata);
-int		save_oldpwd(t_shdata *shdata);
 
 // END
 int		end_program(t_shdata *shdata);

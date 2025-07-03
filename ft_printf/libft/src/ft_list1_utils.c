@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:08:35 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/22 23:38:43 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_rotlist(t_list *list)
 {
 	t_node	*tmp;
 
+	if (!list || list->size < 2)
+		return ;
 	tmp = ft_pop(list);
 	ft_append(list, tmp);
 }
@@ -51,6 +53,8 @@ void	ft_rrotlist(t_list *list)
 {
 	t_node	*tmp;
 
+	if (!list || list->size < 2)
+		return ;
 	tmp = list->last;
 	ft_push(list, tmp);
 	list->last = ft_listlast(list);

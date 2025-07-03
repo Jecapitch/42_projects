@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 15:12:29 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:29:15 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int			ft_count_seq(const char *s, int c);
 ///splitjoin
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 char		*ft_strjoin(const char *s1, const char *s2);
-char		*ft_strjoin_sep(const char *s1, const char *s2, const char sep);
+char		*ft_strjoin_sep(const char *s1, const char *s2, const char *sep);
 char		**ft_split(const char *s, char c);
 char		**ft_split_set(const char *s, const char *set);
 char		**ft_split_mark(const char *s, const char *mark, const char *set);
@@ -104,7 +104,7 @@ void		ft_bzero(void *s, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_calloc(size_t count, size_t size);
 void		ft_free_str_arr(char **arr);
-void		*ft_free_nul(void *ptr);
+void		ft_free_nul(void *ptr);
 
 // INT-STR
 size_t		ft_intlen(int n);

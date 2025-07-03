@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:22:27 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 15:36:42 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:28:03 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_free_nul(void *ptr)
 {
 	void	**addr;
 
-	address = &ptr;
+	addr = &ptr;
 	if (ptr)
 		free(ptr);
 	*addr = NULL;

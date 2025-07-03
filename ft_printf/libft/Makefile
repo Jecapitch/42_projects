@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2024/12/19 23:40:39 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/06/30 23:12:33 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,61 +14,64 @@ SHELL = 	/bin/sh
 
 NAME = 		libft.a
 
-SRCDIR =	src/
+SRCDIR =	src
+INCDIR =	include
+OBJDIR =	obj
 
-INCDIR =	include/
-
-SRC = 	$(addprefix $(SRCDIR)ft_, $(addsuffix .c, isspace memcpy strlcpy \
+SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		arr_reverse itoa memmove strlen \
-		atoi countwhile countwhile_set countwhile_condition memset strmapi \
+		atoi strtol \
+		countwhile countwhile_set countwhile_condition \
+		memset strmapi \
 		bzero putchar_fd strncmp \
 		calloc putendl_fd strnstr \
-		count_words putmnbr_fd strrchr \
-		free_str_arr free_nul putnbr_fd strtrim \
-		intlen putstr_fd substr \
-		isalnum split tolower \
+		count_words count_words_mark putmnbr_fd strrchr \
+		free_str_arr free_nul putnbr_fd strtrim strstrip \
+		intlen intlen_base putstr_fd substr \
+		isalnum split split_set split_mark tolower \
 		isalpha strchr toupper \
 		isascii strdup \
 		isdigit isint striteri \
-		isprint memchr strjoin \
+		isprint memchr strjoin strjoin_sep \
 		isset memcmp strlcat putunbr_fd uintlen \
 		ltostr isupper islower ullen count_seq \
-		list1 list1_del list1_utils \
-		list2 list2_del list2_utils \
-		list_circ list_circ_del list_circ_utils \
-		printf printf_format printf_utils \
-		get_next_line))
+		list1 list1_del list1_utils list1_display \
+		list2 list2_del list2_utils list2_display \
+		list_circ list_circ_del list_circ_utils list_circ_display \
+		printf fprintf printf_format printf_utils print_arr fill_line \
+		get_next_line \
+		getenv \
+		sum mean absval power sqrt \
+		std_dev))
 
-OBJ = $(SRC:.c=.o)
+OBJ	= $(addprefix $(OBJDIR)/, $(SRC:%.c=%.o))
 
 CC = cc
+ifeq ($(UNAME),FreeBSD)
+	CC = clang
+endif
 
-CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -O3 -Wall -Wextra -Werror -Wno-error=unused-result -Wno-unused-result -g
 
-CPPFLAGS += -I$(INCDIR)
+CPPFLAGS += -MMD -MP -I$(INCDIR)/
 
-all: compile_msg $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJ)
-	@echo ""
 	@ar rcs $@ $(OBJ)
-	@echo "$(NAME) OK"
+	@echo ""
 	
-%.o: %.c
+$(OBJDIR)/%.o: %.c
+	@mkdir -p $(OBJDIR)/$(SRCDIR)
 	@$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-	@printf ">"
-
-compile_msg:
-	@printf "Compiling $(NAME) "
+	@printf "\033[1;46m \033[0m"
 
 clean: 
-	@echo "Deleting $(NAME) object files..."
-	@rm -f $(OBJ)
-	@echo "Object files deleted"
+	@rm -rf $(OBJDIR)
 
 fclean: clean
 	@echo "Deleting $(NAME)..."
-	@rm -f $(NAME)
+	@rm -f $(NAME) *.d
 	@echo "$(NAME) deleted"
 
 re: fclean all
@@ -76,4 +79,4 @@ re: fclean all
 .SUFFIXES:
 .SUFFIXES: .c .o .a
 
-.PHONY: all clean fclean re compile_msg
+.PHONY: all clean fclean re

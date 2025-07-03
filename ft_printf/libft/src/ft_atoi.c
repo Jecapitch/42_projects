@@ -17,6 +17,8 @@ int	ft_atoi(const char *str)
 	int		n;
 	int		sign;
 
+	if (!str)
+		return (0);
 	n = 0;
 	sign = 1;
 	while (*str && ft_isspace(*str))

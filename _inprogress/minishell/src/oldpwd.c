@@ -6,13 +6,9 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 15:58:14 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:34:57 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <minishell.h>
 
-void	load_oldpwd(t_shdata *shdata)
-{
-	shdata->oldpwd = shdata->cwd;
-}

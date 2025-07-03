@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2025/06/29 02:17:22 by jpiscice         ###   ########.fr        #
+#    Updated: 2025/06/30 23:12:33 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		isalpha strchr toupper \
 		isascii strdup \
 		isdigit isint striteri \
-		isprint memchr strjoin \
+		isprint memchr strjoin strjoin_sep \
 		isset memcmp strlcat putunbr_fd uintlen \
 		ltostr isupper islower ullen count_seq \
 		list1 list1_del list1_utils list1_display \

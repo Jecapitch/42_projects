@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:25:22 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/28 23:57:24 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,13 @@ void	ft_append(t_list *list, t_node *newnode)
 	list->size++;
 }
 
-t_node	*ft_pop(t_list *list)
+void	ft_insert(t_list *list, t_node *prev_node, t_node *newnode)
 {
-	t_node	*popped_node;
-
-	if (!list || !list->first)
-		return (NULL);
-	popped_node = list->first;
-	list->first = list->first->next;
-	popped_node->next = NULL;
-	list->size--;
-	return (popped_node);
+	if (!list || !newnode)
+		return ;
+	if (!prev_node)
+		return (ft_push(list, newnode));
+	newnode->next = prev_node->next;
+	prev_node->next = newnode;
+	list->size++;
 }

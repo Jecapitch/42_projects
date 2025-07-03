@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 05:33:54 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 15:58:34 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:38:38 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_shdata(t_shdata *shdata)
 	shdata->variables = init_var_list();
 	load_environ(shdata);
 	load_history(shdata);
-	load_oldpwd(shdata);
+	shdata->ptr_oldpwd = shdata->ptr_cwd;
 	if (!shdata->environ || !shdata->variables \
 		|| shdata->fd_history == -1 || shdata->fd_oldpwd == -1)
 		return (-1);

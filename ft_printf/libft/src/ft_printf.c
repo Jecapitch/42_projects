@@ -6,13 +6,13 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 00:58:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/07 02:24:52 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/03/27 23:20:26 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static size_t	bufferize(const char *s, size_t len, t_buf *buffer)
+static size_t	bufferize(const char *s, size_t len, t_buf *buffer, int fd)
 {
 	int				written;
 	size_t			j;
@@ -26,7 +26,7 @@ static size_t	bufferize(const char *s, size_t len, t_buf *buffer)
 		buffer->len++;
 		if (buffer->len == BUFFER_SIZE)
 		{
-			written = write(FD, buffer->buffer, buffer->len);
+			written = write(fd, buffer->buffer, buffer->len);
 			if (written != -1)
 				buffer->print_count += written;
 			else
@@ -38,7 +38,7 @@ static size_t	bufferize(const char *s, size_t len, t_buf *buffer)
 	return (len);
 }
 
-static void	ft_toprint(va_list *ptr, t_buf *buffer, t_printf *format)
+static void	ft_toprint(va_list *ptr, t_buf *buffer, t_printf *format, int fd)
 {
 	char	*toprint;
 
@@ -52,17 +52,17 @@ static void	ft_toprint(va_list *ptr, t_buf *buffer, t_printf *format)
 	ft_end_padding(format);
 	while (format->align == RIGHT && format->padding == ' ' \
 						&& format->padding_len-- > 0)
-		bufferize(" ", 1, buffer);
-	bufferize(format->sign, format->sign[0] != '\0', buffer);
-	bufferize(format->lead, ft_countwhile(format->lead, '\0'), buffer);
+		bufferize(" ", 1, buffer, fd);
+	bufferize(format->sign, format->sign[0] != '\0', buffer, fd);
+	bufferize(format->lead, ft_countwhile(format->lead, '\0'), buffer, fd);
 	while ((format->padding == '0' && format->padding_len-- > 0))
-		bufferize("0", 1, buffer);
+		bufferize("0", 1, buffer, fd);
 	while (format->precision-- > 0)
-		bufferize("0", 1, buffer);
-	bufferize(toprint, format->arglen, buffer);
+		bufferize("0", 1, buffer, fd);
+	bufferize(toprint, format->arglen, buffer, fd);
 	free(toprint);
 	while (format->align == LEFT && format->padding_len-- > 0)
-		bufferize(" ", 1, buffer);
+		bufferize(" ", 1, buffer, fd);
 }
 
 int	ft_printf(const char *fstr, ...)
@@ -76,20 +76,20 @@ int	ft_printf(const char *fstr, ...)
 	buffer.print_count = 0;
 	while (*fstr && buffer.print_count != -1)
 	{
-		fstr += bufferize(fstr, ft_countwhile(fstr, '%'), &buffer);
+		fstr += bufferize(fstr, ft_countwhile(fstr, '%'), &buffer, STDIN);
 		if (*fstr == '%')
 			fstr++;
 		ft_format(fstr, &format);
 		if (ft_isconv(format.conv))
 		{
-			ft_toprint(&ptr, &buffer, &format);
+			ft_toprint(&ptr, &buffer, &format, STDIN);
 			fstr += ft_countwhile_set(fstr, FCONV) + 1;
 		}
 		else if (*fstr)
-			bufferize("%", 1, &buffer);
+			bufferize("%", 1, &buffer, STDIN);
 	}
 	va_end(ptr);
-	if (write(FD, buffer.buffer, buffer.len) == -1)
+	if (write(STDIN, buffer.buffer, buffer.len) == -1)
 		return (-1);
 	return (buffer.print_count + buffer.len);
 }

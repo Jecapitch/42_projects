@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 15:58:44 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/01 01:23:00 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ struct s_var
 {
 	char	*key;
 	char	*value;
+	char	*subst_value;
+	char	equal_sign[2];
+	char	*keyval[3];
 	size_t	keylen;
 };
 

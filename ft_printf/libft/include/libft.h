@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/19 17:22:16 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/06/30 23:29:15 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,26 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include <stddef.h>
 # include <inttypes.h>
 # include <limits.h>
-# include "list_single.h"
-# include "list_double.h"
-# include "list_circ.h"
+# include "ft_printf.h"
+# include "get_next_line.h"
+# include "lists.h"
+# include "colors.h"
+
+# ifndef STDIN
+#  define STDIN		0
+# endif
+# ifndef STDOUT
+#  define STDOUT	1
+# endif
+# ifndef STDERR
+#  define STDERR	2
+# endif
+
+extern char	**environ;
 
 typedef enum e_case
 {
@@ -43,19 +57,26 @@ int			ft_isint(char *s);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 
-// STRINGS UTILS
+// STRINGS
 size_t		ft_strlen(const char *s);
 size_t		ft_countwhile(const char *s, const char endc);
 size_t		ft_countwhile_set(const char *s, const char *endset);
 size_t		ft_countwhile_condition(const char *s, int (*f)(int));
 char		*ft_strtrim(const char *s1, const char *set);
+char		*ft_strstrip(const char *s1);
 void		ft_arr_reverse(void *arr, size_t size, size_t elem_size);
 size_t		ft_count_words(const char *s, char c);
+size_t		ft_count_words_set(const char *s, const char *set);
+size_t		ft_count_words_mark(const char *s, const char *mark, \
+								const char *set);
 int			ft_count_seq(const char *s, int c);
 ///splitjoin
 size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 char		*ft_strjoin(const char *s1, const char *s2);
+char		*ft_strjoin_sep(const char *s1, const char *s2, const char *sep);
 char		**ft_split(const char *s, char c);
+char		**ft_split_set(const char *s, const char *set);
+char		**ft_split_mark(const char *s, const char *mark, const char *set);
 
 // ARRAY SEARCH
 void		*ft_memchr(const void *s, int c, size_t n);
@@ -87,13 +108,20 @@ void		ft_free_nul(void *ptr);
 
 // INT-STR
 size_t		ft_intlen(int n);
+size_t		ft_intlen_base(int n, int base);
 size_t		ft_uintlen(unsigned int u);
 size_t		ft_ullen(unsigned long n, unsigned int base);
 int			ft_atoi(const char *str);
+long		ft_strtol(const char *str);
 char		*ft_itoa(int n);
 char		*ft_ltostr(unsigned long n, int base);
 
-// FILE
+// ENVIRONMENT
+char		*ft_getenv(char *name);
+char		*ft_getenv_val(char *name);
+char		*ft_getenv_key(char *name);
+
+// READ FILE
 char		*get_next_line(int fd);
 
 // PRINT
@@ -103,6 +131,5 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putunbr_fd(unsigned int n, int fd);
 void		ft_putmnbr_fd(int n, int fd);
-int			ft_printf(const char *str, ...);
 
 #endif

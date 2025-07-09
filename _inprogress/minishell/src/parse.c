@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 23:34:03 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:49:11 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_quote	check_quotes(const char *line)
 	while (*line)
 	{
 		if (state == CLOSED_QUOTE \
-			&& (*line == SINGLE_QUOTE || *line == DOUBLE_QUOTE))
+			&& ft_isset(*line, "\'\"`"))
 		{
 			state = *line;
 			line++;
@@ -58,8 +58,10 @@ char	*close_quotes(char *line)
 	{
 		if (quoted == SINGLE_QUOTE)
 			quote_line = readline(QUOTE_PROMPT);
-		else
+		else if (quoted == DOUBLE_QUOTE)
 			quote_line = readline(DQUOTE_PROMPT);
+		else
+			quote_line = readline(BQUOTE_PROMPT);
 		quoted = check_quotes(quote_line);
 		tmp = line;
 		line = ft_strjoin_sep(line, quote_line, "\n");

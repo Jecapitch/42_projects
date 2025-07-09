@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/01 01:23:00 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:35:32 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ enum e_quote
 {
 	CLOSED_QUOTE = 0,
 	SINGLE_QUOTE = '\'',
-	DOUBLE_QUOTE = '\"'
+	DOUBLE_QUOTE = '\"',
+	BACK_QUOTE = '`'
 };
 
 enum e_chartype

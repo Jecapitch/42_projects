@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 15:58:55 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:34:09 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 #  define PROMPT_SYM_LEN		4
 #  define QUOTE_PROMPT		"quote > "
 #  define DQUOTE_PROMPT		"dquote > "
-#  define OPERATORS			";()&|\"\'$<>"
-#  define VAR_TABLE_SIZE	256
+#  define BQUOTE_PROMPT		"bquote > "
+#  define OPERATORS			";()&|\"\'`$<>"
 # endif
 
 #endif

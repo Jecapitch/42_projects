@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 01:07:37 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/09 20:54:07 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,48 @@ int	load_history(t_shdata *shdata)
 	return (0);
 }
 
+char	*convert_nl(char *line)
+{
+	char	*res;
+	char	*tmp;
+	char	**split_nl;
+
+	tmp = NULL;
+	split_nl = NULL;
+	split_nl = ft_split(line, '\n');
+	if (!split_nl)
+		return (NULL);
+	while (*split_nl)
+	{
+		tmp = res;
+		res = ft_strjoin_set(res, *split_nl, "\\n");
+		ft_free_nul(tmp);
+		if (!res)
+			break ;
+		split_nl++;
+	}
+	ft_free_str_arr(split_nl);
+	return (res);
+}
+
 int	history_add(t_shdata *shdata, char *line)
 {
 	size_t	size;
+	char	*oneline;
 
+	oneline = NULL;
 	size = ft_strtol(get_var_val(search_var("HISTSIZE", shdata->history)));
-	if (!line || !*line)
+	if (!line || || !(*line))
 		return (-1);
-	add_history(line);
-	ft_append(shdata->history, ft_newnode(line));
+	if (ft_strncmp(line, (char *)shdata->history->content, \
+					ft_strlen(line) - 1) != 0)
+	{
+		add_history(line);
+		oneline = convert_nl(line);
+		if (!oneline)
+			return (-1);
+		ft_append(shdata->history, ft_newnode(oneline));
+	}
 	if (shdata->history->size > size)
 		ft_listdelone(ft_dequeue(shdata->history), (void (*))ft_free_nul);
 	return (0);

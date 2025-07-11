@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:31:10 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 23:55:45 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/09 20:58:40 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ int	print_var_list(const t_list *var_list, const char sep)
 	while (node != var_list->last)
 	{
 		var = (t_var *)node->content;
-		if (printf("%s%c%s%c", \
+		if (printf("%s%s%s%c", \
 					var->key, var->equal_sign, var->value, sep) == -1)
 			return (-1);
 		node = node->next;
 	}
 	var = (t_var *)node->content;
-	if (printf("%s%c%s\n", \
+	if (printf("%s%s%s\n", \
 				var->key, var->equal_sign, var->value) == -1)
 		return (-1);
 	return (0);

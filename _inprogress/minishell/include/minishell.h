@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 23:36:36 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/11 19:06:40 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@
 # include <stdio.h>
 # include <string.h>
 # include <stddef.h>
+# include <stdbool.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <sys/param.h>
+# include <dirent.h>
 # include <sysexits.h>
 # include <errno.h>
 # include <signal.h>

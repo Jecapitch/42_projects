@@ -1,0 +1,5 @@
+export VAR="hello"; echo "$VAR world" | grep "hello" >> output.txt && cat < input.txt | wc -l | tee result.txt | tr -d '\n' > final.txt ; cd /tmp && ls -l *.log | head -n 5 ; echo 'This is literal $VAR' ; echo "Exit status was $?" ; false || echo "previous command failed" ; echo "Line count: $(wc -l < input.txt)" ; <<EOF cat
+This is a heredoc test
+$VAR should not expand here
+EOF
+

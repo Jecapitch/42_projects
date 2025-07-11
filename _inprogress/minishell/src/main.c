@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 01:26:41 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/09 20:57:26 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		//line.line = readline(shdata.ptr_prompt);
 		line.line = close_quotes(line.line);
 		line.line = strip_line(line.line);
-//		history_add(&shdata, line.line);
+		history_add(&shdata, line.line);
 		if (ft_strncmp(line.line, "exit", 5) == 0)
 			break ;
 		ft_free_nul(line.line);

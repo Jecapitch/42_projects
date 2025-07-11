@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/30 23:36:36 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/09 20:55:46 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	update_shdata_env(t_shdata *shdata);
 
 // HISTORY
 int		open_history(t_shdata *shdata, int oflag);
-int		close_history(int fd);
 int		load_history(t_shdata *shdata);
+char	*convert_nl(char *line);
 int		history_add(t_shdata *shdata, char *line);
 int		save_history(t_shdata *shdata);
 

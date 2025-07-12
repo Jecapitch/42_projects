@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 07:24:51 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/12 01:24:54 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 03:13:48 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	bi_cd(t_shdata *shdata, char **args)
 	if (ft_strlcpy(path, args[1], PATH_MAX + 1) == 0)
 		if (ft_strlcpy(path, shdata->ptr_home_path, PATH_MAX + 1))
 			ft_strlcpy(path, shdata->ptr_oldpwd, PATH_MAX + 1);
-	if (ft_strncmp(args[1], "-", 2))
+	if (ft_strncmp(args[1], "-", 2) == 0)
 		ft_strlcpy(path, shdata->ptr_oldpwd, PATH_MAX + 1);
 	if (chdir(path) \
 		|| !getcwd(shdata->ptr_cwd, PATH_MAX + 1) \

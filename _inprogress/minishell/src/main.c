@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/12 02:12:33 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:29:52 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int argc, char **argv)
 	t_shdata	shdata;
 	t_line		line;
 
-	printf("HAHAHA");
 	if (argc != 1)
 		return (ft_fprintf(STDERR_FILENO, NAME": No argument allowed\n"), \
 				EXIT_FAILURE);

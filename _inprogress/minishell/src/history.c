@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:47:55 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/12 01:10:06 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:50:29 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	load_history(t_shdata *shdata)
 	expand_path(shdata->variables, shdata->ptr_history_file, \
 				"HOME", HISTORY_FILE);
 	shdata->history = ft_init_list();
+	if (!shdata->history)
+		return (-1);
 	if (open_history(shdata, O_RDONLY | O_CREAT) == -1)
 		return (-1);
 	line = get_next_line(shdata->fd_history);
@@ -48,6 +50,7 @@ char	*convert_nl(char *line)
 	char	**split_nl;
 
 	tmp = NULL;
+	res = NULL;
 	split_nl = NULL;
 	split_nl = ft_split(line, '\n');
 	if (!split_nl)
@@ -74,8 +77,9 @@ int	history_add(t_shdata *shdata, char *line)
 	size = shdata->history_size;
 	if (!line || !(*line))
 		return (-1);
-	if (ft_strncmp(line, (char *)shdata->history->last->content, \
-					ft_strlen(line)) != 0)
+	if (shdata->history->last \
+		&& ft_strncmp(line, (char *)shdata->history->last->content, \
+						ft_strlen(line)) != 0)
 	{
 		add_history(line);
 		oneline = convert_nl(line);

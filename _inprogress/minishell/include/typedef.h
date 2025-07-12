@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/11 23:59:26 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:14:09 by Jeremie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ struct s_var
 	char	*key;
 	char	*value;
 	char	*keyval;
+	char	equal[2];
 	size_t	keylen;
 	size_t	vallen;
 	int		isenv;

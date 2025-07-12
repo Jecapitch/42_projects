@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 05:33:54 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/12 02:07:44 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:44:30 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ int	load_environ(t_shdata *shdata)
 			return (-1);
 		environ++;
 	}
+	if (set_var(shdata, "HISTFILE="HISTORY_FILE, 1) == -1 \
+		|| set_var(shdata, "HISTSIZE="HISTORY_SIZE, 1) == -1)
+		return (-1);
 	return (0);
 }
 
@@ -32,15 +35,15 @@ void	update_shdata_env(t_shdata *shdata, t_node *node)
 
 	key = get_var_key(node);
 	val = get_var_val(node);
-	if (ft_strncmp(key, "HOME", 5) == 0)
+	if (ft_strncmp(key, "HOME", ft_strlen("HOME") + 1) == 0)
 		shdata->ptr_home_path = val;
-	else if (ft_strncmp(key, "PWD", 4) == 0)
+	else if (ft_strncmp(key, "PWD", ft_strlen("PWD") + 1) == 0)
 		shdata->ptr_cwd = val;
-	else if (ft_strncmp(key, "OLDPWD", 7) == 0)
+	else if (ft_strncmp(key, "OLDPWD", ft_strlen("OLDPWD") + 1) == 0)
 		shdata->ptr_oldpwd = val;
-	else if (ft_strncmp(key, "HISTFILE", 9) == 0)
+	else if (ft_strncmp(key, "HISTFILE", ft_strlen("HISTFILE") + 1) == 0)
 		shdata->ptr_history_file = val;
-	else if (ft_strncmp(key, "HISTSIZE", 9) == 0)
+	else if (ft_strncmp(key, "HISTSIZE", ft_strlen("HISTSIZE") + 1) == 0)
 		shdata->history_size = ft_strtol(val);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:31:10 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/12 01:44:17 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:19:35 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ char	*get_var_key(t_node *node)
 	if (!node)
 		return (NULL);
 	var = (t_var *)node->content;
+	if (!var)
+		return (NULL);
 	return (var->key);
 }
 
@@ -40,6 +42,8 @@ char	*get_var_val(t_node *node)
 	if (!node)
 		return (NULL);
 	var = (t_var *)node->content;
+	if (!var)
+		return (NULL);
 	return (var->value);
 }
 
@@ -48,25 +52,25 @@ t_node	*search_var(t_list *var_list, const char *var_key)
 	t_node	*node;
 	char	*key;
 	size_t	len;
-	t_var	*nvar;
+	t_var	*node_var;
 
 	node = NULL;
 	key = NULL;
-	nvar = NULL;
+	node_var = NULL;
 	len = 0;
 	if (!var_key || !var_list)
 		return (NULL);
 	node = var_list->first;
 	while (node)
 	{
-		nvar = (t_var *)node->content;
-		key = nvar->key;
-		len = nvar->keylen + 1;
+		node_var = (t_var *)node->content;
+		key = get_var_key(node);
+		len = node_var->keylen + 1;
 		if (ft_strncmp(var_key, key, len) == 0)
-			break ;
+			return (node);
 		node = node->next;
 	}
-	return (node);
+	return (NULL);
 }
 
 int	print_var_list(const t_list *var_list, int sep, \

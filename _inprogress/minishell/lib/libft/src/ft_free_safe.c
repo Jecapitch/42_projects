@@ -1,13 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   ft_free_safe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/28 01:30:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/11 20:47:40 by jpiscice         ###   ########.fr       */
+/*   Created: 2025/07/11 23:42:49 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/07/11 23:46:21 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <minishell.h>
+#include "libft.h"
+
+void	*ft_free_safe(void *ptr)
+{
+	if (ptr)
+		free(ptr);
+	ptr = NULL;
+	return (NULL);
+}

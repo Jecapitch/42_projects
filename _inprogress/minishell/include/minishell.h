@@ -6,11 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/07/11 19:06:40 by jpiscice         ###   ########.fr       */
-=======
-/*   Updated: 2025/07/09 20:55:46 by jpiscice         ###   ########.fr       */
->>>>>>> cf28c6a6500cd3165ba3a982a037483e2db5134c
+/*   Updated: 2025/07/12 01:44:47 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +52,16 @@ int		expand_path(t_list *var_list, char dest[PATH_MAX + 1], \
 t_list	*init_var_list(void);
 char	*get_var_key(t_node *node);
 char	*get_var_val(t_node *node);
-t_node	*search_var(const char *var_key, const t_list *var_list);
-int		print_var_list(const t_list *var_list, const char sep);
-int		export_var(t_shdata *shdata, t_list *var_list, \
-					char *key, char *value);
-int		add_var_list(t_list *var_list, t_node *node, \
-						char *newkey, char *newval);
-t_node	*reset_node(t_list *var_list, t_node *node);
-void	clear_var(void *node_content);
-int		export_var_default(t_shdata *shdata);
+t_node	*search_var(t_list *var_list, const char *var_key);
+int		print_var_list(const t_list *var_list, int sep, \
+					int isenv, int include_blank);
+int		set_var(t_shdata *shdata, char *variable, int isenv);
+t_node	*set_node(t_node *node, t_var *var);
+void	clear_var(void *var_struct);
 
 // ENVIRON
 int		load_environ(t_shdata *shdata);
-void	update_shdata_env(t_shdata *shdata);
+void	update_shdata_env(t_shdata *shdata, t_node *node);
 
 // HISTORY
 int		open_history(t_shdata *shdata, int oflag);

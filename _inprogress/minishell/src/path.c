@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 08:53:16 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/06/27 13:06:25 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 00:52:40 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	expand_path(t_list *var_list, char dest[PATH_MAX + 1], \
 	ft_bzero(full_end, len);
 	full_end[0] = '/';
 	ft_strlcat(full_end, path_end, len);
-	node = search_var(path_to_expand, var_list);
+	node = search_var(var_list, path_to_expand);
 	if (!node)
 		return (-1);
 	var = (t_var *)node->content;

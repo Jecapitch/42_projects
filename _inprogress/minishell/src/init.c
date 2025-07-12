@@ -6,11 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 05:33:54 by jpiscice          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/07/11 18:32:27 by jpiscice         ###   ########.fr       */
-=======
-/*   Updated: 2025/07/09 20:58:01 by jpiscice         ###   ########.fr       */
->>>>>>> cf28c6a6500cd3165ba3a982a037483e2db5134c
+/*   Updated: 2025/07/12 02:09:52 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +14,26 @@
 
 void	set_zero(t_shdata *shdata)
 {
-	ft_free_nul(shdata->ptr_cwd);
-	ft_free_nul(shdata->ptr_oldpwd);
-	ft_free_nul(shdata->ptr_history_file);
-	ft_free_nul(shdata->ptr_prompt);
-	ft_free_nul(shdata->environ);
-	ft_free_nul(shdata->variables);
-	ft_free_nul(shdata->history);
+	shdata->ptr_cwd = NULL;
+	shdata->ptr_cwd = NULL;
+	shdata->ptr_history_file = NULL;
+	shdata->ptr_prompt = NULL;
+	shdata->variables = NULL;
+	shdata->history = NULL;
 }
 
 int	init_shdata(t_shdata *shdata)
 {
 	set_zero(shdata);
-//	shdata->variables = init_var_list();
-//	load_environ(shdata);
-	load_history(shdata);
-	if (!shdata->environ || !shdata->variables \
-		|| shdata->fd_history == -1 || shdata->fd_oldpwd == -1)
+	shdata->variables = ft_init_list();
+	if (!shdata->variables)
 		return (-1);
-	prompt_value(shdata);
+	if (load_environ(shdata) == -1)
+		return (-1);
+	if (load_history(shdata) == -1)
+		return (-1);
+	if (prompt_value(shdata))
+		return (-1);
 	return (0);
 }
 
@@ -45,7 +42,7 @@ int	prompt_value(t_shdata *shdata)
 	char	*prompt_start;
 
 	prompt_start = NULL;
-	ft_free_nul(shdata->ptr_prompt);
+	shdata->ptr_prompt = ft_free_safe(shdata->ptr_prompt);
 	prompt_start = ft_strrchr(shdata->ptr_cwd, '/');
 	shdata->ptr_prompt = ft_strjoin(prompt_start, PROMPT_SYMBOL);
 	if (!shdata->ptr_prompt)

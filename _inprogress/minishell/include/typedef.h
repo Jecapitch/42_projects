@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 21:49:29 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/09 15:35:32 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/11 23:59:26 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_signal				g_signal;
 
 struct s_shdata
 {
-	t_list	*environ;
 	t_list	*variables;
 	t_list	*history;
 	char	*ptr_home_path;
@@ -50,10 +49,10 @@ struct s_var
 {
 	char	*key;
 	char	*value;
-	char	*subst_value;
-	char	equal_sign[2];
-	char	*keyval[3];
+	char	*keyval;
 	size_t	keylen;
+	size_t	vallen;
+	int		isenv;
 };
 
 enum e_quote

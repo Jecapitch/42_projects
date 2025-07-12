@@ -6,7 +6,7 @@
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 23:31:10 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/09 20:58:40 by jpiscice         ###   ########.fr       */
+/*   Updated: 2025/07/12 01:44:17 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	*get_var_val(t_node *node)
 	return (var->value);
 }
 
-t_node	*search_var(const char *var_key, const t_list *var_list)
+t_node	*search_var(t_list *var_list, const char *var_key)
 {
 	t_node	*node;
 	char	*key;
@@ -55,7 +55,7 @@ t_node	*search_var(const char *var_key, const t_list *var_list)
 	nvar = NULL;
 	len = 0;
 	if (!var_key || !var_list)
-		return (0);
+		return (NULL);
 	node = var_list->first;
 	while (node)
 	{
@@ -69,7 +69,8 @@ t_node	*search_var(const char *var_key, const t_list *var_list)
 	return (node);
 }
 
-int	print_var_list(const t_list *var_list, const char sep)
+int	print_var_list(const t_list *var_list, int sep, \
+					int isenv, int include_blank)
 {
 	t_node	*node;
 	t_var	*var;
@@ -79,17 +80,20 @@ int	print_var_list(const t_list *var_list, const char sep)
 	if (!var_list)
 		return (-1);
 	node = var_list->first;
-	while (node != var_list->last)
+	while (node)
 	{
 		var = (t_var *)node->content;
-		if (printf("%s%s%s%c", \
-					var->key, var->equal_sign, var->value, sep) == -1)
-			return (-1);
+		if (!(isenv && !var->isenv))
+		{
+			if (var->value && var->vallen)
+				printf("%s='%s'%c", var->key, var->value, sep);
+			else if (var->value && include_blank)
+				printf("%s=''%c", var->key, sep);
+			else if (include_blank)
+				printf("%s%c", var->key, sep);
+		}
 		node = node->next;
 	}
-	var = (t_var *)node->content;
-	if (printf("%s%s%s\n", \
-				var->key, var->equal_sign, var->value) == -1)
-		return (-1);
+	printf("\n");
 	return (0);
 }

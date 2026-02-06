@@ -6,7 +6,7 @@
 #    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2025/06/30 23:12:33 by jpiscice         ###   ########.fr        #
+#    Updated: 2026/02/07 00:04:21 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
 		printf fprintf printf_format printf_utils print_arr fill_line \
 		get_next_line \
 		getenv \
+		quicksort \
 		sum mean absval power sqrt \
 		std_dev))
 

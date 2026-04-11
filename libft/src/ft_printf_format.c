@@ -71,7 +71,7 @@ void	ft_format(const char *fstr, t_printf *format)
 	}
 	if (ft_isdigit(*fstr))
 		format->min_len = ft_atoi(fstr);
-	fstr += ft_countwhile_condition(fstr, &ft_isdigit);
+	fstr += ft_strlen_condition(fstr, &ft_isdigit);
 	if (*fstr == '.')
 	{
 		format->precision = 0;
@@ -79,7 +79,7 @@ void	ft_format(const char *fstr, t_printf *format)
 		if (ft_isdigit(*fstr))
 			format->precision = ft_atoi(fstr);
 	}
-	fstr += ft_countwhile_condition(fstr, &ft_isdigit);
+	fstr += ft_strlen_condition(fstr, &ft_isdigit);
 	format->conv = *fstr;
 }
 

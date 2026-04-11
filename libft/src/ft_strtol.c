@@ -3,34 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtol.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 00:39:49 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/20 14:51:18 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/11 21:54:13 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-long	ft_strtol(const char *str)
+static int	check_base(const char *base, int base_hash[256]);
+
+int	ft_atoi(const char *s)
+{
+	if (!s)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
+		return (0);
+	}
+	return (ft_strtol(s));
+}
+
+long	ft_strtol(const char *s)
+{
+	if (!s)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
+		return (0);
+	}
+	return (ft_strtol_base(s, BASE10));
+}
+
+static int	check_base(const char *base, int base_hash[256])
+{
+	int				b;
+	unsigned char	c;
+
+	b = 0;
+	while (b < 256)
+		base_hash[b++] = -1;
+	b = 0;
+	while (base[b])
+	{
+		c = (unsigned char)base[b];
+		if (base_hash[c] != -1 || c == '+' || c == '-' || ft_isspace(c))
+			return (0);
+		base_hash[c] = b;
+		b++;
+	}
+	return (b);
+}
+
+long	ft_strtol_base(const char *s, const char *base)
 {
 	long	n;
 	int		sign;
+	int		rad;
+	int		base_hash[256];
 
+	if (!s || !base)
+		return (ft_err_nonnull(NULL, -1, __func__), 0);
 	n = 0;
 	sign = 1;
-	while (*str && ft_isspace(*str))
-		str++;
-	if (*str && (*str == '+' || *str == '-'))
+	rad = check_base(base, base_hash);
+	if (rad < 2)
+		return (0);
+	while (ft_isspace(*s))
+		s++;
+	if (*s == '-')
+		sign *= -1;
+	s += (*s == '+' || *s == '-');
+	while (base_hash[(int)*s] != -1)
 	{
-		if (*str == '-')
-			sign = -1;
-		str++;
-	}
-	while (*str && *str >= '0' && *str <= '9')
-	{
-		n = n * 10 + *str - '0';
-		str++;
+		n *= rad;
+		n += base_hash[(int)*s];
+		s++;
 	}
 	return (n * sign);
 }

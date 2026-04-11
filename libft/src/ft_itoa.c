@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 00:39:49 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/23 01:11:04 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 05:52:27 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,24 @@
 char	*ft_itoa(int n)
 {
 	char	*str;
+	size_t	i;
 	long	ln;
-	size_t	intlen;
 
 	ln = n;
-	intlen = ft_intlen(n);
-	str = ft_calloc(intlen + 1, sizeof(char));
+	str = ft_calloc(16, sizeof(char));
 	if (!str)
 		return (NULL);
 	str[0] = '0';
 	if (n < 0)
-	{
-		ln = -ln;
-		str[0] = '-';
-	}
+		ln *= -1;
+	i = 0;
 	while (ln)
 	{
-		str[intlen - 1] = ln % 10 + '0';
+		str[i] = ln % 10 + '0';
 		ln /= 10;
-		intlen--;
+		i++;
 	}
-	return (str);
+	if (n < 0)
+		str[i++] = '-';
+	return (ft_reverse_tab(str, i, sizeof(char)));
 }

@@ -3,47 +3,78 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
+#    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/02/07 00:04:21 by jpiscice         ###   ########.fr        #
+#    Updated: 2026/04/12 00:11:57 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SHELL = 	/bin/sh
+SHELL		=	/bin/sh
 
-NAME = 		libft.a
+NAME		=	libft.a
+COLORNAME	=	\033[1;31m$(NAME)\033[0m
 
-SRCDIR =	src
-INCDIR =	include
-OBJDIR =	obj
+SRCDIR		=	src
+INCDIR		=	include
+OBJDIR		=	obj
 
-SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, isspace memcpy strlcpy \
-		arr_reverse itoa memmove strlen \
-		atoi strtol \
-		countwhile countwhile_set countwhile_condition \
-		memset strmapi \
-		bzero putchar_fd strncmp \
-		calloc putendl_fd strnstr \
-		count_words count_words_mark putmnbr_fd strrchr \
-		free_str_arr free_nul putnbr_fd strtrim strstrip \
-		intlen intlen_base putstr_fd substr \
-		isalnum split split_set split_mark tolower \
-		isalpha strchr toupper \
-		isascii strdup \
-		isdigit isint striteri \
-		isprint memchr strjoin strjoin_sep \
-		isset memcmp strlcat putunbr_fd uintlen \
-		ltostr isupper islower ullen count_seq \
-		list1 list1_del list1_utils list1_display \
-		list2 list2_del list2_utils list2_display \
-		list_circ list_circ_del list_circ_utils list_circ_display \
-		printf fprintf printf_format printf_utils print_arr fill_line \
-		get_next_line \
-		getenv \
-		quicksort \
-		sum mean absval power sqrt \
-		std_dev))
+SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, \
+				absval \
+				case \
+				count_words \
+				fill_line \
+				fprintf \
+				free \
+				get_next_line \
+				getenv \
+				getpid \
+				isalnum \
+				isascii \
+				isset \
+				itoa \
+				list_circ_del \
+				list_circ_display \
+				list_circ_utils \
+				list_circ \
+				list_deq_del \
+				list_deq_display \
+				list_deq_utils \
+				list_deq \
+				list_del \
+				list_display \
+				list_utils \
+				list \
+				log \
+				ltostr \
+				malloc \
+				mean \
+				memchr \
+				memcmp \
+				memcpy \
+				memset \
+				number_len \
+				power \
+				print_tab \
+				printf_format \
+				printf_utils \
+				printf \
+				putnbr \
+				puts \
+				reverse_tab \
+				split \
+				sqrt \
+				str_iter \
+				strchr \
+				strdup \
+				strjoin \
+				strlen \
+				strncmp \
+				strnstr \
+				strtol \
+				strtrim \
+				sum \
+		))
 
 OBJ	= $(addprefix $(OBJDIR)/, $(SRC:%.c=%.o))
 
@@ -61,6 +92,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@ar rcs $@ $(OBJ)
 	@echo ""
+	@echo "$(COLORNAME) successfully compiled"
 	
 $(OBJDIR)/%.o: %.c
 	@mkdir -p $(OBJDIR)/$(SRCDIR)
@@ -71,9 +103,11 @@ clean:
 	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@echo "Deleting $(NAME)..."
-	@rm -f $(NAME) *.d
-	@echo "$(NAME) deleted"
+	@if [ -e $(NAME) ]; then \
+		echo "Deleting $(COLORNAME)..."; \
+		rm -f $(NAME) *.d; \
+		echo "$(COLORNAME) deleted"; \
+	fi
 
 re: fclean all
 

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_circ_del.c                                 :+:      :+:    :+:   */
+/*   ft_list_deq_del.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 22:20:05 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 07:07:07 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_circ.h"
+#include "list_deq.h"
 
-void	ft_listdelone_circ(t_node_circ *node, void (*del)(void *))
+void	ft_listdelone_deq(t_denode *node, void (*del)(void *))
 {
 	if (!node || !del)
 		return ;
@@ -20,71 +20,61 @@ void	ft_listdelone_circ(t_node_circ *node, void (*del)(void *))
 	free(node);
 }
 
-void	ft_listclear_circ(t_list_circ **list, void (*del)(void *))
+void	ft_listclear_deq(t_deque **list, void (*del)(void *))
 {
-	t_node_circ	*to_rm;
-
 	if (!list || !(*list))
 		return ;
 	while ((*list)->size)
-	{
-		to_rm = (*list)->head;
-		(*list)->head = (*list)->head->next;
-		(*list)->head->prev = (*list)->tail;
-		(*list)->tail->next = (*list)->head;
-		ft_listdelone_circ(to_rm, del);
-		(*list)->size--;
-	}
+		ft_listdelone_deq(ft_dequeue_deq(*list), del);
 	(*list)->head = NULL;
 	(*list)->tail = NULL;
-	free(*list);
-	*list = NULL;
+	*list = ft_free_safe(*list);
 }
 
-t_node_circ	*ft_dequeue_circ(t_list_circ *list)
+t_denode	*ft_dequeue_deq(t_deque *list)
 {
-	t_node_circ	*dequeued_node;
+	t_denode	*dequeued_node;
 
 	if (!list || !list->head)
 		return (NULL);
 	dequeued_node = list->head;
-	if (list->size > 1)
-	{
-		list->head = list->head->next;
-		list->head->prev = list->tail;
-		list->tail->next = list->head;
-	}
-	else
-	{
-		list->head = NULL;
-		list->tail = NULL;
-	}
+	list->head = list->head->next;
+	if (list->head)
+		list->head->prev = NULL;
 	dequeued_node->prev = NULL;
 	dequeued_node->next = NULL;
 	list->size--;
 	return (dequeued_node);
 }
 
-t_node_circ	*ft_pop_circ(t_list_circ *list)
+t_denode	*ft_pop_deq(t_deque *list)
 {
-	t_node_circ	*popped_node;
+	t_denode	*popped_node;
 
 	if (!list || !list->head)
 		return (NULL);
 	popped_node = list->tail;
-	if (list->size > 1)
-	{
-		list->tail = list->tail->prev;
-		list->head->prev = list->tail;
-		list->tail->next = list->head;
-	}
-	else
-	{
-		list->head = NULL;
-		list->tail = NULL;
-	}
+	list->tail = list->tail->prev;
+	if (list->tail)
+		list->tail->next = NULL;
 	popped_node->prev = NULL;
 	popped_node->next = NULL;
 	list->size--;
 	return (popped_node);
+}
+
+t_denode	*ft_extract_deq(t_deque *list, t_denode *node)
+{
+	if (!list || !list->head || !node)
+		return (NULL);
+	if (node == list->head)
+		return (ft_dequeue_deq(list));
+	if (node == list->tail)
+		return (ft_pop_deq(list));
+	if (node->prev)
+		node->prev->next = node->next;
+	if (node->next)
+		node->next->prev = node->prev;
+	list->size--;
+	return (node);
 }

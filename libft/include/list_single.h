@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_single.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/29 22:38:09 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 07:08:06 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ struct s_node_single
 
 struct s_list_single
 {
-	t_node	*first;
-	t_node	*last;
+	t_node	*head;
+	t_node	*tail;
 	size_t	size;
 };
 
@@ -45,7 +45,7 @@ void	ft_list_int_display(t_list *list, char *sep);
 
 // UTILS
 size_t	ft_listsize(t_list *list);
-t_node	*ft_listlast(t_list *list);
+t_node	*ft_list_tail(t_list *list);
 void	ft_rotlist(t_list *list);
 void	ft_rrotlist(t_list *list);
 

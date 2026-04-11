@@ -3,27 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 20:43:15 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/02 00:04:05 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 03:47:28 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_sqrt_int(int nb)
+int	ft_sqrt_int(int n)
 {
+	int	left;
+	int	right;
+	int	mid;
 	int	sqr;
 
-	sqr = 1;
-	if (nb <= 0)
+	if (n <= 0)
 		return (0);
-	while (sqr <= (sqr + nb / sqr) / 2)
+	left = 0;
+	right = n;
+	while (left < right)
 	{
-		if (sqr * sqr == nb)
-			return (sqr);
-		sqr++;
+		mid = (left + right) / 2;
+		sqr = mid * mid;
+		if (sqr == n)
+			return (mid);
+		if (sqr < n)
+			left = mid + 1;
+		else
+			right = mid - 1;
 	}
-	return (0);
+	return ((left + right) / 2);
 }
 
 double	ft_sqrt(double n)

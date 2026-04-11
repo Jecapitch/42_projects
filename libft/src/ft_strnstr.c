@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/02 23:12:35 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/11 21:31:37 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	size_t	neelen;
 
 	if (!haystack || !needle)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
 		return (NULL);
+	}
 	neelen = ft_strlen(needle);
 	if (!neelen)
 		return ((char *)haystack);

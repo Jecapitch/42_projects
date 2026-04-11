@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lists.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:43:12 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 07:13:06 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define LISTS_H
 # include "libft.h"
 
-typedef struct s_list			t_list;
-typedef struct s_list_double	t_list_2;
-typedef struct s_list_start		t_list_start;
+typedef struct s_list		t_list;
+typedef struct s_list_deq	t_deque;
+typedef struct s_list_start	t_list_start;
 
 struct s_list
 {
@@ -24,11 +24,11 @@ struct s_list
 	t_list	*next;
 };
 
-struct s_list_double
+struct s_list_deq
 {
-	void		*content;
-	t_list_2	*prev;
-	t_list_2	*next;
+	void	*content;
+	t_deque	*prev;
+	t_deque	*next;
 };
 
 struct s_list_start

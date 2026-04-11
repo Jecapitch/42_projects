@@ -61,7 +61,7 @@ void	ft_end_format(char *s, t_printf *format);
 void	ft_end_padding(t_printf *format);
 int		ft_printf(const char *fstr, ...);
 int		ft_fprintf(int fd, const char *fstr, ...);
-int		ft_print_arr(void *arr, int data_type, \
+int		ft_print_tab(void *arr, int data_type, \
 					const char sep[], size_t arr_size);
 void	ft_fill_line(size_t len, size_t maxlen, int fill, int end);
 

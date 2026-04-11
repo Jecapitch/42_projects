@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 23:09:40 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/04/01 18:12:02 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 04:37:05 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_getenv(char *name)
 	if (!name || !environ)
 		return (NULL);
 	size = ft_strlen(name);
-	while (*environ && ft_strncmp(*environ, name, size))
+	while (*environ && ft_strncmp(*environ, name, size + 1))
 		environ++;
 	return (ft_strdup(*environ));
 }
@@ -41,7 +41,7 @@ char	*ft_getenv_val(char *name)
 	entry = ft_getenv(name);
 	if (!entry)
 		return (NULL);
-	val = ft_strdup(entry + ft_countwhile(name, '=') + 1);
+	val = ft_strdup(entry + ft_strlen_delim(name, '=') + 1);
 	free(entry);
 	return (val);
 }
@@ -57,7 +57,7 @@ char	*ft_getenv_key(char *name)
 	entry = ft_getenv(name);
 	if (!entry)
 		return (NULL);
-	size = ft_countwhile(name, '=');
+	size = ft_strlen_delim(name, '=');
 	val = ft_calloc(size + 1, sizeof(char));
 	if (!val)
 		return (free(entry), NULL);

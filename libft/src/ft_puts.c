@@ -1,42 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 00:19:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 00:48:20 by jepiscic         ###   ########.fr       */
+/*   Created: 2024/10/09 23:10:12 by jpiscice          #+#    #+#             */
+/*   Updated: 2026/04/12 00:10:11 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *p, int c, size_t len)
+void	ft_putchar_fd(char c, int fd)
 {
-	unsigned char	*byte;
-
-	if (!p)
+	if (fd < 0)
 	{
-		ft_err_nonnull(NULL, -1, __func__);
-		return (NULL);
+		ft_log(NULL, -1, __func__, "invalid file descriptor");
+		return ;
 	}
-	byte = (unsigned char *)p;
-	while (len)
-	{
-		*byte = (unsigned char)c;
-		byte++;
-		len--;
-	}
-	return (p);
+	write(fd, &c, 1);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_putstr_fd(char *s, int fd)
 {
 	if (!s)
 	{
 		ft_err_nonnull(NULL, -1, __func__);
 		return ;
 	}
-	ft_memset(s, 0, n);
+	if (fd < 0)
+	{
+		ft_log(NULL, -1, __func__, "invalid file descriptor");
+		return ;
+	}
+	write(fd, s, ft_strlen(s));
+}
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	if (!s)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
+		return ;
+	}
+	if (fd < 0)
+	{
+		ft_log(NULL, -1, __func__, "invalid file descriptor");
+		return ;
+	}
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

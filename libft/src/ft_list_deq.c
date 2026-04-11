@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_circ.c                                     :+:      :+:    :+:   */
+/*   ft_deque.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/16 16:49:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/29 20:40:35 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
+/*   Updated: 2025/07/28 02:09:43 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_circ.h"
+#include "list_deq.h"
 
-t_list_circ	*ft_init_list_circ(void)
+t_deque	*ft_init_deq(void)
 {
-	t_list_circ	*list;
+	t_deque	*list;
 
-	list = malloc(sizeof(t_list_circ));
+	list = malloc(sizeof(t_deque));
 	if (!list)
 		return (NULL);
 	list->head = NULL;
-	list->tail = NULL;
 	list->size = 0;
 	return (list);
 }
 
-t_node_circ	*ft_newnode_circ(void *content)
+t_denode	*ft_newnode_deq(void *content)
 {
-	t_node_circ	*newnode;
+	t_denode	*newnode;
 
-	newnode = malloc(sizeof(t_node_circ));
+	newnode = malloc(sizeof(t_denode));
 	if (!newnode)
 		return (NULL);
 	newnode->content = content;
@@ -38,22 +37,17 @@ t_node_circ	*ft_newnode_circ(void *content)
 	return (newnode);
 }
 
-void	ft_push_circ(t_list_circ *list, t_node_circ *newnode)
+void	ft_push_deq(t_deque *list, t_denode *newnode)
 {
 	if (!list || !newnode)
 		return ;
-	if (list->head)
-		list->head->prev = newnode;
-	else
-		list->tail = newnode;
 	newnode->next = list->head;
+	newnode->next->prev = newnode;
 	list->head = newnode;
-	list->tail->next = list->head;
-	list->head->prev = list->tail;
 	list->size++;
 }
 
-void	ft_append_circ(t_list_circ *list, t_node_circ *newnode)
+void	ft_append_deq(t_deque *list, t_denode *newnode)
 {
 	if (!list || !newnode)
 		return ;
@@ -63,21 +57,16 @@ void	ft_append_circ(t_list_circ *list, t_node_circ *newnode)
 		list->head = newnode;
 	newnode->prev = list->tail;
 	list->tail = newnode;
-	list->tail->next = list->head;
-	list->head->prev = list->tail;
 	list->size++;
 }
 
-void	ft_insert_circ(t_list_circ *list, t_node_circ *prev_node, \
-			t_node_circ *newnode)
+void	ft_insert_deq(t_deque *list, t_denode *prev_node, t_denode *newnode)
 {
 	if (!list || !newnode)
 		return ;
 	if (!prev_node)
-		return (ft_push_circ(list, newnode));
+		return (ft_push_deq(list, newnode));
 	newnode->next = prev_node->next;
-	newnode->prev = prev_node;
 	prev_node->next = newnode;
-	newnode->next->prev = newnode;
 	list->size++;
 }

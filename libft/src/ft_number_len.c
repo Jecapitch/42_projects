@@ -1,32 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill_line.c                                     :+:      :+:    :+:   */
+/*   ft_number_len.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/01 00:16:22 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/10 04:14:08 by jepiscic         ###   ########.fr       */
+/*   Created: 2024/11/10 22:40:07 by jpiscice          #+#    #+#             */
+/*   Updated: 2026/04/10 06:39:30 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_fill_line(size_t len, size_t maxlen, int fill, int end)
+size_t	ft_number_len(long n)
 {
-	char	*blank;
-	size_t	size;
+	return (ft_number_len_base(n, 10));
+}
 
-	size = maxlen - len - 1;
-	blank = ft_calloc(size + 1, sizeof(char));
-	if (!blank)
+size_t	ft_unumber_len(unsigned long n)
+{
+	return (ft_unumber_len_base(n, 10));
+}
+
+size_t	ft_number_len_base(long n, unsigned int base)
+{
+	size_t	len;
+
+	len = n < 0;
+	while (n)
 	{
-		ft_fprintf(STDERR_FD, \
-					"ft_fill_line: "BRED"error"CRESET": ft_calloc");
-		return ;
+		len++;
+		n /= base;
 	}
-	ft_memset(blank, fill, size);
-	blank[size - 1] = end;
-	ft_putendl_fd(blank, 1);
-	free(blank);
+	return (len);
+}
+
+size_t	ft_unumber_len_base(unsigned long n, unsigned int base)
+{
+	size_t	len;
+
+	len = 0;
+	while (n)
+	{
+		len++;
+		n /= base;
+	}
+	return (len);
 }

@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_circ_display.c                             :+:      :+:    :+:   */
+/*   ft_deq_display.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/21 23:29:13 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/21 23:29:49 by jpiscice         ###   ########.fr       */
+/*   Created: 2024/12/21 23:28:24 by jpiscice          #+#    #+#             */
+/*   Updated: 2024/12/21 23:30:06 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "list_circ.h"
+#include "list_deq.h"
 
-void	ft_list_circ_int_display(t_list_circ *list, char *sep)
+void	ft_deq_int_display(t_deque *list, char *sep)
 {
-	t_node_circ		*tmp;
+	t_denode	*tmp;
 
 	if (!list || !list->head)
 		return ;

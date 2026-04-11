@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fprintf.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 00:58:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/03/25 16:55:46 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/11 22:16:58 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	ft_toprint(va_list *ptr, t_buf *buffer, t_printf *format, int fd)
 						&& format->padding_len-- > 0)
 		bufferize(" ", 1, buffer, fd);
 	bufferize(format->sign, format->sign[0] != '\0', buffer, fd);
-	bufferize(format->lead, ft_countwhile(format->lead, '\0'), buffer, fd);
+	bufferize(format->lead, ft_strlen_delim(format->lead, '\0'), buffer, fd);
 	while ((format->padding == '0' && format->padding_len-- > 0))
 		bufferize("0", 1, buffer, fd);
 	while (format->precision-- > 0)
@@ -71,19 +71,19 @@ int	ft_fprintf(int fd, const char *fstr, ...)
 	t_buf		buffer;
 	va_list		ptr;
 
+	if (!fstr)
+		return (ft_err_nonnull(NULL, -1, __func__), -1);
+	ft_bzero(&buffer, sizeof(t_buf));
 	va_start(ptr, fstr);
-	buffer.len = 0;
-	buffer.print_count = 0;
 	while (*fstr && buffer.print_count != -1)
 	{
-		fstr += bufferize(fstr, ft_countwhile(fstr, '%'), &buffer, fd);
-		if (*fstr == '%')
-			fstr++;
+		fstr += bufferize(fstr, ft_strlen_delim(fstr, '%'), &buffer, fd);
+		fstr += (*fstr == '%');
 		ft_format(fstr, &format);
 		if (ft_isconv(format.conv))
 		{
 			ft_toprint(&ptr, &buffer, &format, fd);
-			fstr += ft_countwhile_set(fstr, FCONV) + 1;
+			fstr += ft_strlen_delim_set(fstr, FCONV) + 1;
 		}
 		else if (*fstr)
 			bufferize("%", 1, &buffer, fd);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/04 16:23:32 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 13:41:40 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,17 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	size_t			i;
 
 	if (!s)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
 		return (NULL);
+	}
 	i = 0;
 	chs = (unsigned char *)s;
 	ch = (unsigned char)c;
 	while (i < n)
 	{
 		if (chs[i] == ch)
-			return ((void *)&chs[i]);
+			return (chs + i);
 		i++;
 	}
 	return (NULL);

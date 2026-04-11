@@ -1,42 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_str_iter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/12 00:19:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 00:48:20 by jepiscic         ###   ########.fr       */
+/*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
+/*   Updated: 2026/04/11 20:29:37 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *p, int c, size_t len)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	unsigned char	*byte;
+	unsigned int	i;
+	char			*newstr;
 
-	if (!p)
+	if (!s || !f)
 	{
 		ft_err_nonnull(NULL, -1, __func__);
 		return (NULL);
 	}
-	byte = (unsigned char *)p;
-	while (len)
+	i = 0;
+	newstr = ft_calloc((ft_strlen(s) + 1), sizeof(char));
+	if (!newstr)
+		return (NULL);
+	while (s[i])
 	{
-		*byte = (unsigned char)c;
-		byte++;
-		len--;
+		newstr[i] = f(i, s[i]);
+		i++;
 	}
-	return (p);
+	newstr[i] = '\0';
+	return (newstr);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	if (!s)
+	unsigned int	i;
+
+	if (!s || !f)
 	{
 		ft_err_nonnull(NULL, -1, __func__);
 		return ;
 	}
-	ft_memset(s, 0, n);
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

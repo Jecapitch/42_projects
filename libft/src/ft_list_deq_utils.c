@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_circ_utils.c                               :+:      :+:    :+:   */
+/*   ft_deq_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/21 20:40:57 by jpiscice         ###   ########.fr       */
+/*   Updated: 2024/12/22 23:39:08 by jpiscice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_circ.h"
+#include "list_deq.h"
 
-t_node_circ	*ft_list_tail_circ(t_list_circ *list)
+t_denode	*ft_list_tail_deq(t_deque *list)
 {
-	t_node_circ	*last;
+	t_denode	*last;
 
-	if (!list || !list->head)
+	if (!list)
 		return (NULL);
 	last = list->head;
-	while (last->next != list->head)
+	while (last->next)
 		last = last->next;
 	return (last);
 }
 
-size_t	ft_listsize_circ(t_list_circ *list)
+size_t	ft_listsize_deq(t_deque *list)
 {
 	size_t		size;
-	t_node_circ	*node;
+	t_denode	*node;
 
-	if (!list || !list->head)
-		return (0);
-	size = 1;
+	size = 0;
 	node = list->head;
-	while (node->next != list->head)
+	while (node)
 	{
 		size++;
 		node = node->next;
@@ -41,35 +39,25 @@ size_t	ft_listsize_circ(t_list_circ *list)
 	return (size);
 }
 
-void	ft_listiter_circ(t_list_circ *list, void (*f)(void *))
+void	ft_rot_deq(t_deque *list)
 {
-	t_node_circ	*node;
-	size_t		i;
+	t_denode	*tmp;
 
-	if (!list || !list->head || !f)
-		return ;
-	node = list->head;
-	i = 0;
-	while (i < list->size)
-	{
-		f(node->content);
-		node = node->next;
-		i++;
-	}
-}
-
-void	ft_rotlist_circ(t_list_circ *list)
-{
 	if (!list || list->size < 2)
 		return ;
-	list->tail = list->head;
-	list->head = list->head->next;
+	tmp = ft_pop_deq(list);
+	ft_append_deq(list, tmp);
 }
 
-void	ft_rrotlist_circ(t_list_circ *list)
+void	ft_rrot_deq(t_deque *list)
 {
+	t_denode	*tmp;
+
 	if (!list || list->size < 2)
 		return ;
-	list->head = list->tail;
-	list->tail = list->tail->prev;
+	tmp = list->tail;
+	list->tail = tmp->prev;
+	list->tail->next = NULL;
+	tmp->prev = NULL;
+	ft_push_deq(list, tmp);
 }

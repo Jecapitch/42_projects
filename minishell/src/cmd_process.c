@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_process.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:46:33 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/08/26 19:06:54 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/12 00:30:13 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	prepare_cmds(t_shdata *shdata, t_pipeline *pipeline, t_line *line)
 	{
 		cmd = ft_calloc(1, sizeof(t_cmd));
 		if (!cmd)
-			return (perror("prepare commands: ft_calloc"), \
+			return (perror("prepare_cmds: ft_calloc"), \
 					(EX_FAILURE));
 		if (make_struct_cmd(shdata, pipeline, cmd, i))
 			return (perror("make_struct_cmd"), \

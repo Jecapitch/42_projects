@@ -1,0 +1,15 @@
+{
+   ignore_readline_all
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   obj:*/libreadline.so*
+}
+
+{
+   ignore_history_all
+   Memcheck:Leak
+   match-leak-kinds: reachable,possible
+   ...
+   obj:*/libhistory.so*
+}

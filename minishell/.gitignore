@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+minishell
+a.out
+*.o
+*.a
+*.d
+*/obj
+obj
+*.d
+*.dSYM
+*output

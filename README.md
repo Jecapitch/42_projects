@@ -10,4 +10,4 @@ You can e-mail me at jepiscic@student.42belgium.be.
 - pipex: reproduce the behaviour of "file1 < cmd1 | cmd 2 > file2".
 - fractol : make fractals using MiniLibX, a small graphics library based on X11. My program can generate Julia set, Mandelbrot set, Sierpinski triangle and chaos game with various values and colors. I added some extra features to the mandatory ones.
 - philosophers : solving the dining philosophers problem with threads and mutexes on one hand (/philo), processes and semaphores on the other hand (/philo_bonus).
-- minishell : a simple bash-inspired shell (in collaboration with [Emerick-M](https://github.com/Emerick-M)).
+- minishell : a simple bash-inspired shell (in collaboration with [Emerick-M](https://github.com/Emerick-M)), implementing variable expansion, pipes, redirections (< << > >>), escape sequences, and some builtins (cd, echo, env, exit, export, pwd, unset).

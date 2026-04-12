@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_deq_utils.c                                   :+:      :+:    :+:   */
+/*   ft_list_deq_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/22 23:39:08 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/12 15:13:26 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_denode	*ft_list_tail_deq(t_deque *list)
 	t_denode	*last;
 
 	if (!list)
-		return (NULL);
+		return (ft_err_nonnull(NULL, -1, __func__), NULL);
 	last = list->head;
 	while (last->next)
 		last = last->next;
@@ -29,6 +29,8 @@ size_t	ft_listsize_deq(t_deque *list)
 	size_t		size;
 	t_denode	*node;
 
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__), 0);
 	size = 0;
 	node = list->head;
 	while (node)
@@ -43,7 +45,9 @@ void	ft_rot_deq(t_deque *list)
 {
 	t_denode	*tmp;
 
-	if (!list || list->size < 2)
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (list->size < 2)
 		return ;
 	tmp = ft_pop_deq(list);
 	ft_append_deq(list, tmp);
@@ -53,7 +57,9 @@ void	ft_rrot_deq(t_deque *list)
 {
 	t_denode	*tmp;
 
-	if (!list || list->size < 2)
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (list->size < 2)
 		return ;
 	tmp = list->tail;
 	list->tail = tmp->prev;

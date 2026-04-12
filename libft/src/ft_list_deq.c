@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_deque.c                                         :+:      :+:    :+:   */
+/*   ft_list_deq.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/07/28 02:09:43 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/12 15:13:53 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,38 @@
 
 t_deque	*ft_init_deq(void)
 {
-	t_deque	*list;
-
-	list = malloc(sizeof(t_deque));
-	if (!list)
-		return (NULL);
-	list->head = NULL;
-	list->size = 0;
-	return (list);
+	return (ft_calloc(1, sizeof(t_deque)));
 }
 
 t_denode	*ft_newnode_deq(void *content)
 {
 	t_denode	*newnode;
 
-	newnode = malloc(sizeof(t_denode));
+	newnode = ft_calloc(1, sizeof(t_denode));
 	if (!newnode)
 		return (NULL);
 	newnode->content = content;
-	newnode->prev = NULL;
-	newnode->next = NULL;
 	return (newnode);
 }
 
 void	ft_push_deq(t_deque *list, t_denode *newnode)
 {
-	if (!list || !newnode)
-		return ;
-	newnode->next = list->head;
-	newnode->next->prev = newnode;
-	list->head = newnode;
-	list->size++;
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (newnode)
+	{
+		newnode->next = list->head;
+		newnode->next->prev = newnode;
+		list->head = newnode;
+		list->size++;
+	}
 }
 
 void	ft_append_deq(t_deque *list, t_denode *newnode)
 {
-	if (!list || !newnode)
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (!newnode)
 		return ;
 	if (list->head)
 		list->tail->next = newnode;
@@ -62,7 +58,9 @@ void	ft_append_deq(t_deque *list, t_denode *newnode)
 
 void	ft_insert_deq(t_deque *list, t_denode *prev_node, t_denode *newnode)
 {
-	if (!list || !newnode)
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (!newnode)
 		return ;
 	if (!prev_node)
 		return (ft_push_deq(list, newnode));

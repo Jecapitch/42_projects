@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/10 07:07:07 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/12 15:08:17 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	ft_listdelone_deq(t_denode *node, void (*del)(void *))
 {
-	if (!node || !del)
+	if (!del)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (!node)
 		return ;
 	del(node->content);
 	free(node);
@@ -23,7 +25,7 @@ void	ft_listdelone_deq(t_denode *node, void (*del)(void *))
 void	ft_listclear_deq(t_deque **list, void (*del)(void *))
 {
 	if (!list || !(*list))
-		return ;
+		return (ft_err_nonnull(NULL, -1, __func__));
 	while ((*list)->size)
 		ft_listdelone_deq(ft_dequeue_deq(*list), del);
 	(*list)->head = NULL;
@@ -35,15 +37,18 @@ t_denode	*ft_dequeue_deq(t_deque *list)
 {
 	t_denode	*dequeued_node;
 
-	if (!list || !list->head)
-		return (NULL);
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__), NULL);
 	dequeued_node = list->head;
-	list->head = list->head->next;
-	if (list->head)
-		list->head->prev = NULL;
-	dequeued_node->prev = NULL;
-	dequeued_node->next = NULL;
-	list->size--;
+	if (dequeued_node)
+	{
+		list->head = list->head->next;
+		if (list->head)
+			list->head->prev = NULL;
+		dequeued_node->prev = NULL;
+		dequeued_node->next = NULL;
+		list->size--;
+	}
 	return (dequeued_node);
 }
 
@@ -51,21 +56,26 @@ t_denode	*ft_pop_deq(t_deque *list)
 {
 	t_denode	*popped_node;
 
-	if (!list || !list->head)
-		return (NULL);
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__), NULL);
 	popped_node = list->tail;
-	list->tail = list->tail->prev;
-	if (list->tail)
-		list->tail->next = NULL;
-	popped_node->prev = NULL;
-	popped_node->next = NULL;
-	list->size--;
+	if (popped_node)
+	{
+		list->tail = list->tail->prev;
+		if (list->tail)
+			list->tail->next = NULL;
+		popped_node->prev = NULL;
+		popped_node->next = NULL;
+		list->size--;
+	}
 	return (popped_node);
 }
 
 t_denode	*ft_extract_deq(t_deque *list, t_denode *node)
 {
-	if (!list || !list->head || !node)
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__), NULL);
+	if (!list->head || !node)
 		return (NULL);
 	if (node == list->head)
 		return (ft_dequeue_deq(list));

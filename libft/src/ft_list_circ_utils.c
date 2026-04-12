@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list_circ_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2025/01/21 20:40:57 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/12 15:12:32 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ t_node_circ	*ft_list_tail_circ(t_list_circ *list)
 {
 	t_node_circ	*last;
 
-	if (!list || !list->head)
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__), NULL);
+	if (!list->head)
 		return (NULL);
 	last = list->head;
 	while (last->next != list->head)
@@ -29,7 +31,9 @@ size_t	ft_listsize_circ(t_list_circ *list)
 	size_t		size;
 	t_node_circ	*node;
 
-	if (!list || !list->head)
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__), 0);
+	if (!list->head)
 		return (0);
 	size = 1;
 	node = list->head;
@@ -46,7 +50,9 @@ void	ft_listiter_circ(t_list_circ *list, void (*f)(void *))
 	t_node_circ	*node;
 	size_t		i;
 
-	if (!list || !list->head || !f)
+	if (!list || !f)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (!list->head)
 		return ;
 	node = list->head;
 	i = 0;
@@ -60,16 +66,22 @@ void	ft_listiter_circ(t_list_circ *list, void (*f)(void *))
 
 void	ft_rotlist_circ(t_list_circ *list)
 {
-	if (!list || list->size < 2)
-		return ;
-	list->tail = list->head;
-	list->head = list->head->next;
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (list->head)
+	{
+		list->tail = list->head;
+		list->head = list->head->next;
+	}
 }
 
 void	ft_rrotlist_circ(t_list_circ *list)
 {
-	if (!list || list->size < 2)
-		return ;
-	list->head = list->tail;
-	list->tail = list->tail->prev;
+	if (!list)
+		return (ft_err_nonnull(NULL, -1, __func__));
+	if (list->head)
+	{
+		list->head = list->tail;
+		list->tail = list->tail->prev;
+	}
 }

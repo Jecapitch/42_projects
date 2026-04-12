@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 16:38:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/02 23:38:18 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/12 15:46:25 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*next;
 
+	if (!lst || !del)
+		return (ft_err_nonnull(NULL, -1, __func__));
 	while (*lst)
 	{
 		next = (*lst)->next;

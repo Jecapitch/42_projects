@@ -6,12 +6,11 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 17:30:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 21:53:16 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:58:58 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "get_next_line.h"
 
 static size_t	ft_count_endl(char buffer[])
 {

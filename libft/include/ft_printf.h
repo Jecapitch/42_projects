@@ -6,17 +6,20 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/13 12:31:23 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 13:21:39 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # include "libft.h"
 # include <stdarg.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	1024
 # endif
+
 # define FCONV			"sdipucxXbBovV%"
 # define FFLAGS			"-+.0# "
 
@@ -51,6 +54,12 @@ struct s_print_format
 	char	lead[3];
 };
 
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_base(int nbr, char *base, int fd);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putunbr_fd(t_uint n, int fd);
 int		ft_isflag(int c);
 int		ft_isconv(int c);
 char	*chartostr(int c);
@@ -65,4 +74,4 @@ int		ft_print_tab(void *arr, int data_type, \
 					const char sep[], size_t arr_size);
 void	ft_fill_line(size_t len, size_t maxlen, int fill, int end);
 
-#endif
+#endif /*FT_PRINTF_H*/

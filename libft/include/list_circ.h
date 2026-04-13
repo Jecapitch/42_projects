@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/10 06:58:55 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 13:27:40 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_double_end_node	t_node_circ;
 typedef struct s_double_end_list	t_list_circ;
 
-// MAIN FUNCTIONS
+/* MAIN FUNCTIONS */
 t_list_circ	*ft_init_list_circ(void);
 t_node_circ	*ft_newnode_circ(void *content);
 void		ft_push_circ(t_list_circ *list, t_node_circ *newnode);
@@ -28,7 +28,7 @@ void		ft_insert_circ(t_list_circ *list, t_node_circ *prev_node, \
 t_node_circ	*ft_dequeue_circ(t_list_circ *list);
 t_node_circ	*ft_pop_circ(t_list_circ *list);
 
-// UTILS
+/* UTILS */
 void		ft_list_circ_int_display(t_list_circ *list, char *sep);
 size_t		ft_listsize_circ(t_list_circ *list);
 t_node_circ	*ft_list_tail_circ(t_list_circ *list);
@@ -36,8 +36,8 @@ void		ft_listiter_circ(t_list_circ *list, void (*f)(void *));
 void		ft_rotlist_circ(t_list_circ *list);
 void		ft_rrotlist_circ(t_list_circ *list);
 
-//DELETION
+/* DELETION */
 void		ft_listdelone_circ(t_node_circ *node, void (*del)(void *));
 void		ft_listclear_circ(t_list_circ **list, void (*del)(void *));
 
-#endif
+#endif /* LIST_CIRC_H */

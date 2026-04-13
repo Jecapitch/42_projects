@@ -29,7 +29,7 @@ static int	ft_code(int base)
 	return (code[base - 'a']);
 }
 
-char	*ft_ltostr(unsigned long n, int base)
+char	*ft_ltostr(t_ulong n, int base)
 {
 	char	a[38];
 	char	b[52];

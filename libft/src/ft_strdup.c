@@ -59,7 +59,7 @@ char	*ft_strldup(const char *s, size_t len)
 	return (dup);
 }
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, t_uint start, size_t len)
 {
 	if (!s)
 	{

@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 22:15:40 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:34:43 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@
 #  define BUFFER_SIZE	1028
 # endif
 
-typedef enum e_case	t_case;
+typedef unsigned int	t_uint;
+typedef unsigned char	t_uchar;
+typedef unsigned long	t_ulong;
+typedef enum e_case		t_case;
 
-extern char			**environ;
+extern char				**environ;
 
 enum e_case
 {
@@ -54,7 +57,7 @@ int			ft_isprintable(int c);
 int			ft_isspace(int c);
 int			ft_isset(int c, const char *set);
 int			ft_isset_hash(int c, const int hash[256]);
-int			ft_isint(char *s);
+int			ft_isint(const char *s, const char *base);
 
 // CHAR CASE
 int			ft_isupper(int c);
@@ -96,15 +99,15 @@ char		*ft_strdup(const char *s1);
 char		*ft_strldup(const char *s, size_t len);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t len);
-char		*ft_substr(const char *s, unsigned int start, size_t len);
+char		*ft_substr(const char *s, t_uint start, size_t len);
 
 // ARRAY COMPARE
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 
 ///// ARRAY ITERATE
-char		*ft_strmapi(const char *s, char (*f)(unsigned int, char));
-void		ft_striteri(char *s, void (*f)(unsigned int, char*));
+char		*ft_strmapi(const char *s, char (*f)(t_uint, char));
+void		ft_striteri(char *s, void (*f)(t_uint, char*));
 
 // ARRAY MEMORY
 void		ft_bzero(void *s, size_t n);
@@ -116,14 +119,14 @@ void		*ft_free_safe(void *ptr);
 
 // INT-STR
 size_t		ft_number_len(long n);
-size_t		ft_number_len_base(long n, unsigned int base);
-size_t		ft_unumber_len(unsigned long u);
-size_t		ft_unumber_len_base(unsigned long n, unsigned int base);
+size_t		ft_number_len_base(long n, t_uint base);
+size_t		ft_unumber_len(t_ulong u);
+size_t		ft_unumber_len_base(t_ulong n, t_uint base);
 int			ft_atoi(const char *str);
-long		ft_strtol(const char *str);
-long		ft_strtol_base(const char *s, const char *base);
+long		ft_strtol(const char *s, const char *base);
+t_ulong		ft_strtoul(const char *s, const char *base);
 char		*ft_itoa(int n);
-char		*ft_ltostr(unsigned long n, int base);
+char		*ft_ltostr(t_ulong n, int base);
 
 // ENVIRONMENT
 char		*ft_getenv(char *name);
@@ -142,7 +145,7 @@ void		ft_putstr_fd(char *s, int fd);
 void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_base(int nbr, char *base, int fd);
 void		ft_putnbr_fd(int n, int fd);
-void		ft_putunbr_fd(unsigned int n, int fd);
+void		ft_putunbr_fd(t_uint n, int fd);
 
 // LOG
 void		ft_err_nonnull(const char *file, int line, const char *fct);

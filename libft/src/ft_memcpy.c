@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 22:22:36 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:24:32 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	const unsigned char	*chsrc;
-	unsigned char		*chdst;
+	const t_uchar	*chsrc;
+	t_uchar			*chdst;
 
 	if (!dst || !src)
 	{
@@ -24,8 +24,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	}
 	if (src == dst)
 		return (dst);
-	chsrc = (const unsigned char *)src;
-	chdst = (unsigned char *)dst;
+	chsrc = (const t_uchar *)src;
+	chdst = (t_uchar *)dst;
 	while (n > 0)
 	{
 		*chdst = *chsrc;
@@ -38,8 +38,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	const unsigned char	*chsrc;
-	unsigned char		*chdst;
+	const t_uchar	*chsrc;
+	t_uchar			*chdst;
 
 	if (!dst || !src)
 	{
@@ -48,8 +48,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	if (src > dst)
 		return (ft_memcpy(dst, src, len));
-	chsrc = (const unsigned char *)src;
-	chdst = (unsigned char *)dst;
+	chsrc = (const t_uchar *)src;
+	chdst = (t_uchar *)dst;
 	while (len--)
 		chdst[len] = chsrc[len];
 	return (dst);

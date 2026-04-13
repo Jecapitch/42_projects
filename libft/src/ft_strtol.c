@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 00:39:49 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 21:54:13 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:35:43 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,13 @@ int	ft_atoi(const char *s)
 		ft_err_nonnull(NULL, -1, __func__);
 		return (0);
 	}
-	return (ft_strtol(s));
-}
-
-long	ft_strtol(const char *s)
-{
-	if (!s)
-	{
-		ft_err_nonnull(NULL, -1, __func__);
-		return (0);
-	}
-	return (ft_strtol_base(s, BASE10));
+	return (ft_strtol(s, BASE10));
 }
 
 static int	check_base(const char *base, int base_hash[256])
 {
-	int				b;
-	unsigned char	c;
+	int		b;
+	t_uchar	c;
 
 	b = 0;
 	while (b < 256)
@@ -45,7 +35,7 @@ static int	check_base(const char *base, int base_hash[256])
 	b = 0;
 	while (base[b])
 	{
-		c = (unsigned char)base[b];
+		c = (t_uchar)base[b];
 		if (base_hash[c] != -1 || c == '+' || c == '-' || ft_isspace(c))
 			return (0);
 		base_hash[c] = b;
@@ -54,7 +44,7 @@ static int	check_base(const char *base, int base_hash[256])
 	return (b);
 }
 
-long	ft_strtol_base(const char *s, const char *base)
+long	ft_strtol(const char *s, const char *base)
 {
 	long	n;
 	int		sign;
@@ -80,4 +70,14 @@ long	ft_strtol_base(const char *s, const char *base)
 		s++;
 	}
 	return (n * sign);
+}
+
+t_ulong	ft_strtoul(const char *s, const char *base)
+{
+	if (!s)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
+		return (0);
+	}
+	return (ft_strtol(s, base));
 }

@@ -21,7 +21,7 @@ void	*ft_free_safe(void *ptr)
 
 void	ft_free_str_tab(char **arr)
 {
-	unsigned int	i;
+	t_uint	i;
 
 	if (!arr)
 		return ;

@@ -83,7 +83,7 @@ void	ft_putnbr_fd(int n, int fd)
 	ft_putnbr_base(n, "0123456789", fd);
 }
 
-void	ft_putunbr_fd(unsigned int n, int fd)
+void	ft_putunbr_fd(t_uint n, int fd)
 {
 	char	a[16];
 	char	*conv;

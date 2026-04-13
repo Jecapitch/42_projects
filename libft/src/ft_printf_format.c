@@ -48,9 +48,9 @@ char	*ft_conversion(va_list *ptr, t_printf *format)
 	else if (format->conv == '%')
 		s = ft_strdup("%");
 	else if (format->conv == 'p')
-		s = ft_ltostr(va_arg(*ptr, unsigned long), format->conv);
+		s = ft_ltostr(va_arg(*ptr, t_ulong), format->conv);
 	else if (ft_isset(format->conv, "uxXbBovV"))
-		s = ft_ltostr(va_arg(*ptr, unsigned int), format->conv);
+		s = ft_ltostr(va_arg(*ptr, t_uint), format->conv);
 	return (s);
 }
 

@@ -17,12 +17,12 @@ size_t	ft_number_len(long n)
 	return (ft_number_len_base(n, 10));
 }
 
-size_t	ft_unumber_len(unsigned long n)
+size_t	ft_unumber_len(t_ulong n)
 {
 	return (ft_unumber_len_base(n, 10));
 }
 
-size_t	ft_number_len_base(long n, unsigned int base)
+size_t	ft_number_len_base(long n, t_uint base)
 {
 	size_t	len;
 
@@ -35,7 +35,7 @@ size_t	ft_number_len_base(long n, unsigned int base)
 	return (len);
 }
 
-size_t	ft_unumber_len_base(unsigned long n, unsigned int base)
+size_t	ft_unumber_len_base(t_ulong n, t_uint base)
 {
 	size_t	len;
 

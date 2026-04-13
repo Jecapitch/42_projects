@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/10 05:36:54 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:33:58 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_isdigit(int c)
 	return ('0' <= c && c <= '9');
 }
 
-int	ft_isint(char *s)
+int	ft_isint(const char *s, const char *base)
 {
 	size_t	len;
 	long	n;
@@ -51,6 +51,6 @@ int	ft_isint(char *s)
 			return (0);
 		len++;
 	}
-	n = ft_strtol(s - sign);
+	n = ft_strtol(s - sign, base);
 	return (len && !s[len] && INT_MIN <= n && n <= INT_MAX);
 }

@@ -6,16 +6,16 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 20:29:37 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:24:12 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(const char *s, char (*f)(t_uint, char))
 {
-	unsigned int	i;
-	char			*newstr;
+	t_uint	i;
+	char	*newstr;
 
 	if (!s || !f)
 	{
@@ -35,9 +35,9 @@ char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 	return (newstr);
 }
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(t_uint, char*))
 {
-	unsigned int	i;
+	t_uint	i;
 
 	if (!s || !f)
 	{

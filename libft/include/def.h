@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:19:18 by jepiscic          #+#    #+#             */
-/*   Updated: 2026/04/13 13:23:18 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 16:24:45 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,7 @@
 typedef unsigned int	t_uint;
 typedef unsigned char	t_uchar;
 typedef unsigned long	t_ulong;
-typedef enum e_case		t_case;
 
 extern char				**environ;
-
-enum e_case
-{
-	LOWER,
-	UPPER
-};
 
 #endif /* DEF_H */

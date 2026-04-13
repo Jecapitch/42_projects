@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 09:34:37 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 22:20:51 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 16:16:39 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,11 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 		ft_err_nonnull(NULL, -1, __func__);
 		return (dst_len + src_len);
 	}
-	if (dstsize > dst_len)
-		ft_strlcpy(dst + dst_len, src, dstsize - dst_len);
+	if (dstsize <= dst_len)
+		return (dstsize + src_len);
+	dst += dst_len;
+	dstsize -= dst_len;
+	ft_strlcpy(dst, src, dstsize);
 	return (dst_len + src_len);
 }
 

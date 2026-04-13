@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 20:38:35 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:46:56 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*ft_strchr_set(const char *s, char *set)
 		ft_err_nonnull(NULL, -1, __func__);
 		return (NULL);
 	}
+	if (!(*set))
+		return ((char *)s + ft_strlen(s));
 	while (*s)
 	{
 		if (ft_isset(*s, set))
@@ -67,6 +69,8 @@ char	*ft_strrchr_set(const char *s, char *set)
 		ft_err_nonnull(NULL, -1, __func__);
 		return (NULL);
 	}
+	if (!(*set))
+		return ((char *)s + ft_strlen(s));
 	last_found = NULL;
 	while (*s)
 	{

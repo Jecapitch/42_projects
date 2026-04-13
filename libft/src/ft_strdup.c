@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 22:21:22 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 15:51:56 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ char	*ft_strldup(const char *s, size_t len)
 
 char	*ft_substr(const char *s, t_uint start, size_t len)
 {
+	size_t	slen;
+
 	if (!s)
 	{
 		ft_err_nonnull(NULL, -1, __func__);
@@ -68,6 +70,11 @@ char	*ft_substr(const char *s, t_uint start, size_t len)
 	}
 	if (ft_strlen(s) <= start)
 		return (ft_strdup(""));
+	slen = ft_strlen(s);
+	if (start > slen)
+		return (ft_strdup(""));
 	s += start;
+	slen -= start;
+	len = (len <= slen) * (len - slen) + slen;
 	return (ft_strldup(s, len));
 }

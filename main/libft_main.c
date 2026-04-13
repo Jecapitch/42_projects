@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/07 13:42:41 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:53:44 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@ checks most functions of the Libft project mandatory part. When possible,
 they're compared with their model from libc on consecutive lines.
 
 When needed (e.g. char check, search, copy and compare functions), it tests
-several cases, sometimes including edge cases (e.g. ft_split, ft_atoi, ft_itoa).
+several cases, sometimes including edge cases.
 
-Don't panic if fsanitizer gets mad. It can come from the values provided in
-the tests, e.g. the pointers in standard memcpy. Change them ad lib. to understand
-what's happening. If nothing works, then the cause could be your functions.
+Don't panic if your compiler gets mad. It can come from the values provided \
+in the tests, e.g. null pointers in standard functions. Change them ad lib. \
+to understand what's happening. If nothing works, then the cause could be \
+your own functions.
+
+NB: On Linux, compile with -lbsd. On MacOs, comment #include <bsd/string.h>.
 
 It's up to you to customize the tests to try your libft.
-
-NB : this was made for MacOs. On Linux, functions non available in libc will crash.
-Just comment them and it will be fine.
 
 ==================================FUNCTIONS==================================
 ===================================TESTED====================================
@@ -34,7 +34,7 @@ int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int			ft_isascii(int c);
-int			ft_isprint(int c);
+int			ft_isprintable(int c);
 
 // CHAR TRANSFORM
 int			ft_toupper(int c);
@@ -104,6 +104,7 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 #include <limits.h>
 #include <ctype.h>
 #include <string.h>
+#include <bsd/string.h>
 
 void charchecks(void)
 {
@@ -172,18 +173,18 @@ void charchecks(void)
 
 	ft_putendl_fd("", 1);
 	
-	ft_putstr_fd("ft_isprint('a') = ", 1); ft_putnbr_fd(ft_isprint('a'), 1); ft_putchar_fd('\n', 1);
-	ft_putstr_fd("isprint('a') = ", 1); ft_putnbr_fd(isprint('a'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprintable('a') = ", 1); ft_putnbr_fd(ft_isprintable('a'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprintable('a') = ", 1); ft_putnbr_fd(ft_isprintable('a'), 1); ft_putchar_fd('\n', 1);
 
 	ft_putendl_fd("", 1);
 	
-	ft_putstr_fd("ft_isprint('8') = ", 1); ft_putnbr_fd(ft_isprint('8'), 1); ft_putchar_fd('\n', 1);
-	ft_putstr_fd("isprint('8') = ", 1); ft_putnbr_fd(isprint('8'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprintable('8') = ", 1); ft_putnbr_fd(ft_isprintable('8'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprintable('8') = ", 1); ft_putnbr_fd(ft_isprintable('8'), 1); ft_putchar_fd('\n', 1);
 
 	ft_putendl_fd("", 1);
 	
-	ft_putstr_fd("ft_isprint(4) = ", 1); ft_putnbr_fd(ft_isprint(4), 1); ft_putchar_fd('\n', 1);
-	ft_putstr_fd("isprint(4) = ", 1); ft_putnbr_fd(isprint(4), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprintable(4) = ", 1); ft_putnbr_fd(ft_isprintable(4), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprintable(4) = ", 1); ft_putnbr_fd(ft_isprintable(4), 1); ft_putchar_fd('\n', 1);
 }
 
 void	transcase(void)
@@ -242,7 +243,6 @@ void	strings(void)
 	char	a[] = "Cette phrase a une longueur de 34.";
 	char	a2[] = "\"Cette phrase a une longueur de 34.\"";
 	char	s[] = "\t ) .Cette phrase n'aurait-elle pas des trucs en trop ?)  \n";
-	char	*s = NULL;
 	char	s2[] = "\"\\t ) .Cette phrase n'aurait-elle pas des trucs en trop ?)  \\n\"";
 	char	*trim;
 	char	set[] = " \n\t.)";
@@ -263,8 +263,8 @@ void	strings(void)
 	ft_putendl_fd("trim = ft_strtrim(s, set);", 1);
 	trim = ft_strtrim(s, set);
 	ft_putstr_fd("=> trim = ", 1); ft_putendl_fd(trim, 1);
-	free(trim);
-	ft_putendl_fd("free(trim);", 1);
+	ft_free_safe(trim);
+	ft_putendl_fd("ft_free_safe(trim);", 1);
 }
 
 void	splitjoin(void)
@@ -298,7 +298,7 @@ void	splitjoin(void)
 	ft_putstr_fd("char\td[] = \"", 1); ft_putstr_fd(d, 1); ft_putendl_fd("\"", 1);
 	ft_putendl_fd("char\t*j;\n", 1);
 	ft_putstr_fd("j = ft_strjoin(c, d) \n=> j = ", 1); ft_putendl_fd(j, 1);
-	free(j);
+	ft_free_safe(j);
 	
 	ft_putendl_fd("", 1);
 
@@ -318,7 +318,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	ft_free_str_arr(w);
+	ft_free_str_tab(w);
 
 	ft_putendl_fd("\n", 1);
 
@@ -330,7 +330,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	ft_free_str_arr(w);
+	ft_free_str_tab(w);
 
 	ft_putendl_fd("\n", 1);
 
@@ -342,7 +342,7 @@ void	splitjoin(void)
 		ft_putstr_fd(w[i], 1); ft_putstr_fd(" // ", 1);
 		i++;
 	}
-	ft_free_str_arr(w);
+	ft_free_str_tab(w);
 }
 
 void	search(void)
@@ -399,15 +399,15 @@ void	search(void)
 
 void	copystr(void)
 {
-	char		dst[15];
-	char		dst2[15];
+	char		dst[15] = "";
+	char		dst2[15] = "";
 	char		*dst3 = NULL;
-	char		dst4[15];
-	char		dst5[15];
+	char		dst4[15] = "";
+	char		dst5[15] = "";
 	char		src[] = "et l'unique cordeau des trompettes marines";
-	char		*dup;
+	char		*dup = NULL;
 	size_t		copied;
-	char		*substring;
+	char		*substring = NULL;
 
 	ft_putendl_fd("char\tdst[15]", 1);
 	ft_putendl_fd("char\tsrc[] = \"et l'unique cordeau des trompettes marines\"", 1);
@@ -437,12 +437,12 @@ void	copystr(void)
 
 	dup = ft_strdup(src);
 	ft_putstr_fd("dup = ft_strdup(src) => dup = ", 1); ft_putendl_fd(dup, 1);
-	free(dup);
+	ft_free_safe(dup);
 
-//	ft_memcpy(dst + 5, dst + 12, 10);
-//	memcpy(dst2 + 5, dst2 + 12, 10);
-//	ft_putstr_fd("ft_memcpy(dst + 5, dst + 12, 10) => dst = ", 1); ft_putendl_fd(dst, 1);
-//	ft_putstr_fd("memcpy(dst + 2, dst + 12, 10) => dst = ", 1); ft_putendl_fd(dst2, 1);
+	ft_memcpy(dst + 5, dst + 12, 10);
+	memcpy(dst2 + 5, dst2 + 12, 10);
+	ft_putstr_fd("ft_memcpy(dst + 5, dst + 12, 10) => dst = ", 1); ft_putendl_fd(dst, 1);
+	ft_putstr_fd("memcpy(dst + 2, dst + 12, 10) => dst = ", 1); ft_putendl_fd(dst2, 1);
 	
 	ft_putendl_fd("", 1);
 
@@ -455,7 +455,7 @@ void	copystr(void)
 
 	substring = ft_substr(src, 8, 9);
 	ft_putstr_fd("ft_substr(src, src + 8, 9) = ", 1); ft_putendl_fd(substring, 1);
-	free(substring);
+	ft_free_safe(substring);
 }
 
 void	copy_int(void)
@@ -623,36 +623,36 @@ void	intstr(void)
 	z = ft_itoa(a);
 	ft_putendl_fd("z = ft_itoa(a);", 1);
 	ft_putstr_fd("ft_putstr_fd(z, 1); => ", 1); ft_putendl_fd(z, 1);
-	free(z);
+	ft_free_safe(z);
 
 	z = ft_itoa(b);
 	ft_putendl_fd("z = ft_itoa(b);", 1);
 	ft_putstr_fd("ft_putstr_fd(z, 1); => ", 1); ft_putendl_fd(z, 1);
-	free(z);
+	ft_free_safe(z);
 
 	z = ft_itoa(c);
 	ft_putendl_fd("z = ft_itoa(c);", 1);
 	ft_putstr_fd("ft_putstr_fd(z, 1); => ", 1);
 	ft_putendl_fd(z, 1);
-	free(z);
+	ft_free_safe(z);
 
 	z = ft_itoa(d);
 	ft_putendl_fd("z = ft_itoa(d);", 1);
 	ft_putstr_fd("ft_putstr_fd(z, 1); => ", 1);
 	ft_putendl_fd(z, 1);
-	free(z);
+	ft_free_safe(z);
 
 	z = ft_itoa(e);
 	ft_putendl_fd("z = ft_itoa(e);", 1);
 	ft_putstr_fd("ft_putstr_fd(z, 1); => ", 1);
 	ft_putendl_fd(z, 1);
-	free(z);
+	ft_free_safe(z);
 
 	z = ft_itoa(f);
 	ft_putendl_fd("z = ft_itoa(f);", 1);
 	ft_putstr_fd("ft_putstr_fd(z, 1); => ", 1);
 	ft_putendl_fd(z, 1);
-	free(z);
+	ft_free_safe(z);
 }
 
 #include <stdio.h>

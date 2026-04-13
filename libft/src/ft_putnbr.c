@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 04:35:37 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 20:14:09 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:29:49 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_putnbr_base_fd(long n, char *base, int fd)
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	ft_putnbr_base(n, "0123456789", fd);
+	ft_putnbr_base_fd(n, "0123456789", fd);
 }
 
 void	ft_putunbr_fd(t_uint n, int fd)

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Lists all the function symbols used in the binary files passed as arguments
+
+FILE=$@
+
+nm $FILE | grep -E " _[a-z]" | grep -E .+ | cut -d _ -f 2- | sort | uniq

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+         #
+#    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/30 00:13:05 by jpiscice          #+#    #+#              #
-#    Updated: 2025/04/09 13:05:52 by jpiscice         ###   ########.fr        #
+#    Updated: 2026/04/14 23:10:47 by jepiscic         ###   ########.fr        #
 #    Updated: 2025/01/04 23:48:54 by jpiscice         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -46,7 +46,7 @@ endif
 LINK	=	$(LIBLINK) $(XLINK)
 MLX		=	$(MLXDIR)/$(MLXNAME)
 
-CFLAGS += -Ofast -Wall -Wextra -Werror -Wno-error=unused-result -Wno-unused-result -g
+CFLAGS += -O3 -ffast-math -Wall -Wextra -Werror -Wno-error=unused-result -Wno-unused-result -g
 
 CPPFLAGS += -MMD -MP -I$(INCDIR) -I$(LFTDIR)/include -I$(MLXDIR) -I/usr/include
 

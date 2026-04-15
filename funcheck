@@ -3,5 +3,10 @@
 # Lists all the function symbols used in the binary files passed as arguments
 
 FILE=$@
+OS=$(uname)
 
-nm $FILE | grep -E " _[a-z]" | grep -E .+ | cut -d _ -f 2- | sort | uniq
+if [[ $OS = "Darwin" ]]; then
+	nm $FILE | grep -E " _[a-z]" | grep -E .+ | cut -d _ -f 2- | sort | uniq
+else
+	nm -j $FILE | grep -v -E "\.|__" | sort | uniq
+fi

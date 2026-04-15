@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/13 14:53:44 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/15 12:46:05 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
 int			ft_isascii(int c);
-int			ft_isprintable(int c);
+int			ft_isprint(int c);
 
 // CHAR TRANSFORM
 int			ft_toupper(int c);
@@ -173,18 +173,18 @@ void charchecks(void)
 
 	ft_putendl_fd("", 1);
 	
-	ft_putstr_fd("ft_isprintable('a') = ", 1); ft_putnbr_fd(ft_isprintable('a'), 1); ft_putchar_fd('\n', 1);
-	ft_putstr_fd("ft_isprintable('a') = ", 1); ft_putnbr_fd(ft_isprintable('a'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprint('a') = ", 1); ft_putnbr_fd(ft_isprint('a'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprint('a') = ", 1); ft_putnbr_fd(ft_isprint('a'), 1); ft_putchar_fd('\n', 1);
 
 	ft_putendl_fd("", 1);
 	
-	ft_putstr_fd("ft_isprintable('8') = ", 1); ft_putnbr_fd(ft_isprintable('8'), 1); ft_putchar_fd('\n', 1);
-	ft_putstr_fd("ft_isprintable('8') = ", 1); ft_putnbr_fd(ft_isprintable('8'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprint('8') = ", 1); ft_putnbr_fd(ft_isprint('8'), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprint('8') = ", 1); ft_putnbr_fd(ft_isprint('8'), 1); ft_putchar_fd('\n', 1);
 
 	ft_putendl_fd("", 1);
 	
-	ft_putstr_fd("ft_isprintable(4) = ", 1); ft_putnbr_fd(ft_isprintable(4), 1); ft_putchar_fd('\n', 1);
-	ft_putstr_fd("ft_isprintable(4) = ", 1); ft_putnbr_fd(ft_isprintable(4), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprint(4) = ", 1); ft_putnbr_fd(ft_isprint(4), 1); ft_putchar_fd('\n', 1);
+	ft_putstr_fd("ft_isprint(4) = ", 1); ft_putnbr_fd(ft_isprint(4), 1); ft_putchar_fd('\n', 1);
 }
 
 void	transcase(void)
@@ -354,7 +354,7 @@ void	search(void)
 	ft_putstr_fd("char\tf[] = ", 1); ft_putendl_fd(f, 1);
 	ft_putendl_fd("", 1);
 	
-	char *ptr = ft_strchr("teste", 'e');
+	char *ptr = ft_strchr(s, 'i');
 	ft_putstr_fd("ft_strchr(s, 'i') = ", 1); if (!ptr) ft_putendl_fd("NULL", 1); else ft_putendl_fd(ptr, 1);
 	ft_putstr_fd("strchr(s, 'i') = ", 1); ft_putendl_fd(strchr(s, 'i'), 1);
 	ft_putendl_fd("", 1);

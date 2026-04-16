@@ -95,7 +95,7 @@
 
 	clear
 	echo -en $BCYN
-	cat << EOF
+	cat << 'EOF'
 
  ,dPYb,       ,dPYb,      ,dPYb,    I8
  IP'`Yb       IP'`Yb      IP'`Yb    I8

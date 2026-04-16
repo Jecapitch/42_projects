@@ -6,7 +6,7 @@
 #    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/04/12 00:11:57 by jepiscic         ###   ########.fr        #
+#    Updated: 2026/04/16 02:03:48 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ ifeq ($(UNAME),FreeBSD)
 	CC = clang
 endif
 
-CFLAGS += -O3 -Wall -Wextra -Werror -Wno-error=unused-result -Wno-unused-result -g
+CFLAGS += -O3 -ffast-math -Wall -Wextra -Werror
 
 CPPFLAGS += -MMD -MP -I$(INCDIR)/
 

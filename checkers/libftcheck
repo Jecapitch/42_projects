@@ -1,0 +1,295 @@
+#!/bin/bash
+
+### DECLARATIONS ###
+
+	if [[ -e $1 ]]; then
+		cd $1
+	fi
+
+	if [[ -e norminette.txt ]]; then
+		rm -f norminette.txt
+	fi
+
+	OS=$(uname)
+	DIR="$(pwd)"
+	NAME=libft.a
+	NORM_LOG=norminette.txt
+
+	# Regular text
+	BLK="\033[0;30m"
+	RED="\033[0;31m"
+	GRN="\033[0;32m"
+	YEL="\033[0;33m"
+	BLU="\033[0;34m"
+	MAG="\033[0;35m"
+	CYN="\033[0;36m"
+	WHT="\033[0;37m"
+
+	# Regular bold text
+	BBLK="\033[1;30m"
+	BRED="\033[1;31m"
+	BGRN="\033[1;32m"
+	BYEL="\033[1;33m"
+	BBLU="\033[1;34m"
+	BMAG="\033[1;35m"
+	BCYN="\033[1;36m"
+	BWHT="\033[1;37m"
+
+	# Reset color
+	CRESET="\033[0m"
+
+	FORBIDDEN=(
+		isalpha isdigit isalnum isascii isprint
+		toupper tolower
+		strlen
+		strtrim
+		memchr
+		strchr strrchr strstr strnstr
+		memcpy memmove
+		strcpy strncpy strlcpy strdup
+		substr
+		strcat strncat strlcat strjoin
+		memcmp
+		strcmp strncmp
+		memset bzero
+		atoi atoi strtol
+		calloc realloc
+		printf dprintf sprintf snprintf puts
+		open read close fopen fread fclose
+		main exit
+	)
+
+	ALLOWED=(
+		malloc free write
+	)
+
+	REQUIRED_FUNCS=(
+	ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint
+	ft_toupper ft_tolower
+	ft_strlen
+	ft_strtrim
+	ft_strlcat ft_strjoin
+	ft_split
+	ft_memchr ft_strchr ft_strrchr ft_strnstr
+	ft_strlcpy ft_strdup ft_memcpy ft_memmove ft_substr
+	ft_strncmp ft_memcmp
+	ft_memset ft_bzero
+	ft_calloc
+	ft_strmapi ft_striteri
+	ft_lstsize ft_lstlast
+	ft_lstnew ft_lstadd_front ft_lstadd_back
+	ft_lstdelone ft_lstclear
+	ft_lstiter ft_lstmap
+	)
+
+	REQUIRED_FILES=(
+		Makefile libft.h README.md
+	)
+
+	FILES=$(find $DIR -type f | grep -v .git)
+
+	ERROR=0
+	COUNT=0
+
+### PROGRAM ###
+
+	clear
+	echo -en $BCYN
+	cat << EOF
+
+ ,dPYb,       ,dPYb,      ,dPYb,    I8
+ IP'`Yb       IP'`Yb      IP'`Yb    I8
+ I8  8I  gg   I8  8I      I8  8I 88888888
+ I8  8'  ""   I8  8'      I8  8'    I8
+ I8 dP   gg   I8 dP       I8 dP     I8
+ I8dP    88   I8dP   88gg I8dP      I8
+ I8P     88   I8P    8I   I8P      ,I8,
+,d8b,_ _,88,_,d8b,  ,8I  ,d8b,_   ,d88b,
+8P'"Y888P""Y88P'"Y88P"'  PI8"888888P""Y88
+                          I8 `8,
+                          I8  `8,
+                          I8   8I
+                          I8   8I
+                          I8, ,8'
+                           "Y8P'
+EOF
+	echo "jepiscic@42"
+	echo -e $CRESET
+
+	echo -e Working directory: $DIR"\\n"
+
+
+	echo -e "$BBLU"CHECKING FILES"$CRESET"
+
+### CHECKING REQUIRED FILES ###
+
+	ERROR=0
+	for f in ${REQUIRED_FILES[@]}; do
+		grep -w $f <<< ${FILES[*]} > /dev/null
+		if [[ $? != 0 ]]; then
+			((ERROR+=1))
+			((COUNT+=1))
+			echo -e $f "$BRED"not found"$CRESET"
+		fi
+	done
+
+	echo -n "====> "
+
+	if [[ $ERROR == 0 ]]; then
+		echo -e "$BGRN"Required files OK"$CRESET"
+	elif [[ $ERROR == 1 ]]; then
+		echo -e "$BRED"$ERROR required file not found"$CRESET"
+	else
+		echo -e "$BRED"$ERROR required files not found"$CRESET"
+	fi
+
+
+### CHECKING FILE NAMES ###
+
+	ERROR=0
+	for f in ${FILES[@]}; do
+		f=$(basename "$f")
+		if ! [[ ${REQUIRED_FILES[*]} =~ $f ]] && ! [[ $f =~ ^ft_.*\.c$ ]]; then
+			((ERROR+=1))
+			((COUNT+=1))
+			echo -e $f: "$BRED"invalid file name"$CRESET"
+		fi
+	done
+
+	echo -n "====> "
+
+	if [[ $ERROR == 0 ]]; then
+		echo -e "$BGRN"File names OK"$CRESET"
+	elif [[ $ERROR == 1 ]]; then
+		echo -e "$BRED"$ERROR invalid file name"$CRESET"
+	else
+		echo -e "$BRED"$ERROR invalid file names"$CRESET"
+	fi
+
+	echo ""
+
+
+### NORM ###
+
+	echo -e "$BBLU"CHECKING NORM"$CRESET"
+
+	norminette "$DIR" | grep Error > "$NORM_LOG"
+
+	if ! [[ -s $NORM_LOG ]]; then
+		echo -e "====> ""$BGRN"Norm OK"$CRESET"
+	else
+		cat "$NORM_LOG"
+		((COUNT += 1))
+	fi
+
+	rm -f "$NORM_LOG"
+
+	echo ""
+
+
+### MAKEFILE ###
+
+	echo -e "$BBLU"CHECKING MAKEFILE"$CRESET"
+
+	ERROR=0
+
+	make -C $DIR >/dev/null 2>/dev/null
+	if [[ $? != 0 ]]; then
+		echo -e "$BRED"Error"$CRESET": make
+		((COUNT += 1))
+		((ERROR += 1))
+	fi
+
+	make clean -C $DIR >/dev/null 2>/dev/null
+	if [[ $? != 0 ]]; then
+		echo -e "$BRED"Error"$CRESET": make clean
+		((COUNT += 1))
+		((ERROR += 1))
+	fi
+
+	make fclean -C $DIR >/dev/null 2>/dev/null
+	if [[ $? != 0 ]]; then
+		echo -e "$BRED"Error"$CRESET": make fclean
+		((COUNT += 1))
+		((ERROR += 1))
+	fi
+
+	make all -C $DIR >/dev/null 2>/dev/null
+	if [[ $? != 0 ]]; then
+		echo -e "$BRED"Error"$CRESET": make all
+		((COUNT += 1))
+		((ERROR += 1))
+	fi
+
+	make "$NAME" -C $DIR >/dev/null 2>/dev/null
+	if [[ $? != 0 ]]; then
+		echo -e "$BRED"Error"$CRESET": make "$NAME"
+		((COUNT += 1))
+		((ERROR += 1))
+	fi
+
+	make re -C $DIR >/dev/null 2>/dev/null
+	if [[ $? != 0 ]]; then
+		echo -e "$BRED"Error"$CRESET": make re
+		((COUNT += 1))
+		((ERROR += 1))
+	fi
+
+	if [[ -z $DIR/$NAME ]]; then
+		echo -e "$BRED"Error"$CRESET": $NAME not found
+		((COUNT += 1))
+		((ERROR += 1))
+	fi
+
+	if [[ $ERROR == 0 ]]; then
+		echo -e "$BGRN"Makefile OK"$CRESET"
+	fi
+
+	echo ""
+
+
+### FORBIDDEN FUNCTIONS ###
+
+	echo -e "$BBLU"CHECKING FUNCTIONS"$CRESET"
+
+	if [[ $OS = "Linux" ]]; then
+		FUNC=$(nm -j "$NAME" | grep -v -E "\.|__" | sort | uniq)
+	else
+		FUNC=$(nm "$NAME" | grep -E " _[a-z]" | grep -E .+ | cut -d _ -f 2- | sort | uniq)
+	fi
+
+	ERROR=0
+	for f in ${FUNC[@]}; do
+		if [[ ${FORBIDDEN[*]} =~ $f ]]; then
+			echo -e "$BRED"Use of forbidden function"$CRESET": $f
+			((ERROR += 1))
+			((COUNT += 1))
+		fi
+	done
+
+	if [[ -e "$NAME" ]]; then
+		echo -n "====> "
+		make fclean -C $DIR >/dev/null
+		if [[ $ERROR == 0 ]]; then
+			echo -e "$BGRN"No forbidden function found"$CRESET"
+		elif [[ $ERROR == 0 ]]; then
+			echo -e "$BRED"$ERROR forbidden function found"$CRESET"
+		else
+			echo -e "$BRED"$ERROR forbidden functions found"$CRESET"
+		fi
+	fi
+
+	echo ""
+
+
+### RESULT ###
+
+	echo -e "$BBLU"RESULT"$CRESET"
+
+	if [[ $COUNT == 0 ]]; then
+		echo -e "$BGRN"$NAME OK"$CRESET"
+	elif [[ $COUNT == 1 ]]; then
+		echo -e "$BRED"$COUNT error: $NAME KO"$CRESET"
+	else
+		echo -e "$BRED"$COUNT errors: $NAME KO"$CRESET"
+	fi

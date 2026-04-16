@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/15 12:46:05 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/16 10:06:32 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ in the tests, e.g. null pointers in standard functions. Change them ad lib. \
 to understand what's happening. If nothing works, then the cause could be \
 your own functions.
 
-NB: On Linux, compile with -lbsd. On MacOs, comment #include <bsd/string.h>.
+NB: On Linux, compile with -lbsd.
 
 It's up to you to customize the tests to try your libft.
 
@@ -104,7 +104,9 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 #include <limits.h>
 #include <ctype.h>
 #include <string.h>
-#include <bsd/string.h>
+#ifdef __linux__
+# include <bsd/string.h>
+#endif
 
 void charchecks(void)
 {

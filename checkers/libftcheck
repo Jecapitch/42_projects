@@ -272,7 +272,7 @@ EOF
 		make fclean -C $DIR >/dev/null
 		if [[ $ERROR == 0 ]]; then
 			echo -e "$BGRN"No forbidden function found"$CRESET"
-		elif [[ $ERROR == 0 ]]; then
+		elif [[ $ERROR == 1 ]]; then
 			echo -e "$BRED"$ERROR forbidden function found"$CRESET"
 		else
 			echo -e "$BRED"$ERROR forbidden functions found"$CRESET"

@@ -83,7 +83,7 @@ ifeq ($(UNAME),FreeBSD)
 	CC = clang
 endif
 
-CFLAGS += -O3 -ffast-math -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
 
 CPPFLAGS += -I$(INCDIR)/
 

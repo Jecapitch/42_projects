@@ -6,12 +6,15 @@
 		cd $1
 	fi
 
-	if [[ -e norminette.txt ]]; then
+	DIR="$(pwd)"
+
+	if [[ -e $DIR/norminette.txt ]]; then
 		rm -f norminette.txt
 	fi
 
+	make fclean -C $DIR >/dev/null 2>/dev/null
+
 	OS=$(uname)
-	DIR="$(pwd)"
 	NAME=libft.a
 	NORM_LOG=norminette.txt
 
@@ -118,14 +121,13 @@ EOF
 
 	echo -e Working directory: $DIR"\\n"
 
-
 	echo -e "$BBLU"CHECKING FILES"$CRESET"
 
 ### CHECKING REQUIRED FILES ###
 
 	ERROR=0
 	for f in ${REQUIRED_FILES[@]}; do
-		grep -w $f <<< ${FILES[*]} > /dev/null
+		grep -qw $f <<< ${FILES[*]}
 		if [[ $? != 0 ]]; then
 			((ERROR+=1))
 			((COUNT+=1))
@@ -193,47 +195,17 @@ EOF
 
 	ERROR=0
 
-	make -C $DIR >/dev/null 2>/dev/null
-	if [[ $? != 0 ]]; then
-		echo -e "$BRED"Error"$CRESET": make
-		((COUNT += 1))
-		((ERROR += 1))
-	fi
-
-	make clean -C $DIR >/dev/null 2>/dev/null
-	if [[ $? != 0 ]]; then
-		echo -e "$BRED"Error"$CRESET": make clean
-		((COUNT += 1))
-		((ERROR += 1))
-	fi
-
-	make fclean -C $DIR >/dev/null 2>/dev/null
-	if [[ $? != 0 ]]; then
-		echo -e "$BRED"Error"$CRESET": make fclean
-		((COUNT += 1))
-		((ERROR += 1))
-	fi
-
-	make all -C $DIR >/dev/null 2>/dev/null
-	if [[ $? != 0 ]]; then
-		echo -e "$BRED"Error"$CRESET": make all
-		((COUNT += 1))
-		((ERROR += 1))
-	fi
-
-	make "$NAME" -C $DIR >/dev/null 2>/dev/null
-	if [[ $? != 0 ]]; then
-		echo -e "$BRED"Error"$CRESET": make "$NAME"
-		((COUNT += 1))
-		((ERROR += 1))
-	fi
-
-	make re -C $DIR >/dev/null 2>/dev/null
-	if [[ $? != 0 ]]; then
-		echo -e "$BRED"Error"$CRESET": make re
-		((COUNT += 1))
-		((ERROR += 1))
-	fi
+	for m in "" clean fclean all "$NAME" re; do
+		make "$m" -C $DIR >/dev/null 2>/dev/null
+		echo -en make "$m"
+		if [[ $? == 0 ]]; then
+			echo -e "$BGRN"OK"$CRESET"
+		else
+			echo -e "$BRED"KO"$CRESET"
+			((COUNT += 1))
+			((ERROR += 1))
+		fi
+	done
 
 	if [[ -z $DIR/$NAME ]]; then
 		echo -e "$BRED"Error"$CRESET": $NAME not found
@@ -248,15 +220,45 @@ EOF
 	echo ""
 
 
-### FORBIDDEN FUNCTIONS ###
+### CHECKING FUNCTIONS ###
 
 	echo -e "$BBLU"CHECKING FUNCTIONS"$CRESET"
-
 	if [[ $OS = "Linux" ]]; then
 		FUNC=$(nm -j "$NAME" | grep -v -E "\.|__" | sort | uniq)
 	else
 		FUNC=$(nm "$NAME" | grep -E " _[a-z]" | grep -E .+ | cut -d _ -f 2- | sort | uniq)
 	fi
+
+
+##### REQUIRED FUNCTIONS #####
+
+	ERROR=0
+	CATH=$(cat libft.h | grep -v "/\**\/" | grep -v "//")
+
+	for f in ${REQUIRED_FUNCS[@]}; do
+		if [[ ${FUNC[*]} =~ $f ]]; then
+			echo -e $f "$BGRN"OK"$CRESET"
+			if ! [[ ${CATH} =~ $f ]]; then
+				echo -e $f "$BYEL"but not in libft.h"$CRESET"
+			fi
+		else
+			echo -e $f "$BRED"KO"$CRESET"
+			((ERROR+=1))
+			((COUNT+=1))
+		fi
+	done
+
+	echo -n "====> "
+
+	if [[ $ERROR == 0 ]]; then
+		echo -e "$BGRN"Required functions OK"$CRESET"
+	elif [[ $ERROR == 1 ]]; then
+		echo -e "$BRED"$ERROR required function not found"$CRESET"
+	else
+		echo -e "$BRED"$ERROR required function not found"$CRESET"
+	fi
+
+##### FORBIDDEN FUNCTIONS #####
 
 	ERROR=0
 	for f in ${FUNC[@]}; do
@@ -269,7 +271,6 @@ EOF
 
 	if [[ -e "$NAME" ]]; then
 		echo -n "====> "
-		make fclean -C $DIR >/dev/null
 		if [[ $ERROR == 0 ]]; then
 			echo -e "$BGRN"No forbidden function found"$CRESET"
 		elif [[ $ERROR == 1 ]]; then
@@ -280,6 +281,8 @@ EOF
 	fi
 
 	echo ""
+
+	make fclean -C $DIR >/dev/null 2>/dev/null
 
 
 ### RESULT ###

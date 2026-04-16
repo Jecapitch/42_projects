@@ -6,7 +6,7 @@
 #    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/04/16 02:03:48 by jepiscic         ###   ########.fr        #
+#    Updated: 2026/04/16 02:51:08 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ endif
 
 CFLAGS += -O3 -ffast-math -Wall -Wextra -Werror
 
-CPPFLAGS += -MMD -MP -I$(INCDIR)/
+CPPFLAGS += -I$(INCDIR)/
 
 all: $(NAME)
 

@@ -197,7 +197,7 @@ EOF
 
 	for m in "" clean fclean all "$NAME" re; do
 		make "$m" -C $DIR >/dev/null 2>/dev/null
-		echo -en make "$m"
+		echo -en make "$m "
 		if [[ $? == 0 ]]; then
 			echo -e "$BGRN"OK"$CRESET"
 		else

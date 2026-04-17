@@ -210,7 +210,7 @@ EOF
 
 ### CHECKING FUNCTIONS ###
 
-	echo -e "$BBLU"CHECKING FUNCTIONS"$CRESET"
+	echo -e "$BBLU"LOOKING UP FUNCTIONS"$CRESET"
 	if [[ $OS = "Linux" ]]; then
 		FUNC=$(nm -j "$NAME" | grep -v -E "\.|__" | sort | uniq)
 	else

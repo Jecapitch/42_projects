@@ -6,11 +6,16 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 00:58:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 22:13:32 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/18 01:34:36 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static int		ft_vfprintf(int fd, const char *fstr, va_list args);
+static size_t	bufferize(const char *s, size_t len, t_buf *buffer, int fd);
+static void		ft_toprint(va_list *ptr, t_buf *buffer, \
+							t_printf *format, int fd);
 
 static size_t	bufferize(const char *s, size_t len, t_buf *buffer, int fd)
 {
@@ -67,29 +72,48 @@ static void	ft_toprint(va_list *ptr, t_buf *buffer, t_printf *format, int fd)
 
 int	ft_printf(const char *fstr, ...)
 {
+	va_list	ptr;
+	int		ret;
+
+	va_start(ptr, fstr);
+	ret = ft_vfprintf(STDOUT_FILENO, fstr, ptr);
+	va_end(ptr);
+	return (ret);
+}
+
+int	ft_fprintf(int fd, const char *fstr, ...)
+{
+	va_list	ptr;
+	int		ret;
+
+	va_start(ptr, fstr);
+	ret = ft_vfprintf(fd, fstr, ptr);
+	va_end(ptr);
+	return (ret);
+}
+
+static int	ft_vfprintf(int fd, const char *fstr, va_list args)
+{
 	t_printf	format;
 	t_buf		buffer;
-	va_list		ptr;
 
 	if (!fstr)
 		return (ft_err_nonnull(NULL, -1, __func__), -1);
 	ft_bzero(&buffer, sizeof(t_buf));
-	va_start(ptr, fstr);
 	while (*fstr && buffer.print_count != -1)
 	{
-		fstr += bufferize(fstr, ft_strlen_delim(fstr, '%'), &buffer, STDIN_FD);
+		fstr += bufferize(fstr, ft_strlen_delim(fstr, '%'), &buffer, fd);
 		fstr += (*fstr == '%');
 		ft_format(fstr, &format);
 		if (ft_isconv(format.conv))
 		{
-			ft_toprint(&ptr, &buffer, &format, STDIN_FD);
+			ft_toprint(&args, &buffer, &format, fd);
 			fstr += ft_strlen_delim_set(fstr, FCONV) + 1;
 		}
 		else if (*fstr)
-			bufferize("%", 1, &buffer, STDIN_FD);
+			bufferize("%", 1, &buffer, fd);
 	}
-	va_end(ptr);
-	if (write(STDIN_FD, buffer.buffer, buffer.len) == -1)
+	if (write(fd, buffer.buffer, buffer.len) == -1)
 		return (-1);
 	return (buffer.print_count + buffer.len);
 }

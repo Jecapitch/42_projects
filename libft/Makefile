@@ -6,7 +6,7 @@
 #    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/04/16 02:51:08 by jepiscic         ###   ########.fr        #
+#    Updated: 2026/04/18 01:32:16 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, \
 				case \
 				count_words \
 				fill_line \
-				fprintf \
 				free \
 				get_next_line \
 				getenv \

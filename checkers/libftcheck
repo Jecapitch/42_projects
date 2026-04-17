@@ -77,7 +77,8 @@
 		Makefile libft.h README.md
 	)
 
-	FILES=$(find $DIR -type f | grep -v .git)
+	#FILES=$(find $DIR -type f | grep -v .git)
+	FILES=$(ls)
 
 	ERROR=0
 	COUNT=0
@@ -115,8 +116,7 @@ EOF
 
 	ERROR=0
 	for f in ${REQUIRED_FILES[@]}; do
-		grep -qw $f <<< ${FILES[*]}
-		if [[ $? != 0 ]]; then
+		if ! [[ ${FILES[*]} =~ $f ]]; then
 			((ERROR+=1))
 			((COUNT+=1))
 			echo -e $f "$BRED"not found"$CRESET"
@@ -142,7 +142,7 @@ EOF
 		if ! [[ ${REQUIRED_FILES[*]} =~ $f ]] && ! [[ $f =~ ^ft_.*\.c$ ]]; then
 			((ERROR+=1))
 			((COUNT+=1))
-			echo -e $f: "$BRED"invalid file name"$CRESET"
+			echo -e $f: "$BRED"invalid file or directory"$CRESET"
 		fi
 	done
 

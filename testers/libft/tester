@@ -1,0 +1,85 @@
+#!/bin/bash
+
+RES=0
+
+	# Colors
+	BRED="\033[1;31m"
+	BGRN="\033[1;32m"
+	BYEL="\033[1;33m"
+	BBLU="\033[1;34m"
+	BCYN="\033[1;36m"
+	# Reset
+	CRESET="\033[0m"
+
+REQUIRED_FUNCS=(
+isalpha isdigit isalnum isascii isprint toupper tolower
+strlen
+memchr
+strchr strrchr
+strnstr
+memcmp
+strncmp
+memcpy memmove
+strlcpy strlcat
+strdup
+substr
+strjoin strtrim
+split
+memset
+bzero
+calloc
+strmapi striteri
+lstsize lstlast
+lstnew lstadd_front lstadd_back
+lstdelone lstclear
+lstiter lstmap
+)
+
+make libclean
+
+for f in ${REQUIRED_FUNCS[@]}; do
+	if [[ $f =~ ^is|to ]]; then
+		FILENAME=charcheck
+	elif [[ $f =~ strlen ]]; then
+		FILENAME=strlen
+	elif [[ $f =~ set ]]; then
+		FILENAME=memset
+	elif [[ $f =~ bzero ]]; then
+		FILENAME=bzero
+	elif [[ $f =~ strr?chr ]]; then
+		FILENAME=strchr
+	elif [[ $f =~ chr ]]; then
+		FILENAME=memchr
+	elif [[ $f =~ cmp ]]; then
+		FILENAME=cmp
+	elif [[ $f =~ strlc ]]; then
+		FILENAME=strl
+	elif [[ $f =~ cpy|move ]] ; then
+		FILENAME=memcpy
+	elif [[ $f =~ dup ]]; then
+		FILENAME=strdup
+	elif [[ $f =~ subs ]]; then
+		FILENAME=substr
+	else
+		continue
+	fi
+	FUNC=$f
+	FT=ft_$FUNC
+	make re FILE=$FILENAME FT=$FT STD=$FUNC
+	./${FT}_tester
+	ERROR=$?
+	make fclean FILE=$FILENAME FT=$FT STD=$FUNC
+	echo -en $BCYN"====>"$CRESET "ft_$f  \\t"
+	[[ $ERROR == 0 ]] \
+		&& echo -e $BGRN"OK"$CRESET \
+		|| { echo -e $BRED"KO\\n"$CRESET ; ((RES += 1)); }
+done
+
+make libclean
+
+echo -e $BCYN"======================="$CRESET
+echo -n "# libft "
+[[ $RES == 0 ]] \
+	&& echo -e $BGRN"OK"$CRESET \
+	|| echo -e $BRED"KO"$CRESET "($RES failed)"
+echo ""

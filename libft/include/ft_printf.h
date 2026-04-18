@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/13 13:21:39 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/18 14:51:18 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ void	ft_format(const char *fstr, t_printf *format);
 char	*ft_conversion(va_list *ptr, t_printf *format);
 void	ft_end_format(char *s, t_printf *format);
 void	ft_end_padding(t_printf *format);
+int		ft_dprintf(int fd, const char *fstr, ...);
+int		ft_vdprintf(int fd, const char *fstr, va_list args);
 int		ft_printf(const char *fstr, ...);
-int		ft_fprintf(int fd, const char *fstr, ...);
 int		ft_print_tab(void *arr, int data_type, \
 					const char sep[], size_t arr_size);
 void	ft_fill_line(size_t len, size_t maxlen, int fill, int end);

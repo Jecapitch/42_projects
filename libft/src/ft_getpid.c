@@ -21,7 +21,7 @@ int	ft_getpid(void)
 	fd = open("/proc/self/stat", O_RDONLY);
 	if (fd == -1 || read(fd, buffer, sizeof(buffer)) == -1)
 	{
-		ft_fprintf(STDERR_FD, "ft_get_pid: " BRED "error" CRESET);
+		ft_dprintf(STDERR_FD, "ft_get_pid: " BRED "error" CRESET);
 		return (-1);
 	}
 	close(fd);

@@ -25,19 +25,19 @@ void	ft_log(const char *file, int line, const char *func, \
 		return ;
 	if (file && *file)
 	{
-		ft_fprintf(STDERR_FD, "%s", file);
+		ft_dprintf(STDERR_FD, "%s", file);
 		if (line > 0)
-			ft_fprintf(STDERR_FD, ":%d", line);
+			ft_dprintf(STDERR_FD, ":%d", line);
 		if ((func && *func) || (msg && *msg))
 			ft_putstr_fd(": ", STDERR_FD);
 	}
 	if (func && *func)
 	{
-		ft_fprintf(STDERR_FD, "%s", func);
+		ft_dprintf(STDERR_FD, "%s", func);
 		if (msg && *msg)
 			ft_putstr_fd(": ", STDERR_FD);
 	}
 	if (msg && *msg)
-		ft_fprintf(STDERR_FD, "%s", msg);
+		ft_dprintf(STDERR_FD, "%s", msg);
 	ft_putchar_fd('\n', STDERR_FD);
 }

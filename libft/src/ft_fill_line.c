@@ -21,7 +21,7 @@ void	ft_fill_line(size_t len, size_t maxlen, int fill, int end)
 	blank = ft_calloc(size + 1, sizeof(char));
 	if (!blank)
 	{
-		ft_fprintf(STDERR_FD, \
+		ft_dprintf(STDERR_FD, \
 					"ft_fill_line: "BRED"error"CRESET": ft_calloc");
 		return ;
 	}

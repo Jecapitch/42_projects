@@ -4,11 +4,16 @@
 
 ### DECLARATIONS ###
 
-	if [[ -e $1 ]]; then
-		cd $1
+	if [[ -z $1 ]]; then
+		echo "Missing argument: path to libft directory"
+		exit 1
+	else
+		DIR=$1
+		cd $DIR
+		DIR=$(pwd)
+		cd -
+		pwd
 	fi
-
-	DIR="$(pwd)"
 
 	if [[ -e $DIR/norminette.txt ]]; then
 		rm -f norminette.txt
@@ -55,30 +60,36 @@
 	)
 
 	REQUIRED_FUNCS=(
-	ft_isalpha ft_isdigit ft_isalnum ft_isascii ft_isprint
-	ft_toupper ft_tolower
-	ft_strlen
-	ft_strtrim
-	ft_strlcat ft_strjoin
-	ft_split
-	ft_memchr ft_strchr ft_strrchr ft_strnstr
-	ft_strlcpy ft_strdup ft_memcpy ft_memmove ft_substr
-	ft_strncmp ft_memcmp
-	ft_memset ft_bzero
-	ft_calloc
-	ft_strmapi ft_striteri
-	ft_lstsize ft_lstlast
-	ft_lstnew ft_lstadd_front ft_lstadd_back
-	ft_lstdelone ft_lstclear
-	ft_lstiter ft_lstmap
+	isalpha isdigit isalnum isascii isprint islower isupper 
+	toupper tolower
+	strlen
+	memchr
+	strchr strrchr
+	strnstr
+	memcmp
+	strncmp
+	memcpy memmove
+	strlcpy strlcat
+	strdup
+	substr
+	memset
+	bzero
+	calloc
+	strjoin strtrim
+	#TODO
+	split
+	strmapi striteri
+	lstsize lstlast
+	lstnew lstadd_front lstadd_back
+	lstdelone lstclear
+	lstiter lstmap
 	)
 
 	REQUIRED_FILES=(
 		Makefile libft.h README.md
 	)
 
-	#FILES=$(find $DIR -type f | grep -v .git)
-	FILES=$(ls)
+	FILES=$(find $DIR ! -path "*/.git/*" ! -name ".git*")
 
 	ERROR=0
 	COUNT=0
@@ -110,13 +121,13 @@ EOF
 
 	echo -e Working directory: $DIR"\\n"
 
-	echo -e "$BBLU"CHECKING FILES"$CRESET"
+	echo -e "$BBLU"CHECKING FILE NAMES"$CRESET"
 
 ### CHECKING REQUIRED FILES ###
 
 	ERROR=0
 	for f in ${REQUIRED_FILES[@]}; do
-		if ! [[ ${FILES[*]} =~ $f ]]; then
+		if ! [[ ${FILES[*]} =~ $DIR/$f ]]; then
 			((ERROR+=1))
 			((COUNT+=1))
 			echo -e $f "$BRED"not found"$CRESET"
@@ -157,7 +168,6 @@ EOF
 	fi
 
 	echo ""
-
 
 ### NORM ###
 
@@ -202,7 +212,7 @@ EOF
 	fi
 
 	if [[ $ERROR == 0 ]]; then
-		echo -e "$BGRN"Makefile OK"$CRESET"
+		echo -e "====> $BGRN"Makefile OK"$CRESET"
 	fi
 
 	echo ""
@@ -212,16 +222,16 @@ EOF
 
 	echo -e "$BBLU"LOOKING UP FUNCTIONS"$CRESET"
 	if [[ $OS = "Linux" ]]; then
-		FUNC=$(nm -j "$NAME" | grep -v -E "\.|__" | sort | uniq)
+		FUNC=$(nm -j "$DIR/$NAME" | grep -v -E "\.|__" | sort | uniq)
 	else
-		FUNC=$(nm "$NAME" | grep -E " _[a-z]" | grep -E .+ | cut -d _ -f 2- | sort | uniq)
+		FUNC=$(nm "$DIR/$NAME" | grep -E " _[a-z]" | grep -E .+ | cut -d _ -f 2- | sort | uniq)
 	fi
 
 
 ##### REQUIRED FUNCTIONS #####
 
 	ERROR=0
-	CATH=$(cat libft.h | grep -v "/\**\/" | grep -v "//")
+	CATH=$(cat $DIR/libft.h | grep -v "/\**\/" | grep -v "//")
 
 	for f in ${REQUIRED_FUNCS[@]}; do
 		if [[ ${FUNC[*]} =~ $f ]]; then
@@ -272,6 +282,79 @@ EOF
 
 	make fclean -C $DIR >/dev/null 2>/dev/null
 
+### TEST FUNCTIONS ###
+
+	echo -e "$BBLU"TESTING FUNCTIONS"$CRESET"
+
+	curl -fsS -L -o jepiscic.zip \
+			https://github.com/Jecapitch/42_projects/archive/refs/heads/main.zip
+	unzip jepiscic.zip > /dev/null
+	rm -f jepiscic
+	rsync -a --delete $(ls | grep 42_projects)/tests/libft_tester .
+	rm -rf 42_projects*
+	cd libft_tester
+
+	NONSTD=(
+	strjoin strtrim
+	split
+	strmapi striteri
+	lstsize lstlast
+	lstnew lstadd_front lstadd_back
+	lstdelone lstclear
+	lstiter lstmap
+	)
+
+	make libclean LIBFT=$DIR
+
+	for FUNC in ${REQUIRED_FUNCS[@]}; do
+		if [[ $FUNC =~ ^is|to ]]; then
+			FILENAME=charcheck
+		elif [[ $FUNC =~ len ]]; then
+			FILENAME=strlen
+		elif [[ $FUNC =~ set ]]; then
+			FILENAME=memset
+		elif [[ $FUNC =~ bz ]]; then
+			FILENAME=bzero
+		elif [[ $FUNC =~ alloc ]]; then
+			FILENAME=calloc
+		elif [[ $FUNC =~ strr?chr ]]; then
+			FILENAME=strchr
+		elif [[ $FUNC =~ chr ]]; then
+			FILENAME=memchr
+		elif [[ $FUNC =~ cmp ]]; then
+			FILENAME=cmp
+		elif [[ $FUNC =~ strlc ]]; then
+			FILENAME=strl
+		elif [[ $FUNC =~ cpy|move ]] ; then
+			FILENAME=memcpy
+		elif [[ $FUNC =~ dup ]]; then
+			FILENAME=strdup
+		elif [[ $FUNC =~ subs ]]; then
+			FILENAME=substr
+		elif [[ $FUNC =~ join|trim ]]; then
+			FILENAME=jointrim
+		else
+			continue
+		fi
+
+		FT=ft_$FUNC
+		if [[ ${NONSTD[*]} =~ $FUNC ]]; then
+			STD=tester_ft_$FUNC
+		else
+			STD=$FUNC
+		fi
+
+		make FILE=$FILENAME FT=$FT STD=$STD LIBFT=$DIR
+		./${FT}_test
+		ERROR=$?
+		make fclean FILE=$FILENAME FT=$FT STD=$STD LIBFT=$DIR
+		echo -en $BCYN"====>"$CRESET "ft_$FUNC  \\t"
+		[[ $ERROR == 0 ]] \
+			&& echo -e $BGRN"OK"$CRESET \
+			|| { echo -e $BRED"KO\\n"$CRESET ; ((COUNT += 1)); }
+	done
+
+	make libclean LIBFT=$DIR
 
 ### RESULT ###
 

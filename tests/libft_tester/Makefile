@@ -6,7 +6,7 @@
 #    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/04/20 17:08:58 by jepiscic         ###   ########.fr        #
+#    Updated: 2026/04/20 18:12:18 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ COLORNAME	=	\033[1;31m$(NAME)\033[0m
 SRCDIR		=	src
 INCDIR		=	include
 OBJDIR		=	obj
-LFTDIR		=	libft
+LFTDIR		=	$(LIBFT)
 LFT			= 	$(LFTDIR)/libft.a
 TLIBDIR		=	tester_lib
 TLFT		=	$(TLIBDIR)/libtest.a
@@ -58,7 +58,9 @@ clean:
 	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@rm -f $(NAME)*
+	@if [ -f $(NAME) ]; then \
+		rm -f $(NAME); \
+	fi
 
 libclean:
 	@make -C $(LFTDIR) fclean > /dev/null

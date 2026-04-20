@@ -6,7 +6,7 @@
 #    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/04/20 17:22:16 by jepiscic         ###   ########.fr        #
+#    Updated: 2026/04/20 18:08:55 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ clean:
 	@rm -rf $(OBJ)
 
 fclean: clean
-	@if [ -e $(NAME) ]; then \
+	@if [ -f $(NAME) ]; then \
 		echo -e "Deleting $(COLORNAME)..."; \
 		rm -f $(NAME) *.d; \
 		echo -e "$(COLORNAME) deleted"; \

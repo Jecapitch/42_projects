@@ -23,11 +23,22 @@ memcpy memmove
 strlcpy strlcat
 strdup
 substr
-strjoin strtrim
-split
 memset
 bzero
 calloc
+strjoin strtrim
+#TODO
+split
+strmapi striteri
+lstsize lstlast
+lstnew lstadd_front lstadd_back
+lstdelone lstclear
+lstiter lstmap
+)
+
+NONSTD=(
+strjoin strtrim
+split
 strmapi striteri
 lstsize lstlast
 lstnew lstadd_front lstadd_back
@@ -37,39 +48,49 @@ lstiter lstmap
 
 make libclean
 
-for f in ${REQUIRED_FUNCS[@]}; do
-	if [[ $f =~ ^is|to ]]; then
+for FUNC in ${REQUIRED_FUNCS[@]}; do
+	if [[ $FUNC =~ ^is|to ]]; then
 		FILENAME=charcheck
-	elif [[ $f =~ strlen ]]; then
+	elif [[ $FUNC =~ len ]]; then
 		FILENAME=strlen
-	elif [[ $f =~ set ]]; then
+	elif [[ $FUNC =~ set ]]; then
 		FILENAME=memset
-	elif [[ $f =~ bzero ]]; then
+	elif [[ $FUNC =~ bz ]]; then
 		FILENAME=bzero
-	elif [[ $f =~ strr?chr ]]; then
+	elif [[ $FUNC =~ alloc ]]; then
+		FILENAME=calloc
+	elif [[ $FUNC =~ strr?chr ]]; then
 		FILENAME=strchr
-	elif [[ $f =~ chr ]]; then
+	elif [[ $FUNC =~ chr ]]; then
 		FILENAME=memchr
-	elif [[ $f =~ cmp ]]; then
+	elif [[ $FUNC =~ cmp ]]; then
 		FILENAME=cmp
-	elif [[ $f =~ strlc ]]; then
+	elif [[ $FUNC =~ strlc ]]; then
 		FILENAME=strl
-	elif [[ $f =~ cpy|move ]] ; then
+	elif [[ $FUNC =~ cpy|move ]] ; then
 		FILENAME=memcpy
-	elif [[ $f =~ dup ]]; then
+	elif [[ $FUNC =~ dup ]]; then
 		FILENAME=strdup
-	elif [[ $f =~ subs ]]; then
+	elif [[ $FUNC =~ subs ]]; then
 		FILENAME=substr
+	elif [[ $FUNC =~ join|trim ]]; then
+		FILENAME=jointrim
 	else
 		continue
 	fi
-	FUNC=$f
+
 	FT=ft_$FUNC
-	make re FILE=$FILENAME FT=$FT STD=$FUNC
-	./${FT}_tester
+	if [[ ${NONSTD[*]} =~ $FUNC ]]; then
+		STD=tester_ft_$FUNC
+	else
+		STD=$FUNC
+	fi
+
+	make FILE=$FILENAME FT=$FT STD=$STD
+	./${FT}_test
 	ERROR=$?
-	make fclean FILE=$FILENAME FT=$FT STD=$FUNC
-	echo -en $BCYN"====>"$CRESET "ft_$f  \\t"
+	make fclean FILE=$FILENAME FT=$FT STD=$STD
+	echo -en $BCYN"====>"$CRESET "ft_$FUNC  \\t"
 	[[ $ERROR == 0 ]] \
 		&& echo -e $BGRN"OK"$CRESET \
 		|| { echo -e $BRED"KO\\n"$CRESET ; ((RES += 1)); }

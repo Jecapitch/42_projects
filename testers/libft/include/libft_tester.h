@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:41:33 by jepiscic          #+#    #+#             */
-/*   Updated: 2026/04/17 02:59:23 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/20 17:29:34 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LIBFT_TESTER_H
 
 #include "libft.h"
+#include "tester_libft.h"
 #include "colors.h"
 #include <unistd.h>
 #include <fcntl.h>

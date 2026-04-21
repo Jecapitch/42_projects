@@ -60,30 +60,30 @@
 	)
 
 	REQUIRED_FUNCS=(
-	isalpha isdigit isalnum isascii isprint islower isupper 
-	toupper tolower
-	strlen
-	memchr
-	strchr strrchr
-	strnstr
-	memcmp
-	strncmp
-	memcpy memmove
-	strlcpy strlcat
-	strdup
-	substr
-	memset
-	bzero
-	calloc
-	strjoin strtrim
-	split
-	putchar_fd putnbr putstr_fd putendl_fd
-	#TODO
-	strmapi striteri
-	lstsize lstlast
-	lstnew lstadd_front lstadd_back
-	lstdelone lstclear
-	lstiter lstmap
+		isalpha isdigit isalnum isascii isprint islower isupper 
+		toupper tolower
+		strlen
+		memchr
+		strchr strrchr
+		strnstr
+		memcmp
+		strncmp
+		memcpy memmove
+		strlcpy strlcat
+		strdup
+		substr
+		memset
+		bzero
+		calloc
+		strjoin strtrim
+		split
+		putchar_fd putnbr_fd putstr_fd putendl_fd
+		#TODO
+		strmapi striteri
+		lstsize lstlast
+		lstnew lstadd_front lstadd_back
+		lstdelone lstclear
+		lstiter lstmap
 	)
 
 	REQUIRED_FILES=(
@@ -298,14 +298,17 @@ EOF
 	mkdir -p traces
 
 	NON_STD=(
-	putchar_fd putnbr_fd putstr_fd putendl_fd
-	strjoin strtrim
-	split
-	strmapi striteri
-	lstsize lstlast
-	lstnew lstadd_front lstadd_back
-	lstdelone lstclear
-	lstiter lstmap
+		strjoin strtrim
+		split
+		strmapi striteri
+		lstsize lstlast
+		lstnew lstadd_front lstadd_back
+		lstdelone lstclear
+		lstiter lstmap
+	)
+
+	PRINT=(
+		putchar_fd putnbr_fd putstr_fd putendl_fd
 	)
 
 	make libclean LIBFT=$DIR
@@ -341,6 +344,8 @@ EOF
 			FILENAME=split
 		elif [[ $FUNC =~ put(s|e) ]]; then
 			FILENAME=puts
+		elif [[ $FUNC =~ put(n|c) ]]; then
+			FILENAME=putd
 		else
 			continue
 		fi
@@ -348,7 +353,7 @@ EOF
 		FT=ft_$FUNC
 		if [[ ${NON_STD[*]} =~ $FUNC ]]; then
 			STD=tester_ft_$FUNC
-		elif [[ $FUNC =~ put ]]; then
+		elif [[ ${PRINT[*]} =~ $FUNC ]]; then
 			STD=dprintf
 		else
 			STD=$FUNC
@@ -358,7 +363,10 @@ EOF
 		./${FT}_test
 		ERROR=$?
 		if [[ $FUNC =~ put ]]; then
-			diff -C 3 <(cat -e "$FT"_user_output) <(cat -e "$FT"_test_output) > traces/"trace_$FUNC"
+			USER_OUTPUT="traces/${FT}_user_output"
+			TEST_OUTPUT="traces/${FT}_test_output"
+			TRACE="traces/trace_$FUNC"
+			diff -C 3 <(cat -e "$USER_OUTPUT") <(cat -e $TEST_OUTPUT) > $TRACE
 			(( ERROR += $? ))
 		fi
 		make fclean FILE=$FILENAME FT=$FT STD=$STD LIBFT=$DIR

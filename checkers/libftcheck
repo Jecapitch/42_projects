@@ -294,7 +294,7 @@ EOF
 	rm -rf 42_projects*
 	cd libft_tester
 
-	NONSTD=(
+	NON_STD=(
 	strjoin strtrim
 	split
 	strmapi striteri
@@ -333,12 +333,14 @@ EOF
 			FILENAME=substr
 		elif [[ $FUNC =~ join|trim ]]; then
 			FILENAME=jointrim
+		elif [[ $FUNC =~ split ]]; then
+			FILENAME=split
 		else
 			continue
 		fi
 
 		FT=ft_$FUNC
-		if [[ ${NONSTD[*]} =~ $FUNC ]]; then
+		if [[ ${NON_STD[*]} =~ $FUNC ]]; then
 			STD=tester_ft_$FUNC
 		else
 			STD=$FUNC
@@ -355,6 +357,9 @@ EOF
 	done
 
 	make libclean LIBFT=$DIR
+
+	echo ""
+
 
 ### RESULT ###
 

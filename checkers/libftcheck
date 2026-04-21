@@ -77,8 +77,8 @@
 	calloc
 	strjoin strtrim
 	split
-	#TODO
 	putchar_fd putnbr putstr_fd putendl_fd
+	#TODO
 	strmapi striteri
 	lstsize lstlast
 	lstnew lstadd_front lstadd_back
@@ -298,6 +298,7 @@ EOF
 	mkdir -p traces
 
 	NON_STD=(
+	putchar_fd putnbr_fd putstr_fd putendl_fd
 	strjoin strtrim
 	split
 	strmapi striteri
@@ -338,6 +339,8 @@ EOF
 			FILENAME=jointrim
 		elif [[ $FUNC =~ split ]]; then
 			FILENAME=split
+		elif [[ $FUNC =~ put(s|e) ]]; then
+			FILENAME=puts
 		else
 			continue
 		fi

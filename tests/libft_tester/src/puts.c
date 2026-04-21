@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 14:30:13 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 14:36:53 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	main(void)
 {
 	char	*s[] = {"", "o", "mamma mia !\n", "fiouf pidoum \n$$wah", "\0argl", "JIFREFPf;129 3U04923RPEZKK%FERHFjfzeuiheziu \tghdiz\rejkdzejdyuzegiuhed", NULL};
 	char	*src;
-	int		ft_fd = open("traces/"STRF(FT)"_user_output", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0444);
-	int		std_fd = open("traces/"STRF(FT)"_test_output", O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0444);
+	int		ft_fd = open("traces/"STRF(FT)"_user_output", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	int		std_fd = open("traces/"STRF(FT)"_test_output", O_WRONLY | O_CREAT | O_TRUNC, 0644);
 
 	for (int i = 0; s[i]; i++)
 	{

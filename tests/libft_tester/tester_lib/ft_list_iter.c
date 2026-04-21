@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester_ft_list_iter.c                                     :+:      :+:    :+:   */
+/*   tester_ft_lst_iter.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,9 +12,9 @@
 
 #include "tester_libft.h"
 
-void	tester_ft_lstiter(t_list *lst, void (*f)(void *))
+void	tester_ft_lstiter(t_lst *lst, void (*f)(void *))
 {
-	t_list	*current;
+	t_lst	*current;
 
 	if (!lst || !f)
 		return (tester_ft_err_nonnull(NULL, -1, __func__));
@@ -26,11 +26,11 @@ void	tester_ft_lstiter(t_list *lst, void (*f)(void *))
 	}
 }
 
-t_list	*tester_ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+t_lst	*tester_ft_lstmap(t_lst *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*newlst;
-	t_list	*newnode;
-	t_list	*tail;
+	t_lst	*newlst;
+	t_lst	*newnode;
+	t_lst	*tail;
 
 	if (!lst || !f || !del)
 		return (tester_ft_err_nonnull(NULL, -1, __func__), NULL);

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester_ft_list.c                                          :+:      :+:    :+:   */
+/*   tester_ft_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,18 @@
 
 #include "tester_libft.h"
 
-t_list	*tester_ft_lstnew(void *content)
+t_lst	*tester_ft_lstnew(void *content)
 {
-	t_list	*node;
+	t_lst	*node;
 
-	node = tester_ft_calloc(1, sizeof(t_list));
+	node = tester_ft_calloc(1, sizeof(t_lst));
 	if (!node)
 		return (NULL);
 	node->content = content;
 	return (node);
 }
 
-int	tester_ft_lstsize(t_list *lst)
+int	tester_ft_lstsize(t_lst *lst)
 {
 	int		size;
 
@@ -38,7 +38,7 @@ int	tester_ft_lstsize(t_list *lst)
 	return (size);
 }
 
-t_list	*tester_ft_lstlast(t_list *lst)
+t_lst	*tester_ft_lstlast(t_lst *lst)
 {
 	if (!lst)
 		return (tester_ft_err_nonnull(NULL, -1, __func__), NULL);
@@ -47,9 +47,9 @@ t_list	*tester_ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	tester_ft_lstadd_back(t_list **lst, t_list *newnode)
+void	tester_ft_lstadd_back(t_lst **lst, t_lst *newnode)
 {
-	t_list	*last;
+	t_lst	*last;
 
 	if (!lst)
 		return (tester_ft_err_nonnull(NULL, -1, __func__));
@@ -64,7 +64,7 @@ void	tester_ft_lstadd_back(t_list **lst, t_list *newnode)
 		*lst = newnode;
 }
 
-void	tester_ft_lstadd_front(t_list **lst, t_list *newnode)
+void	tester_ft_lstadd_front(t_lst **lst, t_lst *newnode)
 {
 	if (!lst)
 		return (tester_ft_err_nonnull(NULL, -1, __func__));

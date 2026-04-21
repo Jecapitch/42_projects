@@ -60,7 +60,7 @@
 	)
 
 	REQUIRED_FUNCS=(
-		isalpha isdigit isalnum isascii isprint islower isupper 
+		isalpha isdigit isalnum isascii isprint
 		toupper tolower
 		strlen
 		memchr

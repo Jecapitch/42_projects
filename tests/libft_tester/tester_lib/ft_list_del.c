@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester_ft_list_del.c                                      :+:      :+:    :+:   */
+/*   tester_ft_lst_del.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "tester_libft.h"
 
-void	tester_ft_lstdelone(t_list *node, void (*del)(void *))
+void	tester_ft_lstdelone(t_lst *node, void (*del)(void *))
 {
 	if (!node || !del)
 		return (tester_ft_err_nonnull(NULL, -1, __func__));
@@ -20,9 +20,9 @@ void	tester_ft_lstdelone(t_list *node, void (*del)(void *))
 	tester_ft_free_safe(node);
 }
 
-void	tester_ft_lstclear(t_list **lst, void (*del)(void *))
+void	tester_ft_lstclear(t_lst **lst, void (*del)(void *))
 {
-	t_list	*next;
+	t_lst	*next;
 
 	if (!lst || !del)
 		return (tester_ft_err_nonnull(NULL, -1, __func__));

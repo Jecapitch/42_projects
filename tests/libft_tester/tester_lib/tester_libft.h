@@ -147,30 +147,30 @@ void		tester_ft_log(const char *file, int line, const char *func, \
 # ifndef LIST_H
 #  define LIST_H
 
-typedef struct s_list			t_list;
+typedef struct s_lst			t_lst;
 
-struct s_list
+struct s_lst
 {
 	void	*content;
-	t_list	*next;
+	t_lst	*next;
 };
 
 /* LIST UTILS */
-int			tester_ft_lstsize(t_list *lst);
-t_list		*tester_ft_lstlast(t_list *lst);
+int			tester_ft_lstsize(t_lst *lst);
+t_lst		*tester_ft_lstlast(t_lst *lst);
 
 /* LIST ADD */
-t_list		*tester_ft_lstnew(void *content);
-void		tester_ft_lstadd_front(t_list **lst, t_list *newnode);
-void		tester_ft_lstadd_back(t_list **lst, t_list *newnode);
+t_lst		*tester_ft_lstnew(void *content);
+void		tester_ft_lstadd_front(t_lst **lst, t_lst *newnode);
+void		tester_ft_lstadd_back(t_lst **lst, t_lst *newnode);
 
 /* LIST DELETE */
-void		tester_ft_lstdelone(t_list *lst, void (*del)(void *));
-void		tester_ft_lstclear(t_list **lst, void (*del)(void *));
+void		tester_ft_lstdelone(t_lst *lst, void (*del)(void *));
+void		tester_ft_lstclear(t_lst **lst, void (*del)(void *));
 
 /* LIST ITERATE */
-void		tester_ft_lstiter(t_list *lst, void (*f)(void *));
-t_list		*tester_ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void		tester_ft_lstiter(t_lst *lst, void (*f)(void *));
+t_lst		*tester_ft_lstmap(t_lst *lst, void *(*f)(void *), void (*del)(void *));
 
 # endif /*LIST_H*/
 

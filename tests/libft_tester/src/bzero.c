@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 15:52:25 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:53:20 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(void)
 		if (memcmp(dest, dest2, size))
 		{
 			err++;
-			printf(STRF(FT)"(dest[%d], %d): "ERROR"\n", sizeof(dest), size);
+			printf(STRF(FT)"(dest[%lu], %d): "ERROR"\n", sizeof(dest), size);
 		}
 	}
 	err += null_check(NULL, 42);

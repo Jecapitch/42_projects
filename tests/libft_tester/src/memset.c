@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/17 18:45:18 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:09:18 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	main(void)
 		char	dest2[size]; 
 		memset(dest, 0, size);
 		memset(dest2, 0, size);
-		for (int c = 0; c < 256; c++)
+		for (int -128; c < 127; c++)
 		{
 			if (strncmp(FT(dest, c, size), STD(dest2, c, size), size))
 			{

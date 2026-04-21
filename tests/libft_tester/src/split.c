@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 11:16:49 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:09:46 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(void)
 
 	for (int i = 0; i < tabsize; i++)
 	{
-		for (int ascii = 0; ascii < 256; ascii++)
+		for (int ascii = -128; ascii < 127; ascii++)
 		{
 			char	*sp = s[i];
 			int		sep = ascii;

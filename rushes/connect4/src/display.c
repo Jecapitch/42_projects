@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/18 16:28:17 by jepiscic          #+#    #+#             */
-/*   Updated: 2026/04/19 21:45:13 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:20:04 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	place_pawn(t_game game)
 		ft_printf("%s", PAWN[game.current_player - 1]);
 		delay(3000 / game.height);
 		ft_printf("\e[1D");
-		ft_printf(" ");
+		ft_printf(" \a");
 		ft_printf("\e[2B\e[1D");
 		ft_printf("\e[?25h");
 	}

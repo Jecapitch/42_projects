@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/17 18:57:10 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:14:57 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,17 +52,13 @@ int	main(void)
 		int 	size = i;
 		char	dest[size]; 
 		char	dest2[size]; 
-		memset(dest, 0, size);
-		memset(dest2, 0, size);
-		for (int c = 0; c < 256; c++)
+
+		FT(dest, size);
+		STD(dest2, size);
+		if (memcmp(dest, dest2, size))
 		{
-			FT(dest, size);
-			STD(dest2, size);
-			if (strncmp(dest, dest2, size))
-			{
-				err++;
-				printf(STRF(FT)"(\"%s\"[%zu], '%d', %d): "ERROR"\n", dest, sizeof(dest), c, size);
-			}
+			err++;
+			printf(STRF(FT)"(%d, %d): "ERROR"\n", dest, sizeof(dest), size);
 		}
 	}
 	err += null_check(NULL, 42);

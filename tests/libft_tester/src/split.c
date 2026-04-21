@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 11:08:22 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 11:16:49 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	null_check(char *a, int sep)
 			dup2(devnull, STDERR_FILENO);
 			close(devnull);
 		}
-		void	**s = FT(a, sep);
+		char	**s = FT(a, sep);
 		if (s)
 		{
 			tester_ft_free_str_tab(s);
@@ -61,7 +61,7 @@ int	main(void)
 			if (!ft)
 			{
 				err++;
-				printf(STRF(FT)"(\"%s\", %d): "ERROR"\n", sp, b);
+				printf(STRF(FT)"(\"%s\", %d): "ERROR"\n", sp, sep);
 				continue ;
 			}
 			char	**std = STD(sp, sep);
@@ -72,7 +72,7 @@ int	main(void)
 				if ((!a && b) || (a && !b) || strcmp(a, b))
 				{
 					err++;
-					printf(STRF(FT)"(\"%s\", \"%s\"): "ERROR"\n", a, b);
+					printf(STRF(FT)"(\"%s\", %d): "ERROR"\n", sp, sep);
 					break ;
 				}
 			}

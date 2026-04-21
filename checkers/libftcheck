@@ -348,7 +348,7 @@ EOF
 		FT=ft_$FUNC
 		if [[ ${NON_STD[*]} =~ $FUNC ]]; then
 			STD=tester_ft_$FUNC
-		elif [[ $FUNC =~ put ]]
+		elif [[ $FUNC =~ put ]]; then
 			STD=dprintf
 		else
 			STD=$FUNC

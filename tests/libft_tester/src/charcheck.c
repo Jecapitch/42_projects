@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 21:02:35 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 21:30:11 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	main(void)
 
 	for (int c = -128; c < 127; c++)
 	{
-		if ((strstr(STRF(FT), "ft_is") && !(!FT(c)) != !(!STD(c))) || (strstr(STRF(FT), "ft_to") && FT(c) != STD(c))) 
+		if ((strstr(STRF(FT), "ft_is") && !(!FT(c)) != !(!STD(c))) || \
+			(strstr(STRF(FT), "ft_to") && (unsigned char)FT(c) != (unsigned char)STD(c))) 
 		{
 			err++;
 			printf(STRF(FT)"(%c): "ERROR"\n", c);

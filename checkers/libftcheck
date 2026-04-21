@@ -35,7 +35,7 @@
 	CRESET="\033[0m"
 
 	FORBIDDEN=(
-		isalpha isdigit isalnum isascii isprint
+		isalpha isdigit isalnum isascii isprint islower isupper
 		toupper tolower
 		strlen
 		strtrim

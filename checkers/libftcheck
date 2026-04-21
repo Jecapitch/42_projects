@@ -76,8 +76,9 @@
 	bzero
 	calloc
 	strjoin strtrim
-	#TODO
 	split
+	#TODO
+	putchar_fd putnbr putstr_fd putendl_fd
 	strmapi striteri
 	lstsize lstlast
 	lstnew lstadd_front lstadd_back
@@ -294,6 +295,8 @@ EOF
 	rm -rf 42_projects*
 	cd libft_tester
 
+	mkdir -p traces
+
 	NON_STD=(
 	strjoin strtrim
 	split
@@ -342,6 +345,8 @@ EOF
 		FT=ft_$FUNC
 		if [[ ${NON_STD[*]} =~ $FUNC ]]; then
 			STD=tester_ft_$FUNC
+		elif [[ $FUNC =~ put ]]
+			STD=dprintf
 		else
 			STD=$FUNC
 		fi
@@ -349,6 +354,10 @@ EOF
 		make FILE=$FILENAME FT=$FT STD=$STD LIBFT=$DIR
 		./${FT}_test
 		ERROR=$?
+		if [[ $FUNC =~ put ]]; then
+			diff -C 3 <(cat -e "$FT"_user_output) <(cat -e "$FT"_test_output) > traces/"trace_$FUNC"
+			(( ERROR += $? ))
+		fi
 		make fclean FILE=$FILENAME FT=$FT STD=$STD LIBFT=$DIR
 		echo -en $BCYN"====>"$CRESET "ft_$FUNC  \\t"
 		[[ $ERROR == 0 ]] \

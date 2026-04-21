@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 15:56:18 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/21 15:59:03 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	main(void)
 		src = s[i];
 		FT(src, ft_fd);
 		STD(std_fd, "%s", src);
+		if (!strstr(STRF(FT), "endl"))
+			STD(std_fd, "\n", src);
 	}
 	null_check(ft_fd, std_fd);
 	close(ft_fd);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_malloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 00:19:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/10 04:10:46 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 14:13:33 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	*ft_calloc(size_t count, size_t size)
 	char	*ptr;
 	size_t	bytes;
 
+	ptr = NULL;
+	bytes = 0;
 	if (size && count > SIZE_MAX / size)
 		return (NULL);
 	bytes = count * size;

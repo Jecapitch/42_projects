@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 15:59:43 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/01 22:23:03 by jpiscice         ###   ########.fr       */
+/*   Created: 2026/04/23 08:36:51 by jepiscic          #+#    #+#             */
+/*   Updated: 2026/04/24 14:02:30 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

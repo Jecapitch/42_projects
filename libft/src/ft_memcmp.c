@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 00:46:04 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:12:18 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	while (n)
 	{
 		if (*chs1 != *chs2)
-			return (*chs1 - *chs2);
+			return ((unsigned char)*chs1 - (unsigned char)*chs2);
 		chs1++;
 		chs2++;
 		n--;

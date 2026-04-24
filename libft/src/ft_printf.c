@@ -6,13 +6,12 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 00:58:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/18 14:50:19 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:35:59 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int		ft_vdprintf(int fd, const char *fstr, va_list args);
 static size_t	bufferize(const char *s, size_t len, t_buf *buffer, int fd);
 static void		ft_toprint(va_list *ptr, t_buf *buffer, \
 							t_printf *format, int fd);

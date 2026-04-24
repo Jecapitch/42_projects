@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:19:18 by jepiscic          #+#    #+#             */
-/*   Updated: 2026/04/13 16:24:45 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:01:23 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # define BASE8			"01234567"
 # define BASE10			"0123456789"
 # define BASE16			"0123456789abcdef"
-# define BASE36			"0123456789abcdefghijklmnopqrstuvwxyz"
+# define BASE36_LOW		"0123456789abcdefghijklmnopqrstuvwxyz"
+# define BASE36_UP		"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 # define STDIN_FD		STDIN_FILENO
 # define STDOUT_FD		STDOUT_FILENO
 # define STDERR_FD		STDERR_FILENO

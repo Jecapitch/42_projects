@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/13 13:25:41 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:35:26 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int			ft_isprintable(int c);
 int			ft_isspace(int c);
 int			ft_isset(int c, const char *set);
 int			ft_isset_hash(int c, const int hash[256]);
-int			ft_isint(const char *s, const char *base);
+int			ft_isnum(const char *s);
+int			ft_isint(const char *s);
 
 /* CHAR CASE */
 int			ft_isupper(int c);
@@ -50,7 +51,7 @@ void		ft_free_str_tab(char **arr);
 
 /* ALLOC */
 void		*ft_calloc(size_t count, size_t size);
-void		*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void		*ft_realloc(void *ptr, size_t new_size);
 void		*ft_free_safe(void *ptr);
 
 /* INT-STR */
@@ -65,9 +66,7 @@ char		*ft_itoa(int n);
 char		*ft_ltostr(t_ulong n, int base);
 
 /* ENVIRONMENT */
-char		*ft_getenv(char *name);
-char		*ft_getenv_val(char *name);
-char		*ft_getenv_key(char *name);
+char		*ft_getenv(const char *name);
 
 /* READ FILE */
 char		*get_next_line(int fd);

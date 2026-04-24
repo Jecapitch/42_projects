@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/10 05:36:23 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 18:53:06 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	ft_isspace(int c)
 
 int	ft_isascii(int n)
 {
-	return (n >= 0 && n <= 127);
+	return (0 <= n && n <= 127);
 }
 
 int	ft_isprintable(int n)
 {
-	return (n >= ' ' && n <= '~');
+	return (' ' <= n && n <= '~');
 }

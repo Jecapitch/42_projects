@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 04:35:37 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/13 14:29:49 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:19:21 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,23 +80,10 @@ void	ft_putnbr_base_fd(long n, char *base, int fd)
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	ft_putnbr_base_fd(n, "0123456789", fd);
+	ft_putnbr_base_fd(n, BASE10, fd);
 }
 
 void	ft_putunbr_fd(t_uint n, int fd)
 {
-	char	a[16];
-	char	*conv;
-
-	a[9] = '\0';
-	a[8] = '0';
-	conv = a + 8 - (!n);
-	while (n)
-	{
-		*conv = n % 10 + '0';
-		n /= 10;
-		conv--;
-	}
-	conv++;
-	ft_putstr_fd(conv, fd);
+	ft_putnbr_base_fd(n, BASE10, fd);
 }

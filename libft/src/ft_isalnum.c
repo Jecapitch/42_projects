@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/13 12:33:58 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:34:12 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,22 @@ int	ft_isdigit(int c)
 	return ('0' <= c && c <= '9');
 }
 
-int	ft_isint(const char *s, const char *base)
+int	ft_isnum(const char *s)
 {
-	size_t	len;
-	long	n;
-	int		sign;
+	while (ft_isspace(*s))
+		s++;
+	s += (*s == '+' || *s == '-');
+	while (ft_isdigit(*s))
+		s++;
+	return (!(*s));
+}
 
+int	ft_isint(const char *s)
+{
 	if (!s)
 	{
 		ft_err_nonnull(NULL, -1, __func__);
 		return (0);
 	}
-	while (ft_isspace(*s))
-		s++;
-	sign = (*s == '-');
-	s += (*s == '+' || *s == '-');
-	if (!(*s))
-		return (0);
-	len = 0;
-	while (s[len])
-	{
-		if (!ft_isdigit(s[len]) || len == MAX_INT_LEN)
-			return (0);
-		len++;
-	}
-	n = ft_strtol(s - sign, base);
-	return (len && !s[len] && INT_MIN <= n && n <= INT_MAX);
+	return (ft_isnum(s) && ft_atoi(s) == ft_strtol(s, BASE10));
 }

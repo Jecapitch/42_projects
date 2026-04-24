@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 00:19:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/24 14:13:33 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:35:10 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,19 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void	*ft_realloc(void *ptr, size_t new_size)
 {
 	void	*newptr;
-	size_t	size;
 
 	newptr = NULL;
-	size = 0;
 	if (!ptr)
-		return (ft_calloc(size, 1));
+		return (ft_calloc(new_size, sizeof(char)));
 	if (!new_size)
-		return (ptr = ft_free_safe(ptr), NULL);
-	newptr = ft_calloc(new_size, 1);
+		return (ptr = ft_free_safe(ptr), ft_calloc(1, 1));
+	newptr = ft_calloc(new_size, sizeof(char));
 	if (!newptr)
 		return (ptr = ft_free_safe(ptr), NULL);
-	if (old_size > new_size)
-		size = new_size;
-	else
-		size = old_size;
-	ft_memmove(newptr, ptr, size);
+	ft_memmove(newptr, ptr, new_size);
 	ptr = ft_free_safe(ptr);
 	return (newptr);
 }

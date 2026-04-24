@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/13 15:51:56 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:26:59 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,12 @@ char	*ft_substr(const char *s, t_uint start, size_t len)
 		ft_err_nonnull(NULL, -1, __func__);
 		return (NULL);
 	}
-	if (ft_strlen(s) <= start)
-		return (ft_strdup(""));
 	slen = ft_strlen(s);
-	if (start > slen)
-		return (ft_strdup(""));
+	if (start >= slen)
+		len = 0;
 	s += start;
 	slen -= start;
-	len = (len <= slen) * (len - slen) + slen;
+	if (len > slen)
+		len = slen;
 	return (ft_strldup(s, len));
 }

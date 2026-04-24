@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:38 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 21:58:59 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:30:04 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strtrim(const char *s, const char *set)
 	len = ft_strlen(s);
 	while (len && ft_isset(s[len - 1], set))
 		len--;
-	trimmed = ft_substr(s, 0, len);
+	trimmed = ft_strldup(s, len);
 	return (trimmed);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:47:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/11 00:56:41 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:15:07 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_print_tab(void *tab, int data_type, const char sep[], size_t tab_size)
 	}
 	if (!ft_isset(data_type, "sdic"))
 	{
-		ft_log(NULL, -1, __func__, "data type must be [sdic]");
+		ft_log(NULL, -1, __func__, "data type must be in [s, d, i, c]");
 		return (-1);
 	}
 	if (!tab_size)

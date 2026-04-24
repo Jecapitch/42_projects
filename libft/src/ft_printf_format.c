@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_format.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:45:09 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/07 00:52:59 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:15:18 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

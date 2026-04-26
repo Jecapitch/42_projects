@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/20 17:37:30 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/26 22:58:32 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,8 +144,8 @@ void		tester_ft_err_nonnull(const char *file, int line, const char *fct);
 void		tester_ft_log(const char *file, int line, const char *func, \
 					const char *msg);
 
-# ifndef LIST_H
-#  define LIST_H
+# ifndef TESTER_LIST_H
+#  define TESTER_LIST_H
 
 typedef struct s_lst			t_lst;
 
@@ -172,7 +172,7 @@ void		tester_ft_lstclear(t_lst **lst, void (*del)(void *));
 void		tester_ft_lstiter(t_lst *lst, void (*f)(void *));
 t_lst		*tester_ft_lstmap(t_lst *lst, void *(*f)(void *), void (*del)(void *));
 
-# endif /*LIST_H*/
+# endif /*TESTER_LIST_H*/
 
 # ifndef FT_PRINTF_H
 #  define FT_PRINTF_H

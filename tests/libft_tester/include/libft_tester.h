@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/16 15:41:33 by jepiscic          #+#    #+#             */
-/*   Updated: 2026/04/21 21:25:00 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/26 23:03:21 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@
 #define STR(x)	#x
 #define STRF(x) STR(x)
 
-#define OK		BGRN"OK"CRESET
-#define KO		BRED"KO"CRESET
-#define ERROR	BRED"error"CRESET
+#define OK		GRN"OK"CRESET
+#define KO		RED"KO"CRESET
+#define ERROR	RED"error"CRESET
 #define CRASHOK	YEL"crash (OK)"CRESET
 
 #endif /* LIBFT_TESTER_H */

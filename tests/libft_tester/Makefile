@@ -6,7 +6,7 @@
 #    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/04/20 18:12:18 by jepiscic         ###   ########.fr        #
+#    Updated: 2026/04/26 22:40:53 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ CC	= cc
 
 CFLAGS += -Wall -Wextra -Werror
 
-CPPFLAGS += -I$(INCDIR)/ -I$(LFTDIR)/ -I$(TLIBDIR)
+CPPFLAGS += -I$(INCDIR)/ -I$(LFTDIR)/ -I$(TLIBDIR)/
 
 LINK	= -L$(LFTDIR) -lft -L$(TLIBDIR) -ltest
 ifeq ($(OS), Linux)

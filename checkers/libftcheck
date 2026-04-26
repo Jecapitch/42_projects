@@ -26,11 +26,11 @@
 	NORM_LOG=norminette.txt
 
 	# Colors
-	BRED="\033[1;31m"
-	BGRN="\033[1;32m"
-	BYEL="\033[1;33m"
-	BBLU="\033[1;34m"
-	BCYN="\033[1;36m"
+	RED="\033[0;31m"
+	GRN="\033[0;32m"
+	YEL="\033[0;33m"
+	BLU="\033[0;34m"
+	CYN="\033[0;36m"
 	# Reset
 	CRESET="\033[0m"
 
@@ -79,10 +79,11 @@
 		split
 		putchar_fd putnbr_fd putstr_fd putendl_fd
 		striteri strmapi
+		lstnew lstdelone
 		#TODO
 		lstsize lstlast
-		lstnew lstadd_front lstadd_back
-		lstdelone lstclear
+		lstadd_front lstadd_back
+		lstclear
 		lstiter lstmap
 	)
 
@@ -98,7 +99,7 @@
 ### PROGRAM ###
 
 	clear
-	echo -en $BCYN
+	echo -en $CYN
 	cat << 'EOF'
 
  ,dPYb,       ,dPYb,      ,dPYb,    I8
@@ -117,12 +118,12 @@
                           I8, ,8'
                            "Y8P'
 EOF
-	echo "jepiscic@42"
+	echo "checker by jepiscic@42"
 	echo -e $CRESET
 
 	echo -e Working directory: $DIR"\\n"
 
-	echo -e "$BBLU"CHECKING FILE NAMES"$CRESET"
+	echo -e "$BLU"CHECKING FILE NAMES"$CRESET"
 
 ### CHECKING REQUIRED FILES ###
 
@@ -131,18 +132,18 @@ EOF
 		if ! [[ ${FILES[*]} =~ $DIR/$f ]]; then
 			((ERROR+=1))
 			((COUNT+=1))
-			echo -e $f "$BRED"not found"$CRESET"
+			echo -e $f "$RED"not found"$CRESET"
 		fi
 	done
 
 	echo -n "====> "
 
 	if [[ $ERROR == 0 ]]; then
-		echo -e "$BGRN"Required files OK"$CRESET"
+		echo -e "$GRN"Required files OK"$CRESET"
 	elif [[ $ERROR == 1 ]]; then
-		echo -e "$BRED"$ERROR required file not found"$CRESET"
+		echo -e "$RED"$ERROR required file not found"$CRESET"
 	else
-		echo -e "$BRED"$ERROR required files not found"$CRESET"
+		echo -e "$RED"$ERROR required files not found"$CRESET"
 	fi
 
 
@@ -154,30 +155,30 @@ EOF
 		if ! [[ ${REQUIRED_FILES[*]} =~ $f ]] && ! [[ $f =~ ^ft_.*\.c$ ]]; then
 			((ERROR+=1))
 			((COUNT+=1))
-			echo -e $f: "$BRED"invalid file or directory"$CRESET"
+			echo -e $f: "$RED"invalid file or directory"$CRESET"
 		fi
 	done
 
 	echo -n "====> "
 
 	if [[ $ERROR == 0 ]]; then
-		echo -e "$BGRN"File names OK"$CRESET"
+		echo -e "$GRN"File names OK"$CRESET"
 	elif [[ $ERROR == 1 ]]; then
-		echo -e "$BRED"$ERROR invalid file name"$CRESET"
+		echo -e "$RED"$ERROR invalid file name"$CRESET"
 	else
-		echo -e "$BRED"$ERROR invalid file names"$CRESET"
+		echo -e "$RED"$ERROR invalid file names"$CRESET"
 	fi
 
 	echo ""
 
 ### NORM ###
 
-	echo -e "$BBLU"CHECKING NORM"$CRESET"
+	echo -e "$BLU"CHECKING NORM"$CRESET"
 
 	norminette "$DIR" | grep Error > "$NORM_LOG"
 
 	if ! [[ -s $NORM_LOG ]]; then
-		echo -e "====> ""$BGRN"Norm OK"$CRESET"
+		echo -e "====> ""$GRN"Norm OK"$CRESET"
 	else
 		cat "$NORM_LOG"
 		((COUNT += 1))
@@ -190,7 +191,7 @@ EOF
 
 ### MAKEFILE ###
 
-	echo -e "$BBLU"CHECKING MAKEFILE"$CRESET"
+	echo -e "$BLU"CHECKING MAKEFILE"$CRESET"
 
 	ERROR=0
 
@@ -198,22 +199,22 @@ EOF
 		make "$m" -C $DIR >/dev/null 2>/dev/null
 		echo -en make "$m "
 		if [[ $? == 0 ]]; then
-			echo -e "$BGRN"OK"$CRESET"
+			echo -e "$GRN"OK"$CRESET"
 		else
-			echo -e "$BRED"KO"$CRESET"
+			echo -e "$RED"KO"$CRESET"
 			((COUNT += 1))
 			((ERROR += 1))
 		fi
 	done
 
 	if [[ -z $DIR/$NAME ]]; then
-		echo -e "$BRED"Error"$CRESET": $NAME not found
+		echo -e "$RED"Error"$CRESET": $NAME not found
 		((COUNT += 1))
 		((ERROR += 1))
 	fi
 
 	if [[ $ERROR == 0 ]]; then
-		echo -e "====> $BGRN"Makefile OK"$CRESET"
+		echo -e "====> $GRN"Makefile OK"$CRESET"
 	fi
 
 	echo ""
@@ -221,7 +222,7 @@ EOF
 
 ### CHECKING FUNCTIONS ###
 
-	echo -e "$BBLU"LOOKING UP FUNCTIONS"$CRESET"
+	echo -e "$BLU"LOOKING UP FUNCTIONS"$CRESET"
 	if [[ $OS = "Linux" ]]; then
 		FUNC=$(nm -j "$DIR/$NAME" | grep -v -E "\.|__" | sort | uniq)
 	else
@@ -236,12 +237,12 @@ EOF
 
 	for f in ${REQUIRED_FUNCS[@]}; do
 		if [[ ${FUNC[*]} =~ $f ]]; then
-			echo -e $f "$BGRN"OK"$CRESET"
+			echo -e $f "$GRN"OK"$CRESET"
 			if ! [[ ${CATH} =~ $f ]]; then
-				echo -e $f "$BYEL"but not in libft.h"$CRESET"
+				echo -e $f "$YEL"but not in libft.h"$CRESET"
 			fi
 		else
-			echo -e $f "$BRED"KO"$CRESET"
+			echo -e $f "$RED"KO"$CRESET"
 			((ERROR+=1))
 			((COUNT+=1))
 		fi
@@ -250,11 +251,11 @@ EOF
 	echo -n "====> "
 
 	if [[ $ERROR == 0 ]]; then
-		echo -e "$BGRN"Required functions OK"$CRESET"
+		echo -e "$GRN"Required functions OK"$CRESET"
 	elif [[ $ERROR == 1 ]]; then
-		echo -e "$BRED"$ERROR required function not found"$CRESET"
+		echo -e "$RED"$ERROR required function not found"$CRESET"
 	else
-		echo -e "$BRED"$ERROR required function not found"$CRESET"
+		echo -e "$RED"$ERROR required function not found"$CRESET"
 	fi
 
 ##### FORBIDDEN FUNCTIONS #####
@@ -262,7 +263,7 @@ EOF
 	ERROR=0
 	for f in ${FUNC[@]}; do
 		if [[ ${FORBIDDEN[*]} =~ $f ]]; then
-			echo -e "$BRED"Use of forbidden function"$CRESET": $f
+			echo -e "$RED"Use of forbidden function"$CRESET": $f
 			((ERROR += 1))
 			((COUNT += 1))
 		fi
@@ -271,11 +272,11 @@ EOF
 	if [[ -e "$NAME" ]]; then
 		echo -n "====> "
 		if [[ $ERROR == 0 ]]; then
-			echo -e "$BGRN"No forbidden function found"$CRESET"
+			echo -e "$GRN"No forbidden function found"$CRESET"
 		elif [[ $ERROR == 1 ]]; then
-			echo -e "$BRED"$ERROR forbidden function found"$CRESET"
+			echo -e "$RED"$ERROR forbidden function found"$CRESET"
 		else
-			echo -e "$BRED"$ERROR forbidden functions found"$CRESET"
+			echo -e "$RED"$ERROR forbidden functions found"$CRESET"
 		fi
 	fi
 
@@ -285,7 +286,7 @@ EOF
 
 ### TEST FUNCTIONS ###
 
-	echo -e "$BBLU"TESTING FUNCTIONS"$CRESET"
+	echo -e "$BLU"TESTING FUNCTIONS"$CRESET"
 
 	curl -fsS -L -o jepiscic.zip \
 			https://github.com/Jecapitch/42_projects/archive/refs/heads/main.zip
@@ -350,6 +351,10 @@ EOF
 			FILENAME=striter
 		elif [[ $FUNC =~ strmap ]]; then
 			FILENAME=strmap
+		elif [[ $FUNC =~ lstnew ]]; then
+			FILENAME=lstnew
+		elif [[ $FUNC =~ lstdel ]]; then
+			FILENAME=lstdelone
 		else
 			continue
 		fi
@@ -374,10 +379,10 @@ EOF
 			(( ERROR += $? ))
 		fi
 		make fclean FILE=$FILENAME FT=$FT STD=$STD LIBFT=$DIR
-		echo -en $BCYN"====>"$CRESET "ft_$FUNC  \\t"
+		echo -en $CYN"====>"$CRESET "ft_$FUNC  \\t"
 		[[ $ERROR == 0 ]] \
-			&& echo -e $BGRN"OK"$CRESET \
-			|| { echo -e $BRED"KO\\n"$CRESET ; ((COUNT += 1)); }
+			&& echo -e $GRN"OK"$CRESET \
+			|| { echo -e $RED"KO\\n"$CRESET ; ((COUNT += 1)); }
 	done
 
 	make libclean LIBFT=$DIR
@@ -387,12 +392,12 @@ EOF
 
 ### RESULT ###
 
-	echo -e "$BBLU"RESULT"$CRESET"
+	echo -e "$BLU"RESULT"$CRESET"
 
 	if [[ $COUNT == 0 ]]; then
-		echo -e "$BGRN"$NAME OK"$CRESET"
+		echo -e "$GRN"$NAME OK"$CRESET"
 	elif [[ $COUNT == 1 ]]; then
-		echo -e "$BRED"$COUNT error: $NAME KO"$CRESET"
+		echo -e "$RED"$COUNT error: $NAME KO"$CRESET"
 	else
-		echo -e "$BRED"$COUNT errors: $NAME KO"$CRESET"
+		echo -e "$RED"$COUNT errors: $NAME KO"$CRESET"
 	fi

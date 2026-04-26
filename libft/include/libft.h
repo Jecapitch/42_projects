@@ -51,7 +51,7 @@ void		ft_free_str_tab(char **arr);
 
 /* ALLOC */
 void		*ft_calloc(size_t count, size_t size);
-void		*ft_realloc(void *ptr, size_t new_size);
+void		*ft_recalloc(void *ptr, size_t new_size);
 void		*ft_free_safe(void *ptr);
 
 /* INT-STR */

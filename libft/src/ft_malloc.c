@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 00:19:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/24 19:35:10 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/24 22:10:48 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-void	*ft_realloc(void *ptr, size_t new_size)
+void	*ft_recalloc(void *ptr, size_t new_size)
 {
 	void	*newptr;
 

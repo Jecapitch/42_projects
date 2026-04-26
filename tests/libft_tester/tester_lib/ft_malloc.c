@@ -27,7 +27,7 @@ void	*tester_ft_calloc(size_t count, size_t size)
 	return (ptr);
 }
 
-void	*tester_ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void	*tester_ft_recalloc(void *ptr, size_t old_size, size_t new_size)
 {
 	void	*newptr;
 	size_t	size;

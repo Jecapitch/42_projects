@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 13:19:18 by jepiscic          #+#    #+#             */
-/*   Updated: 2026/04/24 19:01:23 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/25 20:19:49 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,19 @@
 # define STDERR_FD		STDERR_FILENO
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE	1028
+#  define BUFFER_SIZE	1024
+# endif
+
+# if 1 > BUFFER_SIZE || BUFFER_SIZE > 4096
+#  error "BUFFER_SIZE out of bounds"
 # endif
 
 # ifndef MAX_FD
-#  define MAX_FD		4096
+#  define MAX_FD		512
+# endif
+
+# if 1 > MAX_FD || MAX_FD > 4096
+#  error "MAX_FD out of bounds"
 # endif
 
 typedef unsigned int	t_uint;

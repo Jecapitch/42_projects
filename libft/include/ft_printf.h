@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/18 14:51:18 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/25 20:20:19 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	1024
+# endif
+
+# if 1 > BUFFER_SIZE || BUFFER_SIZE > 4096
+#  error "BUFFER_SIZE out of bounds"
 # endif
 
 # define FCONV			"sdipucxXbBovV%"

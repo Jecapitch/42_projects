@@ -104,7 +104,7 @@ void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 void		ft_bzero(void *s, size_t n);
 void		*ft_memset(void *b, int c, size_t len);
 void		*ft_calloc(size_t count, size_t size);
-void		*ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void		*ft_recalloc(void *ptr, size_t old_size, size_t new_size);
 void		ft_free_str_arr(char **arr);
 void		ft_free_nul(void *ptr);
 void		*ft_free_safe(void *ptr);

@@ -59,7 +59,7 @@ static int	add_arg(t_shdata *shdata, t_cmd *cmd, size_t i, size_t *j)
 	if (!arg)
 		return (EX_FAILURE);
 	k = get_pipe_nbr(arg) + 1;
-	cmd->argv = ft_realloc(cmd->argv, cmd->argc * sizeof(char *), \
+	cmd->argv = ft_recalloc(cmd->argv, cmd->argc * sizeof(char *), \
 							(cmd->argc + k + 1) * sizeof(char *));
 	if (!cmd->argv)
 		return (free_splitline(arg), EX_FAILURE);

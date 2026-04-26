@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_realloc.c                                       :+:      :+:    :+:   */
+/*   ft_recalloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
+void	*ft_recalloc(void *ptr, size_t old_size, size_t new_size)
 {
 	void	*newptr;
 	size_t	size;

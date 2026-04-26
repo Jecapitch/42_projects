@@ -105,7 +105,7 @@ void		tester_ft_striteri(char *s, void (*f)(t_uint, char*));
 void		tester_ft_bzero(void *s, size_t n);
 void		*tester_ft_memset(void *b, int c, size_t len);
 void		*tester_ft_calloc(size_t count, size_t size);
-void		*tester_ft_realloc(void *ptr, size_t old_size, size_t new_size);
+void		*tester_ft_recalloc(void *ptr, size_t old_size, size_t new_size);
 void		tester_ft_free_str_tab(char **arr);
 void		*tester_ft_free_safe(void *ptr);
 

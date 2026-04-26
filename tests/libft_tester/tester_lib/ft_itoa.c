@@ -35,6 +35,6 @@ char	*tester_ft_itoa(int n)
 	if (n < 0)
 		s[i++] = '-';
 	s = tester_ft_reverse_tab(s, i, sizeof(char));
-	s = tester_ft_realloc(s, 16, tester_ft_strlen(s) + 1);
+	s = tester_ft_recalloc(s, 16, tester_ft_strlen(s) + 1);
 	return (s);
 }

@@ -78,8 +78,8 @@
 		strjoin strtrim
 		split
 		putchar_fd putnbr_fd putstr_fd putendl_fd
+		striteri strmapi
 		#TODO
-		strmapi striteri
 		lstsize lstlast
 		lstnew lstadd_front lstadd_back
 		lstdelone lstclear
@@ -300,7 +300,7 @@ EOF
 	NON_STD=(
 		strjoin strtrim
 		split
-		strmapi striteri
+		striteri strmapi
 		lstsize lstlast
 		lstnew lstadd_front lstadd_back
 		lstdelone lstclear
@@ -346,6 +346,10 @@ EOF
 			FILENAME=puts
 		elif [[ $FUNC =~ put(n|c) ]]; then
 			FILENAME=putd
+		elif [[ $FUNC =~ striter ]]; then
+			FILENAME=striter
+		elif [[ $FUNC =~ strmap ]]; then
+			FILENAME=strmap
 		else
 			continue
 		fi

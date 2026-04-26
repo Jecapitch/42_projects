@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 16:01:15 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/26 15:49:15 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	null_check(int ft_fd, int std_fd)
 			close(devnull);
 		}
 		FT(NULL, ft_fd);
-		STD(std_fd, "");
+		STD(std_fd, "%s", "");
 		exit(1);
 	}
 	int	status;

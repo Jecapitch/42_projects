@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/26 22:58:32 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 14:52:56 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,12 @@ t_lst		*tester_ft_lstlast(t_lst *lst);
 t_lst		*tester_ft_lstnew(void *content);
 void		tester_ft_lstadd_front(t_lst **lst, t_lst *newnode);
 void		tester_ft_lstadd_back(t_lst **lst, t_lst *newnode);
+t_lst		*tester_ft_lstcreate(void **data, size_t size);
 
 /* LIST DELETE */
 void		tester_ft_lstdelone(t_lst *lst, void (*del)(void *));
 void		tester_ft_lstclear(t_lst **lst, void (*del)(void *));
+void		donothing(void *p);
 
 /* LIST ITERATE */
 void		tester_ft_lstiter(t_lst *lst, void (*f)(void *));

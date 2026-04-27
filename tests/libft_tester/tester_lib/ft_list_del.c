@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tester_ft_lst_del.c                                      :+:      :+:    :+:   */
+/*   ft_list_del.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 15:55:25 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/12 16:03:19 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 14:52:23 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,9 @@ void	tester_ft_lstclear(t_lst **lst, void (*del)(void *))
 		*lst = next;
 	}
 	lst = NULL;
+}
+
+void	donothing(void *p)
+{
+	(void)p;
 }

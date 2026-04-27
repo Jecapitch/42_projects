@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/26 23:00:03 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:42:15 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,20 @@ int	null_check(void)
 				dup2(devnull, STDERR_FILENO);
 				close(devnull);
 			}
-			t_lst	*node = tester_ft_lstnew(NULL);
-			FT((t_list *)node, free);
-			exit(1);
+			t_list	*node = NULL;
+			FT(node, free);
+			int	ret = (node != NULL);
+			tester_ft_free_safe(node);
+			exit(ret);
 		}
 		default:
 		{
 			int	status;
+
 			wait(&status);
 			if (WIFSIGNALED(status))
+				return (printf(STRF(FT(NULL, free))": "CRASHOK"\n"), 0);
+			if (WEXITSTATUS(status))
 				return (printf(STRF(FT(NULL, free))": "ERROR"\n"), 1);
 			return (0);
 		}

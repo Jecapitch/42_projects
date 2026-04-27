@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/26 19:00:11 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:14:42 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,16 @@ int	null_check(char (*f)(unsigned int, char))
 				close(devnull);
 			}
 			char	*s = FT(NULL, f);
-			if (s)
-				free(s);
-			exit(0);
+			int		ret = (s && !strcmp(s, ""));
+			tester_ft_free_safe(s);
+			exit(ret);
 		}
 		default:
 		{
 			int	status;
 			wait(&status);
 			if (WIFSIGNALED(status))
-				printf(STRF(FT)"(NULL, uplow): "YEL"crash (OK)"CRESET"\n");
+				printf(STRF(FT)"(NULL, uplow): "CRASHOK"\n");
 		}
 	}
 	return (0);
@@ -89,13 +89,14 @@ int	main(void)
 		{
 			ft = FT(s[i], f[j]);
 			std = STD(s[i], f[j]);
-			if (strcmp(ft, std))
+			if (ft == s[i] || strcmp(ft, std))
 			{
 				err++;
 				printf(STRF(FT)"(\"%s\", %s): "ERROR"\n", s[i], fname[j]);
 			}
-			free(ft);
-			free(std);
+			if (ft != s[i])
+				tester_ft_free_safe(ft);
+			tester_ft_free_safe(std);
 		}
 	}
 	err += null_check(uplow);

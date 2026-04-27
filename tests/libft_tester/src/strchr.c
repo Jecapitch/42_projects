@@ -6,13 +6,13 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 15:10:04 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:50:03 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-int	null_check(char *a, int size)
+int	null_check(int size)
 {
 	switch(fork())
 	{
@@ -29,18 +29,19 @@ int	null_check(char *a, int size)
 				dup2(devnull, STDERR_FILENO);
 				close(devnull);
 			}
-			FT(a, size);
-			exit(0);
+			return (FT(NULL, size) != NULL);
 		}
 		default:
 		{
 			int	status;
 			wait(&status);
 			if (WIFSIGNALED(status))
-				printf(STRF(FT)"(NULL, %d): "YEL"crash (OK)"CRESET"\n", size);
+				return (printf(STRF(FT)"(NULL, %d): "CRASHOK"\n", size), 0);
+			if (WEXITSTATUS(status))
+				return (printf(STRF(FT)"(NULL, %d): "ERROR"\n", size), 1);
+			return (0);
 		}
 	}
-	return (0);
 }
 
 int	main(void)
@@ -62,6 +63,6 @@ int	main(void)
 			}
 		}
 	}
-	err += null_check(NULL, 42);
+	err += null_check(42);
 	return (err != 0);
 }

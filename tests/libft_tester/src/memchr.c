@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 15:08:21 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:32:08 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,19 @@ int	null_check(char *a, int b, int size)
 				dup2(devnull, STDERR_FILENO);
 				close(devnull);
 			}
-			FT(a, b, size);
-			exit(0);
+			exit(FT(a, b, size) != 0);
 		}
 		default:
 		{
 			int	status;
 			wait(&status);
 			if (WIFSIGNALED(status))
-				printf(STRF(FT)"(NULL, '%d', %d): "YEL"crash (OK)"CRESET"\n", b, size);
+				return (printf(STRF(FT)"(NULL, '%d', %d): "CRASHOK"\n", b, size), 0);
+			if (WEXITSTATUS(status))
+				return (printf(STRF(FT)"(NULL, '%d', %d): "ERROR": returns nonnull\n", b, size), 1);
+			return (0);
 		}
 	}
-	return (0);
 }
 
 int	main(void)
@@ -54,7 +55,7 @@ int	main(void)
 	for (int i = 0; i < tabsize; i++)
 	{
 		chr = s[i];
-		size = strlen(chr) + 1;
+		size = strlen(chr);
 		for (int c = -128; c < 127; c++)
 		{
 			if (FT(chr, c, size) != STD(chr, c, size))

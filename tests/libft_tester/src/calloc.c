@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/20 16:01:56 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:18:23 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,8 @@ int	main(void)
 				err++;
 				printf(STRF(FT)"('%d', %d): "ERROR"\n", n, size);
 			}
-			if (ft)
-				free(ft);
-			if (std)
-				free(std);
+			tester_ft_free_safe(ft);
+			tester_ft_free_safe(std);
 		}
 	}
 	return (err != 0);

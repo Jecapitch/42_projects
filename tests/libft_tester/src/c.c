@@ -6,12 +6,11 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 10:25:31 by jepiscic          #+#    #+#             */
-/*   Updated: 2026/04/27 10:47:04 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:17:17 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester_libft.h"
-
 
 int main(int c, char **v)
 {

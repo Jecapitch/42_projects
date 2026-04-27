@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/17 18:27:10 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:37:05 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,16 @@ int	null_check(char *dest, char *src, int size)
 			dup2(devnull, STDERR_FILENO);
 			close(devnull);
 		}
-		int ret = FT(dest, src, size);
-		exit(src == NULL ? 1 : ret == (int)strlen(src));
+		int ret = (FT(dest, src, size) != (src ? strlen(src) : 0) + (strstr(STRF(FT), "cat") && dest ? strlen(dest) : 0));
+		exit(ret);
 	}
 	int	status;
 	wait(&status);
-	if (WIFSIGNALED(status) || WEXITSTATUS(status))
-		return (0);
-	printf(STRF(FT)"(%s, %s, %d): "ERROR"\n", dest ? dest : "NULL", src ? src : "NULL", size);
-	return (1);
+	if (WIFSIGNALED(status))
+		return (printf(STRF(FT)"(%s, %s, %d): "CRASHOK"\n", dest ? dest : "NULL", src ? src : "NULL", size), 0);
+	if (WEXITSTATUS(status))
+		return (printf(STRF(FT)"(%s, %s, %d): "ERROR"\n", dest ? dest : "NULL", src ? src : "NULL", size), 1);
+	return (0);
 }
 
 int	main(void)
@@ -75,5 +76,6 @@ int	main(void)
 	}
 	err += null_check(NULL, src, 42);
 	err += null_check(src, NULL, 42);
+	err += null_check(NULL, NULL, 42);
 	return (err != 0);
 }

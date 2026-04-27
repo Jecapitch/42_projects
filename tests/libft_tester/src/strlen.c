@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/17 13:45:49 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:04:43 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,21 @@ int	null_check(void)
 				dup2(devnull, STDERR_FILENO);
 				close(devnull);
 			}
-			FT(NULL);
-			exit(0);
+			exit(FT(NULL) != 0);
 		}
 		default:
 		{
 			int	status;
 			wait(&status);
 			if (WIFSIGNALED(status))
-				printf(STRF(FT)"(NULL): "CRASHOK"\n");
+				return (printf(STRF(FT)"(NULL): "CRASHOK"\n"), 0);
+			if (WEXITSTATUS(status))
+				return (printf(STRF(FT)"(NULL): "ERROR"\n"), 0);
+			return (0);
 		}
 	}
-	return (0);
 }
+
 int	main(void)
 {
 	int		err = 0;

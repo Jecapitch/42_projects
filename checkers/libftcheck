@@ -410,6 +410,6 @@ EOF
 	echo -e "$RED"DISCLAIMER"$CRESET"
 	cat << EOF
 • Don't trust this tester. It can be wrong. Always double check. Run your own tests.
-• Memory leaks aren't tracked.
+• Memory leaks aren't tracked. Good luck. Don't panic.
 
 EOF

@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/18 00:47:02 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/28 00:22:27 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ int	null_check(char *src, int i, int size)
 			close(devnull);
 		}
 		char	*dest = FT(src, i, size);
-		int		ret = !dest;
+		int		ret = (dest && !strcmp(dest, ""));
 		if (dest)
 			free(dest);
 		exit(ret);
 	}
 	int	status;
 	wait(&status);
-	if (WIFSIGNALED(status) || WEXITSTATUS(status))
-		return (0);
-	printf(STRF(FT)"(NULL, %d, %d): "ERROR"\n", i, size);
-	return (1);
+	if (WIFSIGNALED(status))
+		return (printf(STRF(FT)"(NULL, %d, %d): "CRASHOK"\n", i, size), 0);
+	if (WEXITSTATUS(status))
+		return (printf(STRF(FT)"(NULL, %d, %d): "ERROR"\n", i, size), 1);
+	return (0);
 }
 
 int	main(void)

@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/21 15:53:20 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:17:04 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int	main(void)
 	for (int i = 0; i < 50; i++)
 	{
 		int 	size = i;
-		char	dest[size]; 
-		char	dest2[size]; 
+		char	dest[size];
+		char	dest2[size];
 
 		FT(dest, size);
 		STD(dest2, size);

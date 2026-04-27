@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/27 14:53:31 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:30:58 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	null_check(void)
 			int	status;
 			wait(&status);
 			if (WIFSIGNALED(status))
-				return (printf(STRF(FT)"(NULL): "YEL"crash (OK)"CRESET"\n"), 0);
+				return (printf(STRF(FT)"(NULL): "CRASHOK"\n"), 0);
 			if (WEXITSTATUS(status))
 				return (printf(STRF(FT)"(NULL): "ERROR"\n"), 1);
 			return (0);

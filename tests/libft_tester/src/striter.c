@@ -6,13 +6,13 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/27 16:37:49 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/27 23:58:24 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_tester.h"
 
-int	null_check(void (*f)(unsigned int, char *))
+int	null_check(char *s, void (*f)(unsigned int, char *), char *fname)
 {
 	switch(fork())
 	{
@@ -29,7 +29,7 @@ int	null_check(void (*f)(unsigned int, char *))
 				dup2(devnull, STDERR_FILENO);
 				close(devnull);
 			}
-			FT(NULL, f);
+			FT(s, f);
 			exit(0);
 		}
 		default:
@@ -37,10 +37,10 @@ int	null_check(void (*f)(unsigned int, char *))
 			int	status;
 			wait(&status);
 			if (WIFSIGNALED(status))
-				printf(STRF(FT)"(NULL, uplow): "YEL"crash (OK)"CRESET"\n");
+				printf(STRF(FT)"(%s, %s): "CRASHOK"\n", s ? s : "NULL", fname);
+			return (0);
 		}
 	}
-	return (0);
 }
 
 void	uplow(unsigned int i, char *s)
@@ -97,6 +97,7 @@ int	main(void)
 			free(std);
 		}
 	}
-	err += null_check(uplow);
+	err += null_check(NULL, uplow, "uplow");
+	err += null_check(s[2], NULL, "NULL");
 	return (err != 0);
 }

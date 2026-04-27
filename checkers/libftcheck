@@ -405,3 +405,11 @@ EOF
 	else
 		echo -e "$RED"$COUNT errors: $NAME KO"$CRESET"
 	fi
+
+	echo ""
+	echo -e "$RED"DISCLAIMER"$CRESET"
+	cat << EOF
+• Don't trust this tester. It can be wrong. Always double check. Run your own tests.
+• Memory leaks aren't tracked.
+
+EOF

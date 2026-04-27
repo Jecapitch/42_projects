@@ -80,8 +80,8 @@
 		putchar_fd putnbr_fd putstr_fd putendl_fd
 		striteri strmapi
 		lstnew lstdelone
-		#TODO
 		lstsize lstlast
+		#TODO
 		lstadd_front lstadd_back
 		lstclear
 		lstiter lstmap
@@ -355,6 +355,10 @@ EOF
 			FILENAME=lstnew
 		elif [[ $FUNC =~ lstdel ]]; then
 			FILENAME=lstdelone
+		elif [[ $FUNC =~ size ]]; then
+			FILENAME=lstsize
+		elif [[ $FUNC =~ last ]]; then
+			FILENAME=lstlast
 		else
 			continue
 		fi

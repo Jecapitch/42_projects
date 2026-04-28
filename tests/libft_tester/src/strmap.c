@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:48:45 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/28 00:14:42 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/04/28 18:35:26 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	rot13(unsigned int i, char s)
 	(void)i;
 	if (ft_isalpha(s))
 	{
-		int	c = ft_islower(s) * ('a' - 'A') + 'A';
+		int	c = tester_ft_islower(s) * ('a' - 'A') + 'A';
 		return ((s - c + 13) % 26 + c);
 	}
 	return (s);

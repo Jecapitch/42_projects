@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_sum.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 20:58:07 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/29 22:44:54 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 06:19:11 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@ long	ft_sum(int a, int b)
 	return (a + b);
 }
 
-long	ft_sum_arr(int *arr)
+long	ft_sum_tab(int *tab, size_t size)
 {
 	long	sum;
-	size_t	size;
 	size_t	i;
 
-	if (!arr)
+	if (!tab)
 		return (0);
 	sum = 0;
-	size = sizeof(*arr) / sizeof(int);
 	i = 0;
 	while (i < size)
 	{
-		sum += arr[i];
+		sum += tab[i];
 		i++;
 	}
 	return (sum);
@@ -44,7 +42,7 @@ long	ft_sum_list(t_list *list)
 
 	if (!list || !list->size)
 		return (0);
-	node = list->first;
+	node = list->head;
 	sum = 0;
 	while (node)
 	{
@@ -54,14 +52,14 @@ long	ft_sum_list(t_list *list)
 	return (sum);
 }
 
-long	ft_sum_list2(t_list_2 *list)
+long	ft_sum_deque(t_deque *list)
 {
-	t_node_2	*node;
+	t_denode	*node;
 	long		sum;
 
 	if (!list || !list->size)
 		return (0);
-	node = list->first;
+	node = list->head;
 	sum = 0;
 	while (node)
 	{
@@ -78,9 +76,9 @@ long	ft_sum_list_circ(t_list_circ *list)
 
 	if (!list || !list->size)
 		return (0);
-	node = list->first;
+	node = list->head;
 	sum = 0;
-	while (node != list->last)
+	while (node != list->tail)
 	{
 		sum += *(int *)node->content;
 		node = node->next;

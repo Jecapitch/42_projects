@@ -3,25 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 00:19:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/02 23:22:19 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/11 00:48:20 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memset(void *p, int c, size_t len)
 {
-	unsigned char	*chb;
+	t_uchar	*byte;
 
-	chb = (unsigned char *)b;
-	while (len > 0)
+	if (!p)
 	{
-		*chb = (unsigned char)c;
-		chb++;
+		ft_err_nonnull(NULL, -1, __func__);
+		return (NULL);
+	}
+	byte = (t_uchar *)p;
+	while (len)
+	{
+		*byte = (t_uchar)c;
+		byte++;
 		len--;
 	}
-	return (b);
+	return (p);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	if (!s)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
+		return ;
+	}
+	ft_memset(s, 0, n);
 }

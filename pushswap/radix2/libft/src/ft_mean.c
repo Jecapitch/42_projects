@@ -3,24 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mean.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 20:55:37 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/29 22:45:29 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 07:10:33 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "mymath.h"
 
-double	ft_mean_arr(int *arr)
+double	ft_mean_tab(int *tab, size_t size)
 {
-	double	sum;
-	size_t	size;
-
-	sum = ft_sum_arr(arr);
-	size = sizeof(*arr) / sizeof(int);
-	return (sum / size);
+	return (ft_sum_tab(tab, size) / size);
 }
 
 double	ft_mean_list(t_list *list)
@@ -33,13 +28,13 @@ double	ft_mean_list(t_list *list)
 	return (sum / list->size);
 }
 
-double	ft_mean_list2(t_list_2 *list)
+double	ft_mean_deque(t_deque *list)
 {
 	double	sum;
 
 	if (!list || !list->size)
 		return (0);
-	sum = ft_sum_list2(list);
+	sum = ft_sum_deque(list);
 	return (sum / list->size);
 }
 

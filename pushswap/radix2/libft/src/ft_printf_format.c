@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_format.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:45:09 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/07 00:52:59 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:15:18 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ char	*ft_conversion(va_list *ptr, t_printf *format)
 	else if (format->conv == '%')
 		s = ft_strdup("%");
 	else if (format->conv == 'p')
-		s = ft_ltostr(va_arg(*ptr, unsigned long), format->conv);
+		s = ft_ltostr(va_arg(*ptr, t_ulong), format->conv);
 	else if (ft_isset(format->conv, "uxXbBovV"))
-		s = ft_ltostr(va_arg(*ptr, unsigned int), format->conv);
+		s = ft_ltostr(va_arg(*ptr, t_uint), format->conv);
 	return (s);
 }
 
@@ -71,7 +71,7 @@ void	ft_format(const char *fstr, t_printf *format)
 	}
 	if (ft_isdigit(*fstr))
 		format->min_len = ft_atoi(fstr);
-	fstr += ft_countwhile_condition(fstr, &ft_isdigit);
+	fstr += ft_strlen_condition(fstr, &ft_isdigit);
 	if (*fstr == '.')
 	{
 		format->precision = 0;
@@ -79,7 +79,7 @@ void	ft_format(const char *fstr, t_printf *format)
 		if (ft_isdigit(*fstr))
 			format->precision = ft_atoi(fstr);
 	}
-	fstr += ft_countwhile_condition(fstr, &ft_isdigit);
+	fstr += ft_strlen_condition(fstr, &ft_isdigit);
 	format->conv = *fstr;
 }
 

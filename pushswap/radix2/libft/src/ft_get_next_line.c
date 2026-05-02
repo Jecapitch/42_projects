@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_next_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 17:30:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/07 23:27:44 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:58:58 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
 static size_t	ft_count_endl(char buffer[])
 {
@@ -51,13 +51,11 @@ static char	*ft_join(char *s1, size_t len_s1, char buffer[], size_t len_toadd)
 	newstr = malloc((len_s1 + len_toadd + 1) * sizeof(char));
 	if (!newstr)
 	{
-		if (s1)
-			free(s1);
+		ft_free_safe(s1);
 		return (NULL);
 	}
 	ft_copy(newstr, s1, len_s1);
-	if (s1)
-		free(s1);
+	ft_free_safe(s1);
 	ft_copy(newstr + len_s1, buffer, len_toadd);
 	ft_copy(buffer, buffer + len_toadd, BUFFER_SIZE - len_toadd);
 	return (newstr);
@@ -78,8 +76,7 @@ char	*get_next_line(int fd)
 	{
 		if (!buffer[fd][0] && read(fd, buffer[fd], BUFFER_SIZE) == -1)
 		{
-			if (newline)
-				free(newline);
+			ft_free_safe(newline);
 			return (NULL);
 		}
 		len_toadd = ft_count_endl(buffer[fd]);

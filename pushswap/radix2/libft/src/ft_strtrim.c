@@ -3,32 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:38 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/02 23:05:09 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:30:04 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtrim(const char *s1, const char *set)
+char	*ft_strtrim(const char *s, const char *set)
 {
 	char	*trimmed;
 	size_t	len;
 
-	if (!s1)
+	len = 0;
+	trimmed = NULL;
+	if (!s || !set)
 	{
-		trimmed = ft_calloc(1, sizeof(char));
-		return (trimmed);
+		ft_err_nonnull(NULL, -1, __func__);
+		return (NULL);
 	}
-	if (!set)
-		return (ft_strdup(s1));
-	while (*s1 && ft_isset(*s1, set))
-		s1++;
-	len = ft_strlen(s1);
-	while (len > 0 && ft_isset(s1[len - 1], set))
+	if (!(*set))
+		return (ft_strdup(s));
+	while (ft_isset(*s, set))
+		s++;
+	len = ft_strlen(s);
+	while (len && ft_isset(s[len - 1], set))
 		len--;
-	trimmed = ft_substr(s1, 0, len);
+	trimmed = ft_strldup(s, len);
 	return (trimmed);
+}
+
+char	*ft_strstrip(const char *s)
+{
+	return (ft_strtrim(s, " \n\t\r\v\f"));
 }

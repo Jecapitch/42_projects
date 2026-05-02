@@ -19,7 +19,7 @@ t_node_circ	*set_node_val(int data)
 
 	node = ft_newnode_circ(malloc(sizeof(int)));
 	if (!node || !node->content)
-		return (ft_listdelone_circ(node, ft_free_nul), NULL);
+		return (ft_listdelone_circ(node, ft_free_safe), NULL);
 	*(int *)node->content = data;
 	return (node);
 }

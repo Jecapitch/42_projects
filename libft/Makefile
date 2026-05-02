@@ -6,7 +6,7 @@
 #    By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/17 00:15:49 by jpiscice          #+#    #+#              #
-#    Updated: 2026/04/18 01:32:16 by jepiscic         ###   ########.fr        #
+#    Updated: 2026/05/02 13:18:04 by jepiscic         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ SRC = 	$(addprefix $(SRCDIR)/ft_, $(addsuffix .c, \
 				strtol \
 				strtrim \
 				sum \
+				swap \
 		))
 
 OBJ	= $(addprefix $(OBJDIR)/, $(SRC:%.c=%.o))

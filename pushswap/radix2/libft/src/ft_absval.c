@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_absval.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 22:24:12 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/28 22:41:47 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 02:33:16 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,5 @@
 
 int	ft_absval(int n)
 {
-	if (n < 0)
-		n = -n;
-	return (n);
+	return ((n >= 0) * 2 * n - n);
 }

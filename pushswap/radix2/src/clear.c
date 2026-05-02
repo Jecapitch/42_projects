@@ -18,8 +18,8 @@ void	clear_game(t_game **game)
 {
 	if (!game)
 		return ;
-	ft_listclear_circ(&(*game)->a, ft_free_nul);
-	ft_listclear_circ(&(*game)->b, ft_free_nul);
-	ft_listclear(&(*game)->op, ft_free_nul);
-	ft_free_nul(*game);
+	ft_listclear_circ(&(*game)->a, ft_free_safe);
+	ft_listclear_circ(&(*game)->b, ft_free_safe);
+	ft_listclear(&(*game)->op, ft_free_safe);
+	ft_free_safe(*game);
 }

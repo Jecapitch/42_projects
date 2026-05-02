@@ -1,0 +1,9 @@
+a.out
+*.pdf
+.DS_Store
+*.swp
+*.o
+*.a
+*.d
+*.dSYM
+*/obj

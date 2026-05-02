@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_count_words.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 23:59:38 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/02 23:06:19 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:30:38 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,34 @@ size_t	ft_count_words(const char *s, char c)
 	size_t	n;
 
 	if (!s)
-		return (0);
+		return (ft_err_nonnull(NULL, -1, __func__), 0);
 	n = 0;
 	while (*s)
 	{
-		while (*s && *s == c)
+		while (*s == c)
 			s++;
-		if (*s && *s != c)
+		if (*s)
 			n++;
 		while (*s && *s != c)
+			s++;
+	}
+	return (n);
+}
+
+size_t	ft_count_words_set(const char *s, const char *set)
+{
+	size_t	n;
+
+	if (!s || !set)
+		return (ft_err_nonnull(NULL, -1, __func__), 0);
+	n = 0;
+	while (*s)
+	{
+		while (ft_isset(*s, set))
+			s++;
+		if (*s)
+			n++;
+		while (*s && !ft_isset(*s, set))
 			s++;
 	}
 	return (n);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 01:11:50 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/02 23:16:50 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/13 12:27:49 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
+	if (!s1 || !s2)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
+		return (-1);
+	}
 	while (n)
 	{
 		if (*s1 != *s2 || !(*s1) || !(*s2))

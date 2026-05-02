@@ -6,7 +6,7 @@
 /*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:10:32 by jpiscice          #+#    #+#             */
-/*   Updated: 2026/04/24 19:35:26 by jepiscic         ###   ########.fr       */
+/*   Updated: 2026/05/02 13:17:42 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int			ft_isupper(int c);
 int			ft_islower(int c);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
+
+/* SWAP */
+void		ft_swap(int *a, int *b);
+void		ft_swap_2dtab(void **tab, size_t i, size_t j);
 
 /* TAB */
 void		*ft_reverse_tab(void *tab, size_t size, size_t elem_size);

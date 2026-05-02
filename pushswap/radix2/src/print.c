@@ -39,13 +39,13 @@ void	display_game_base(t_game *game, int base)
 		{
 			s = ft_ltostr(getval(node), base);
 			ft_printf("%s->", s);
-			ft_free_nul(s);
+			ft_free_safe(s);
 			node = node->next;
 		}
 		s = ft_ltostr(getval(node), base);
 		if (stack->size)
 			ft_printf("%s\n\n", s);
-		ft_free_nul(s);
+		ft_free_safe(s);
 		stack = game->b;
 	}
 	ft_printf("=============\n\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 20:11:35 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/14 21:41:39 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/10 23:02:04 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	ft_isset(int c, const char *set)
 {
 	if (!set)
+	{
+		ft_err_nonnull(NULL, -1, __func__);
 		return (0);
+	}
 	while (*set)
 	{
 		if (c == *set)
@@ -23,4 +26,9 @@ int	ft_isset(int c, const char *set)
 		set++;
 	}
 	return (0);
+}
+
+int	ft_isset_hash(int c, const int hash[256])
+{
+	return (hash[c] != 0);
 }

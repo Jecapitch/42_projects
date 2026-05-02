@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ltostr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 04:35:37 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/11/20 00:10:15 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/24 19:03:07 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,26 @@ static int	ft_code(int base)
 	return (code[base - 'a']);
 }
 
-char	*ft_ltostr(unsigned long n, int base)
+char	*ft_ltostr(t_ulong n, int base)
 {
-	char	a[38];
-	char	b[52];
+	char	*b;
+	char	a[52];
 	char	*conv;
 
 	if (!n && base == 'p')
 		return (ft_strdup("(nil)"));
 	if (!n)
 		return (ft_strdup("0"));
-	b[51] = '\0';
-	conv = b + 50;
+	a[51] = '\0';
+	conv = a + 50;
 	if (ft_isupper(base))
-		ft_memcpy(a, "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", 36);
+		b = BASE36_UP;
 	else
-		ft_memcpy(a, "0123456789abcdefghijklmnopqrstuvwxyz", 36);
+		b = BASE36_LOW;
 	base = ft_code(base);
 	while (n)
 	{
-		*conv = a[n % base];
+		*conv = b[n % base];
 		n /= base;
 		conv--;
 	}

@@ -3,23 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpiscice <jpiscice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jepiscic <jepiscic@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:14:23 by jpiscice          #+#    #+#             */
-/*   Updated: 2024/12/15 23:04:09 by jpiscice         ###   ########.fr       */
+/*   Updated: 2026/04/25 20:20:19 by jepiscic         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # include "libft.h"
 # include <stdarg.h>
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE	1024
 # endif
-# ifndef FD
-#  define FD			1
+
+# if 1 > BUFFER_SIZE || BUFFER_SIZE > 4096
+#  error "BUFFER_SIZE out of bounds"
 # endif
+
 # define FCONV			"sdipucxXbBovV%"
 # define FFLAGS			"-+.0# "
 
@@ -54,6 +58,12 @@ struct s_print_format
 	char	lead[3];
 };
 
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_base(int nbr, char *base, int fd);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putunbr_fd(t_uint n, int fd);
 int		ft_isflag(int c);
 int		ft_isconv(int c);
 char	*chartostr(int c);
@@ -62,6 +72,11 @@ void	ft_format(const char *fstr, t_printf *format);
 char	*ft_conversion(va_list *ptr, t_printf *format);
 void	ft_end_format(char *s, t_printf *format);
 void	ft_end_padding(t_printf *format);
+int		ft_dprintf(int fd, const char *fstr, ...);
+int		ft_vdprintf(int fd, const char *fstr, va_list args);
 int		ft_printf(const char *fstr, ...);
+int		ft_print_tab(void *arr, int data_type, \
+					const char sep[], size_t arr_size);
+void	ft_fill_line(size_t len, size_t maxlen, int fill, int end);
 
-#endif
+#endif /*FT_PRINTF_H*/
